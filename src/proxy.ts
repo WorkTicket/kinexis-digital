@@ -66,6 +66,15 @@ export function proxy(request: NextRequest) {
   requestHeaders.set(PATH_HEADER, request.nextUrl.pathname);
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("Content-Language", contentLanguage(locale));
+  // Edge country for cookie-banner geo (avoids a critical-path /cdn-cgi/trace fetch).
+  const country = (request.headers.get("cf-ipcountry") || "").toUpperCase();
+  if (/^[A-Z]{2}$/.test(country) && country !== "XX" && country !== "T1") {
+    response.cookies.set("kx_country", country, {
+      path: "/",
+      maxAge: 60 * 60 * 24,
+      sameSite: "lax",
+    });
+  }
   if (isPreviewHost(host)) {
     response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
   }

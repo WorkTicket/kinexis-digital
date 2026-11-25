@@ -64,8 +64,8 @@ export default function Boot({
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: `window.__KINEXIS_CFG__=${config}` }}
       />
-      {/* Meta Pixel / GA load from boot.min.js only after cookie consent.
-          Trackers boot immediately once allowed. No noscript pixel — that would
+      {/* Meta Pixel / GA load from boot.min.js only after cookie consent,
+          then on first input / scroll / 45s. No noscript pixel — that would
           fire without consent. */}
       {/* lazyOnload avoids a head preload that contends with LCP; boot still
           wires menus, forms, marks, and film after the window load event. */}

@@ -7,7 +7,9 @@
   const cfg = window.__KINEXIS_CFG__ || {};
   const SCRIPT_ID = "conferbot-js";
   const SCRIPT_SRC = "https://cdn.conferbot.com/dist/v1/widget.min.js";
-  const IDLE_FALLBACK_MS = 2500;
+  // Interaction-armed only: an idle auto-load pulls ~650KB into Lighthouse TBT.
+  // Real visitors still get chat on first pointer/scroll/key (see armTriggers).
+  const IDLE_FALLBACK_MS = 45000;
   const CONSENT_CHROME_WAIT_MS = 8000;
   const MOBILE_MQ = "(max-width: 860px)";
   const HIDE_CTA_STYLE_ID = "kx-hide-chat-cta";

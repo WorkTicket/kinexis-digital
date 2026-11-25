@@ -898,6 +898,8 @@ test.describe("marketing journeys", () => {
     await page.goto("/");
     await waitForBoot(page);
     await page.waitForTimeout(300);
+    // Tags arm on consent but boot on first input (Lighthouse-safe deferral).
+    await page.dispatchEvent("body", "pointerdown");
     await expect.poll(async () => (await gaEvents(page)).filter((event) => event.name === "page_view").length).toBe(1);
 
     const firePhoneTap = () => page.evaluate(() => {

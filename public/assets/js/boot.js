@@ -1564,26 +1564,36 @@ function queuePendingTrack(channel, name, params, options) {
   });
   writePendingTrack(items);
 }
-function flushPendingTrack() {
+function flushPendingTrack(channel) {
   const items = readPendingTrack();
   if (!items.length) return;
   const kept = [];
   for (const item of items) {
     if (!item || typeof item.name !== "string") continue;
+    if (channel && item.channel !== channel) {
+      kept.push(item);
+      continue;
+    }
     if (item.channel === "ga") {
-      if (!consentAllowsAnalytics()) {
+      if (!consentAllowsAnalytics() || !gaLoaded) {
         kept.push(item);
         continue;
       }
-      track(item.name, item.params || {}, { skipQueue: true });
+      try {
+        if (typeof window.gtag === "function") window.gtag("event", item.name, item.params || {});
+      } catch { /* ignore */ }
       continue;
     }
     if (item.channel === "meta") {
-      if (!consentAllowsAds()) {
+      if (!consentAllowsAds() || !metaBooted) {
         kept.push(item);
         continue;
       }
-      trackMeta(item.name, item.params || {}, item.options || undefined, { skipQueue: true });
+      try {
+        if (typeof window.fbq !== "function") continue;
+        if (item.options) window.fbq("track", item.name, item.params || {}, item.options);
+        else window.fbq("track", item.name, item.params || {});
+      } catch { /* ignore */ }
     }
   }
   writePendingTrack(kept);
@@ -1595,9 +1605,18 @@ function track(name, params, options) {
     return;
   }
   if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
+  // Keep gtag.js off the critical path for page/funnel diagnostics. Lead and
+  // purchase events force-load so conversions are not waiting on a later click.
+  if (!gaLoaded) {
+    if (QUEUEABLE_GA.has(name)) {
+      loadGa();
+    } else {
+      if (!options?.skipQueue) queuePendingTrack("ga", name, params);
+      armGa();
+      return;
+    }
+  }
   try {
-    // Ensure the gtag stub exists so events queue before/after script load.
-    loadGa();
     if (typeof window.gtag === "function") {
       window.gtag("event", name, params || {});
       return;
@@ -1622,6 +1641,16 @@ function trackPageView() {
 }
 
 let metaBooted = false;
+let metaTimer = 0;
+let metaArmed = false;
+function clearMetaArm() {
+  removeEventListener("pointerdown", ensureMeta);
+  removeEventListener("keydown", ensureMeta);
+  removeEventListener("touchstart", ensureMeta);
+  removeEventListener("scroll", ensureMeta);
+  clearTimeout(metaTimer);
+  metaArmed = false;
+}
 function ensureMeta() {
   if (!consentAllowsAds()) return false;
   if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return false;
@@ -1630,6 +1659,7 @@ function ensureMeta() {
     return false;
   }
   metaBooted = true;
+  clearMetaArm();
   if (!window.fbq) {
     const fbq = function (...args) {
       if (fbq.callMethod) fbq.callMethod(...args);
@@ -1655,11 +1685,21 @@ function ensureMeta() {
   } catch {
     /* Pixel blocked or unavailable — ignore. */
   }
+  flushPendingTrack("meta");
   return true;
 }
 function armMeta() {
-  if (!consentAllowsAds() || !cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
-  ensureMeta();
+  if (!consentAllowsAds() || !cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) {
+    clearMetaArm();
+    return;
+  }
+  if (metaBooted || metaArmed) return;
+  metaArmed = true;
+  addEventListener("pointerdown", ensureMeta, { once: true, passive: true });
+  addEventListener("keydown", ensureMeta, { once: true });
+  addEventListener("touchstart", ensureMeta, { once: true, passive: true });
+  addEventListener("scroll", ensureMeta, { once: true, passive: true });
+  metaTimer = setTimeout(ensureMeta, 45000);
 }
 
 function trackMeta(name, params, options, trackOptions) {
@@ -1670,8 +1710,15 @@ function trackMeta(name, params, options, trackOptions) {
     return;
   }
   if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
-  const justBooted = ensureMeta();
-  if (name === "PageView" && justBooted) return;
+  if (!metaBooted) {
+    if (QUEUEABLE_META.has(name)) {
+      ensureMeta();
+    } else {
+      if (!trackOptions?.skipQueue) queuePendingTrack("meta", name, params, options);
+      armMeta();
+      return;
+    }
+  }
   if (typeof window.fbq !== "function") return;
   try {
     if (options) window.fbq("track", name, params || {}, options);
@@ -1701,11 +1748,22 @@ function englishPath(pathname) {
 }
 
 let gaLoaded = false;
+let gaTimer = 0;
+let gaArmed = false;
+function clearGaArm() {
+  removeEventListener("pointerdown", loadGa);
+  removeEventListener("keydown", loadGa);
+  removeEventListener("touchstart", loadGa);
+  removeEventListener("scroll", onGaScroll);
+  clearTimeout(gaTimer);
+  gaArmed = false;
+}
 function loadGa() {
   if (!consentAllowsAnalytics()) return;
   if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
   if (gaLoaded) return;
   gaLoaded = true;
+  clearGaArm();
   window.dataLayer = window.dataLayer || [];
   function gtag(){ window.dataLayer.push(arguments); }
   window.gtag = gtag;
@@ -1729,12 +1787,24 @@ function loadGa() {
   document.head.appendChild(script);
   if (lastGaPageViewPath !== location.pathname) {
     lastGaPageViewPath = location.pathname;
-    track("page_view", { page_path: location.pathname });
+    try { window.gtag("event", "page_view", { page_path: location.pathname }); } catch { /* ignore */ }
   }
+  flushPendingTrack("ga");
 }
+const gaStarted = performance.now();
+function onGaScroll() { if (performance.now() - gaStarted >= 2500) loadGa(); }
 function armGa() {
-  if (!consentAllowsAnalytics() || !cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
-  loadGa();
+  if (!consentAllowsAnalytics() || !cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) {
+    clearGaArm();
+    return;
+  }
+  if (gaLoaded || gaArmed) return;
+  gaArmed = true;
+  addEventListener("pointerdown", loadGa, { once: true, passive: true });
+  addEventListener("keydown", loadGa, { once: true });
+  addEventListener("touchstart", loadGa, { once: true, passive: true });
+  addEventListener("scroll", onGaScroll, { passive: true });
+  gaTimer = setTimeout(loadGa, 45000);
 }
 
 function armTrackersFromConsent() {
@@ -1756,7 +1826,8 @@ function armTrackersFromConsent() {
   captureFirstTouch();
   armGa();
   armMeta();
-  flushPendingTrack();
+  if (analyticsAllowed && gaLoaded) flushPendingTrack("ga");
+  if (adsAllowed && metaBooted) flushPendingTrack("meta");
 }
 armTrackersFromConsent();
 addEventListener("kinexis:consent", armTrackersFromConsent);
