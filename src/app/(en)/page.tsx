@@ -31,7 +31,7 @@ export default async function Home() {
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
           <p className="eyebrow">Websites for contractors and home service businesses</p>
-          <h1 className="home-hero__title"><HL text="See Your New Contractor Website Before You Pay" mark="Before You Pay" phrase /></h1>
+          <h1 className="home-hero__title"><HL text={"See Your New Contractor\u00A0Website Before You Pay"} mark="Before You Pay" phrase /></h1>
           <p className="hero__sub">Get a free homepage preview in 2 business days, with no card or obligation. Lead System and Plus include Google review requests after jobs and offer optional missed-call text-back.</p>
           <ul className="ticks">
             <li>

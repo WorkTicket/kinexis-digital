@@ -110,7 +110,7 @@ h1{font-family:"poppinsDisplay","poppinsDisplay Fallback",Arial,sans-serif;font-
 .container{width:100%;max-width:1180px;margin:0 auto;padding:0 20px}
 .hero{position:relative;overflow:visible;padding:76px 0 88px;color:#0a1230;background:#fff}
 .hero .container{position:relative;z-index:2}
-.hero__inner{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.hero__inner{display:grid;grid-template-columns:minmax(0,1.38fr) minmax(0,1fr);gap:48px;align-items:center}
 .hero__media{position:relative;width:100%;padding:12px;background:#fff;border:3px solid #031b4e;border-radius:22px;box-shadow:8px 8px 0 #031b4e;line-height:0}
 .hero__frame{position:relative;border-radius:14px;overflow:hidden;border:3px solid #031b4e;background:#0a1230}
 .hero__poster,.hero__film{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#0a1230}

@@ -901,7 +901,7 @@ html.lp-route body{--announce-h:0px}
 /* Homepage hero — white field, navy type */
 .hero{position:relative;overflow:visible;padding:76px 0 88px;color:var(--text);background:#fff}
 .hero .container{position:relative;z-index:2}
-.hero__inner{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.hero__inner{display:grid;grid-template-columns:minmax(0,1.38fr) minmax(0,1fr);gap:48px;align-items:center}
 .hero__text{min-width:0;container-type:inline-size}
 .hero h1{font-size:clamp(2.2rem,5.3vw,3.7rem);letter-spacing:-.02em;text-wrap:balance}
 .hero .eyebrow{margin-bottom:.7rem}
@@ -1149,6 +1149,7 @@ html.lp-route body{--announce-h:0px}
 .hero.hero--fit>.container{width:100%}
 .hero.hero--fit .hero__inner{gap:clamp(20px,3vw,44px)}
 .hero.hero--fit h1{font-size:clamp(1.85rem,4.15vw,3.7rem);line-height:1.08;margin-bottom:.36em}
+.home-page .hero--fit h1.home-hero__title{text-wrap:pretty}
 .home-page h1{color:var(--text);font-weight:800}
 .home-page .hero--fit h1 .hl{
   margin:0;padding:0;border-radius:0;color:var(--accent);
