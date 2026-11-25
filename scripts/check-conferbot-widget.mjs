@@ -4,7 +4,7 @@
  * Production ships via committed `.env.production` (and CI overrides that flag
  * to 0 so this assert and e2e stay meaningful).
  *
- * Load contract: require affirmative consent; idle/input after page load; no
+ * Load contract: require affirmative consent; first pointer/key/touch only; no
  * double-init; no PII in customData.
  * Vanilla `public/assets/js/conferbot.js` owns the runtime (no React island).
  */
@@ -32,8 +32,9 @@ const widget = readFileSync(resolve("public/assets/js/conferbot.js"), "utf8");
 assert.match(widget, /cdn\.conferbot\.com\/dist\/v1\/widget\.min\.js/);
 assert.match(widget, /IDLE_FALLBACK_MS/);
 assert.match(widget, /CONSENT_CHROME_WAIT_MS/);
-assert.match(widget, /requestIdleCallback/);
+assert.match(widget, /pointerdown/);
 assert.match(widget, /widgetBooted/);
+assert.doesNotMatch(widget, /requestIdleCallback\(/);
 assert.match(widget, /kinexis-digital-site/);
 assert.match(widget, /\/admin/);
 assert.match(widget, /startLauncherPositioner/);
@@ -69,5 +70,5 @@ assert.match(
 );
 
 console.log(
-  "Conferbot widget contract checks passed: flag off by default, vanilla conferbot.js (requires affirmative analytics + ads consent before idle/input loading), shadow launcher lift, consent-open host hide, no double-init, CSP hosts, Boot mount.",
+  "Conferbot widget contract checks passed: flag off by default, vanilla conferbot.js (requires affirmative analytics + ads consent before pointer/key loading), shadow launcher lift, consent-open host hide, no double-init, CSP hosts, Boot mount.",
 );

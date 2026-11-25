@@ -60,5 +60,7 @@ assert.match(boot, /content_name: cfg\.metaContentNameByForm\[form\],[\s\S]*?for
 assert.match(boot, /lastGaPageViewPath/);
 assert.match(boot, /lastMetaPageViewPath/);
 assert.match(boot, /trackMeta\("Lead"/);
+assert.match(boot, /allow_google_signals:\s*false/);
+assert.match(boot, /ad_storage:\s*"denied"/);
 
-console.log("Analytics correction contract checks passed: attribution sanitization, canonical lead event, consent gates, pending flush, and in-flight form deduplication.");
+console.log("Analytics correction contract checks passed: attribution sanitization, canonical lead event, consent gates, pending flush, GA4-only (no Google Ads signals), and in-flight form deduplication.");

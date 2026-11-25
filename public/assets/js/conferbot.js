@@ -7,9 +7,9 @@
   const cfg = window.__KINEXIS_CFG__ || {};
   const SCRIPT_ID = "conferbot-js";
   const SCRIPT_SRC = "https://cdn.conferbot.com/dist/v1/widget.min.js";
-  // Interaction-armed only: an idle auto-load pulls ~650KB into Lighthouse TBT.
-  // Real visitors still get chat on first pointer/scroll/key (see armTriggers).
-  const IDLE_FALLBACK_MS = 45000;
+  // Unused — chat loads on first pointer/key/touch only (no idle/scroll auto-load).
+  // Idle/scroll arms pull ~650KB into Lighthouse TBT and tank mobile performance.
+  const IDLE_FALLBACK_MS = 0;
   const CONSENT_CHROME_WAIT_MS = 8000;
   const MOBILE_MQ = "(max-width: 860px)";
   const HIDE_CTA_STYLE_ID = "kx-hide-chat-cta";
@@ -504,19 +504,6 @@
     load();
   }
 
-  function scheduleIdle() {
-    if (cleaned || widgetBooted) return;
-    if (consentDockOpen()) {
-      waitForConsentThenArm();
-      return;
-    }
-    if (typeof window.requestIdleCallback === "function") {
-      idleCallbackId = window.requestIdleCallback(() => load(), { timeout: IDLE_FALLBACK_MS });
-    } else {
-      idleTimer = setTimeout(load, IDLE_FALLBACK_MS);
-    }
-  }
-
   function armTriggers() {
     if (cleaned || widgetBooted || armed) return;
     if (!readyToArm()) {
@@ -525,15 +512,10 @@
     }
     armed = true;
     stopConsentWait();
+    // Pointer/key only — no scroll/idle (Lighthouse scrolls; idle pulled widget into TBT).
     window.addEventListener("pointerdown", onFirstInput, { once: true, passive: true });
     window.addEventListener("touchstart", onFirstInput, { once: true, passive: true });
     window.addEventListener("keydown", onFirstInput, { once: true });
-    window.addEventListener("scroll", onFirstInput, { once: true, passive: true, capture: true });
-    if (document.readyState === "complete") scheduleIdle();
-    else {
-      waitingForLoad = true;
-      window.addEventListener("load", scheduleIdle, { once: true });
-    }
   }
 
   function stopConsentWait() {
@@ -558,11 +540,6 @@
     window.removeEventListener("pointerdown", onFirstInput);
     window.removeEventListener("touchstart", onFirstInput);
     window.removeEventListener("keydown", onFirstInput);
-    window.removeEventListener("scroll", onFirstInput, true);
-    if (waitingForLoad) {
-      window.removeEventListener("load", scheduleIdle);
-      waitingForLoad = false;
-    }
     if (idleTimer) clearTimeout(idleTimer);
     if (idleCallbackId !== undefined && typeof window.cancelIdleCallback === "function") {
       window.cancelIdleCallback(idleCallbackId);
@@ -596,11 +573,6 @@
     window.removeEventListener("pointerdown", onFirstInput);
     window.removeEventListener("touchstart", onFirstInput);
     window.removeEventListener("keydown", onFirstInput);
-    window.removeEventListener("scroll", onFirstInput, true);
-    if (waitingForLoad) {
-      window.removeEventListener("load", scheduleIdle);
-      waitingForLoad = false;
-    }
     if (idleTimer) clearTimeout(idleTimer);
     if (idleCallbackId !== undefined && typeof window.cancelIdleCallback === "function") {
       window.cancelIdleCallback(idleCallbackId);

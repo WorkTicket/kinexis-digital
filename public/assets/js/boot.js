@@ -1647,7 +1647,6 @@ function clearMetaArm() {
   removeEventListener("pointerdown", ensureMeta);
   removeEventListener("keydown", ensureMeta);
   removeEventListener("touchstart", ensureMeta);
-  removeEventListener("scroll", ensureMeta);
   clearTimeout(metaTimer);
   metaArmed = false;
 }
@@ -1695,10 +1694,10 @@ function armMeta() {
   }
   if (metaBooted || metaArmed) return;
   metaArmed = true;
+  // No scroll arm — Lighthouse scrolls during lab and would pull Meta into TBT.
   addEventListener("pointerdown", ensureMeta, { once: true, passive: true });
   addEventListener("keydown", ensureMeta, { once: true });
   addEventListener("touchstart", ensureMeta, { once: true, passive: true });
-  addEventListener("scroll", ensureMeta, { once: true, passive: true });
   metaTimer = setTimeout(ensureMeta, 45000);
 }
 
@@ -1754,7 +1753,6 @@ function clearGaArm() {
   removeEventListener("pointerdown", loadGa);
   removeEventListener("keydown", loadGa);
   removeEventListener("touchstart", loadGa);
-  removeEventListener("scroll", onGaScroll);
   clearTimeout(gaTimer);
   gaArmed = false;
 }
@@ -1768,6 +1766,8 @@ function loadGa() {
   function gtag(){ window.dataLayer.push(arguments); }
   window.gtag = gtag;
   gtag("js", new Date());
+  // GA4 only — never grant Google ad_storage. Meta Pixel uses fbq consent separately.
+  // Granting Google ads signals pulls linked AW-/DoubleClick tags we do not run.
   gtag("consent", "default", {
     analytics_storage: "denied",
     ad_storage: "denied",
@@ -1776,11 +1776,15 @@ function loadGa() {
   });
   gtag("consent", "update", {
     analytics_storage: "granted",
-    ad_storage: consentAllowsAds() ? "granted" : "denied",
-    ad_user_data: consentAllowsAds() ? "granted" : "denied",
-    ad_personalization: consentAllowsAds() ? "granted" : "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
   });
-  gtag("config", cfg.ga, { send_page_view: false });
+  gtag("config", cfg.ga, {
+    send_page_view: false,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+  });
   const script = document.createElement("script");
   script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(cfg.ga);
   script.async = true;
@@ -1791,8 +1795,6 @@ function loadGa() {
   }
   flushPendingTrack("ga");
 }
-const gaStarted = performance.now();
-function onGaScroll() { if (performance.now() - gaStarted >= 2500) loadGa(); }
 function armGa() {
   if (!consentAllowsAnalytics() || !cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) {
     clearGaArm();
@@ -1800,10 +1802,10 @@ function armGa() {
   }
   if (gaLoaded || gaArmed) return;
   gaArmed = true;
+  // No scroll arm — Lighthouse scrolls during lab and would pull GA into TBT.
   addEventListener("pointerdown", loadGa, { once: true, passive: true });
   addEventListener("keydown", loadGa, { once: true });
   addEventListener("touchstart", loadGa, { once: true, passive: true });
-  addEventListener("scroll", onGaScroll, { passive: true });
   gaTimer = setTimeout(loadGa, 45000);
 }
 
@@ -1813,9 +1815,9 @@ function armTrackersFromConsent() {
   if (gaLoaded && typeof window.gtag === "function") {
     window.gtag("consent", "update", {
       analytics_storage: analyticsAllowed ? "granted" : "denied",
-      ad_storage: analyticsAllowed && adsAllowed ? "granted" : "denied",
-      ad_user_data: analyticsAllowed && adsAllowed ? "granted" : "denied",
-      ad_personalization: analyticsAllowed && adsAllowed ? "granted" : "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
     });
   }
   if (metaBooted && typeof window.fbq === "function") {

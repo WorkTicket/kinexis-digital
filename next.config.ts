@@ -10,24 +10,21 @@ const emptyPolyfillModule = path.join(process.cwd(), "src/lib/empty-polyfill-mod
 const isDev = process.env.NODE_ENV === "development";
 const contentSecurityPolicy = [
   "default-src 'self'",
-  // Google Ads (AW-*) often ships through the same gtag.js as GA4 and needs
-  // googleadservices / doubleclick script hosts; omitting them logs CSP errors
-  // in Lighthouse Best Practices once tags boot.
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://connect.facebook.net https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://widget.trustpilot.com https://cdn.conferbot.com`,
+  // GA4 (gtag) + Meta Pixel only — no Google Ads / DoubleClick hosts.
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://static.cloudflareinsights.com https://www.googletagmanager.com https://connect.facebook.net https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://widget.trustpilot.com https://cdn.conferbot.com`,
   "script-src-attr 'none'",
   "style-src 'self' 'unsafe-inline'",
   // https: already covers GTM + Meta pixels; keep googletagmanager / facebook explicit.
-  "img-src 'self' data: blob: https: https://*.googletagmanager.com https://www.facebook.com https://*.facebook.com https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
+  "img-src 'self' data: blob: https: https://*.googletagmanager.com https://www.facebook.com https://*.facebook.com",
   "font-src 'self' data: https://fonts.gstatic.com",
   // GA4 posts to google-analytics.com, analytics.google.com (apex + subs), and googletagmanager.com.
-  // Linked Google Ads also hits google.com / doubleclick collect endpoints.
   // Meta Pixel posts to connect.facebook.net / facebook.com (apex + subs).
   // Meta also POSTs browser events to its Cloud Run / AWS openbridge hosts
   // (*.a.run.app, *.on.aws) — blocking those logs CSP errors in Lighthouse.
   // CSP *.host does not match the apex host itself — keep both forms.
-  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google.com https://google.com https://*.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://ad.doubleclick.net https://stats.g.doubleclick.net https://*.doubleclick.net https://connect.facebook.net https://*.facebook.net https://www.facebook.com https://*.facebook.com https://fonts.googleapis.com https://*.a.run.app https://*.on.aws https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com https://wdt.conferbot.com wss://wdt.conferbot.com`,
+  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net https://*.facebook.net https://www.facebook.com https://*.facebook.com https://fonts.googleapis.com https://*.a.run.app https://*.on.aws https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com https://wdt.conferbot.com wss://wdt.conferbot.com`,
   "media-src 'self' https:",
-  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.facebook.com https://*.facebook.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com https://wdt.conferbot.com https://www.google.com https://bid.g.doubleclick.net",
+  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.facebook.com https://*.facebook.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com https://wdt.conferbot.com",
   "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",
