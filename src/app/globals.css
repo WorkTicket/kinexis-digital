@@ -2699,6 +2699,8 @@ html.no-audit [data-site-audit]{display:none!important}
   display:none;flex:0 0 auto;min-height:44px;white-space:nowrap;padding:.7em 1.2em;font-size:.9rem;line-height:1.2;letter-spacing:.02em;
   transform-origin:center center;touch-action:manipulation;isolation:isolate;
   backface-visibility:hidden;-webkit-font-smoothing:antialiased;
+  /* Drop transform from .btn’s transition — it cancels cta-nudge keyframes (stuck identity matrix). */
+  transition:color .2s ease-in-out,--btn-fill .32s cubic-bezier(.2,.7,.2,1),box-shadow .15s ease,background-size .32s cubic-bezier(.2,.7,.2,1);
 }
 .header__cta--lp{display:none!important}
 @media (min-width:1321px){
@@ -5237,8 +5239,8 @@ p,li,blockquote{ text-wrap:pretty }
 .btn--sm{min-height:0}
 .btn--lg{min-height:3.15rem;padding:1.05rem 1.85rem}
 .hero__btns .btn{min-height:0}
-/* Keep the periodic nudge; only freeze transform while interacting. */
-.header__cta:hover,.header__cta:active,.header__cta:focus-visible{transform:none}
+/* Keep the periodic nudge; hover already sets animation:none above — don’t force
+   transform:none here or it can fight the keyframes mid-play on some engines. */
 .price .btn:not(.btn--ghost):not(.btn--light):active,
 .audit-cta .btn:not(.btn--ghost):not(.btn--light):active{
   transform:none;

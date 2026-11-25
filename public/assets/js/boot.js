@@ -673,7 +673,7 @@ function syncFooterColumns() {
 
 /** Desktop header CTA nudge — same timing as the former HeaderCta effect. */
 (function armHeaderCtaNudge() {
-  const PLAY_MS = 1600;
+  const PLAY_MS = 1500;
   const GAP_MIN_MS = 3200;
   const GAP_MAX_MS = 7800;
   const FIRST_DELAY_MS = 1800;
@@ -696,16 +696,18 @@ function syncFooterColumns() {
       el?.removeAttribute("data-cta-nudge");
     };
     const schedule = (delay) => {
+      window.clearTimeout(gapTimer);
       gapTimer = window.setTimeout(play, delay);
     };
     const play = () => {
-      if (stopped) return;
+      if (stopped || document.hidden) return;
+      window.clearTimeout(clearTimer);
       const el = visibleCta();
       if (!el) {
         schedule(nextGap());
         return;
       }
-      if (el.matches(":hover, :focus-visible, :active") || document.hidden) {
+      if (el.matches(":hover, :focus-visible, :active")) {
         schedule(nextGap());
         return;
       }
