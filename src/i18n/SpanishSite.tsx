@@ -350,8 +350,8 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             <p>{tx("Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje para llamadas perdidas es opcional y, una vez aprobado por el operador, permite que la persona te escriba si no puedes contestar.")}</p>
             <p className="btn-row">
               <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
+              <Link className="btn btn--light" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link>
             </p>
-            <p><Link href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link></p>
           </div>
           <HomeSectionArtwork
             name="review-follow-up"

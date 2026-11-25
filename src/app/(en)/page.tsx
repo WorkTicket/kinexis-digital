@@ -159,8 +159,8 @@ export default async function Home() {
             <p>Lead System and Plus include Google review requests after completed jobs. Missed-call text-back is optional and, once carrier-approved, gives a caller a way to reply while you’re working.</p>
             <p className="btn-row">
               <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
+              <Link className="btn btn--light" href="/pricing#lead-system" prefetch={false}>See the Lead System</Link>
             </p>
-            <p><Link href="/pricing#lead-system" prefetch={false}>See the Lead System</Link></p>
           </div>
           <HomeSectionArtwork
             name="review-follow-up"

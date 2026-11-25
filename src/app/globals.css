@@ -1267,20 +1267,21 @@ html.lp-route body{--announce-h:0px}
 }
 .section--lead .eyebrow{color:var(--on-dark)}
 .section--lead h2{color:#fff}
-.section--lead .lead-feature__copy>p:not(.btn-row){color:rgba(255,255,255,.88);max-width:62ch;font-size:1.08rem;line-height:1.55}
+.section--lead .lead-feature__copy>p:not(.btn-row){color:rgba(255,255,255,.88);max-width:58ch;font-size:1.08rem;line-height:1.55}
 .lead-feature{
-  display:grid;grid-template-columns:1fr;
-  justify-items:center;align-items:center;
-  gap:clamp(22px,3.5vw,36px);margin:0 0 28px;
-  text-align:center;
+  display:grid;
+  grid-template-columns:minmax(280px,.88fr) minmax(0,1.1fr);
+  justify-items:stretch;align-items:center;
+  gap:clamp(28px,4vw,48px);margin:0 0 28px;
+  text-align:left;
 }
 .lead-feature__copy{
-  width:min(100%,52rem);margin-inline:auto;text-align:center;
+  width:auto;max-width:none;margin:0;text-align:left;
 }
-.lead-feature__copy :is(h2,p){text-align:center;margin-left:auto;margin-right:auto}
-.lead-feature__copy .btn-row{margin-top:22px;justify-content:center}
+.lead-feature__copy :is(h2,p){text-align:left;margin-left:0;margin-right:0}
+.lead-feature__copy .btn-row{margin-top:22px;justify-content:flex-start;flex-wrap:wrap}
 .section--lead .home-section-art--reviews{
-  justify-self:center;width:min(100%,480px);
+  order:-1;justify-self:start;width:min(100%,520px);
   filter:drop-shadow(8px 10px 0 rgba(3,27,78,.35));
 }
 .trades-feature{
@@ -1455,8 +1456,14 @@ html.lp-route body{--announce-h:0px}
 
 @media (max-width:1020px){
   .lead-feature,.trades-feature{grid-template-columns:1fr;gap:20px}
+  .lead-feature{justify-items:center;text-align:center}
+  .lead-feature__copy{
+    width:min(100%,52rem);margin-inline:auto;text-align:center;
+  }
+  .lead-feature__copy :is(h2,p){text-align:center;margin-left:auto;margin-right:auto}
+  .lead-feature__copy .btn-row{justify-content:center}
   .section--lead .home-section-art--reviews,.trades-feature .home-section-art--trades{
-    justify-self:center;width:min(100%,420px);
+    order:0;justify-self:center;width:min(100%,420px);
   }
   .trades-feature .home-section-art--trades{transform:none}
 }
