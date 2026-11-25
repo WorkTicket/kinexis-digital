@@ -2402,7 +2402,7 @@ button.chatbot__icon__cta{
 .fb-track{letter-spacing:var(--fb-m,normal)}
 @media (min-width:861px){.fb-track{letter-spacing:var(--fb-d,var(--fb-m,normal))}}
 .page-hero.seo-hero .page-hero__copy{min-height:270px}
-.media-split{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,4vw,56px);align-items:center;margin-bottom:40px}
+.media-split{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center;margin-bottom:40px}
 .media-split--reverse .media-split__art{order:2}
 .media-split__copy h2,.media-split__copy p,.media-split__copy .muted{text-align:left;margin-left:0;margin-right:0}
 .media-split:last-child{margin-bottom:0}
