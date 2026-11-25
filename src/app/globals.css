@@ -1225,8 +1225,13 @@ html.lp-route body{--announce-h:0px}
 
 /* Sections / grids / cards */
 .section{position:relative;padding:80px 0;content-visibility:auto;contain-intrinsic-size:auto 720px}
+/* FAQ blocks are taller than the 720px placeholder; size-containment lets
+   summaries paint over the following SiteAudit CTA and fails target-size. */
+.section:has(details.faq){content-visibility:visible}
 /* Skip layout/paint for below-fold bands (including the first section after a page hero). */
-.price,.cta-band,.industry-audit,.footer,.pricing-terms,.guarantee-stack,.mobile-plan-compare,.reviews-block{content-visibility:auto;contain-intrinsic-size:auto 900px}
+/* industry-audit stays off content-visibility — placeholder sizing overlaps
+   the FAQ footer link and fails Lighthouse target-size on mobile. */
+.price,.cta-band,.footer,.pricing-terms,.guarantee-stack,.mobile-plan-compare,.reviews-block{content-visibility:auto;contain-intrinsic-size:auto 900px}
 /* Desktop-only comparison table is display:none on small screens; keep it out of the mobile render tree cost when shown. */
 .pricing-comparison-table{content-visibility:auto;contain-intrinsic-size:auto 1200px}
 .section>.container{position:relative;z-index:2}
@@ -4843,6 +4848,11 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 .industry-audit__top{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(260px,.92fr);grid-template-areas:"copy art" "cta art";column-gap:clamp(24px,4vw,56px);row-gap:16px;align-items:center}
 .industry-audit__copy{grid-area:copy}
 .industry-audit__cta{grid-area:cta}
+/* Text links under FAQ / section outros need a real ≥24×24px hit box for LH. */
+.section p.center > a:not(.btn){
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:12px 10px;line-height:1.3;
+}
 .industry-audit__art{grid-area:art;position:relative;min-width:0;aspect-ratio:3/2}
 .industry-audit__copy h2{font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.12;margin:0 0 .45em}
 .industry-audit__copy p{margin:0;color:var(--muted);font-size:1.08rem;max-width:40rem}
@@ -4853,16 +4863,16 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   .feature-grid,.industry-audit__checks{grid-template-columns:1fr 1fr}
 }
 @media (max-width:860px){
-  .industry-audit{padding:40px 0 24px}
+  .industry-audit{padding:56px 0 24px}
   .industry-audit__top{
     grid-template-columns:1fr;
     grid-template-areas:"copy" "cta" "art";
     justify-items:center;text-align:center;
-    row-gap:0;
+    row-gap:12px;
   }
   .industry-audit__copy{margin-bottom:0}
   .industry-audit__copy p{margin-inline:auto}
-  .industry-audit__cta{margin:10px 0 0}
+  .industry-audit__cta{margin:4px 0 8px}
   .industry-audit__art{
     width:min(100%,460px);
     aspect-ratio:auto;margin:0 auto;line-height:0;
