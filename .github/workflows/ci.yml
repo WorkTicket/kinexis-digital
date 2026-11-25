@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    # Keep the Conferbot widget off in CI even if .env.production enables it for
+    # real production builds (shell env wins over Next's .env.production).
+    env:
+      NEXT_PUBLIC_CONFERBOT_ENABLED: "0"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      # Handler-level payment/invoice suites (PayPal HTTP mocked). Not sandbox evidence.
+      - run: npm run check:invoice-security
+      - run: npm run build:worker
+      # Playwright e2e against `npm run dev` (see playwright.config.ts). Chromium only in
+      # CI for speed/stability; full desktop+mobile suite runs in deploy-production.mjs.
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Playwright e2e (chromium)
+        run: npx playwright test --project=chromium
+        env:
+          NEXT_PUBLIC_CONFERBOT_ENABLED: "0"

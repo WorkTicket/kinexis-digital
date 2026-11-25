@@ -1,0 +1,57 @@
+/* Hero readability pass: solid lettering, quieter artwork and protected photo copy. */
+.v8 .v8-hero{--hero-fg:var(--ink);--hero-em:var(--ink)}
+.v8 .v8-copper{--hero-em:#8b411f}
+.v8 .v8-electric{--hero-fg:#fff;--hero-em:#ffe16b}
+.v8 .v8-happy{--hero-fg:#13372a;--hero-em:#13372a}
+.v8 .v8-breeze{--hero-fg:#12394b;--hero-em:#a53625}
+.v8 .v8-roof{--hero-fg:#fff;--hero-em:#ffb5ac}
+.v8 .v8-glass{--hero-fg:#142e4a;--hero-em:#075d93}
+.v8 .v8-rinse{--hero-fg:#281448;--hero-em:#281448}
+.v8 .v8-doors{--hero-fg:#1c2b38;--hero-em:#93400e}
+.v8 .v8-pool{--hero-fg:#fff;--hero-em:#bcf7f0}
+.v8 .v8-paint{--hero-fg:#542430;--hero-em:#87363b}
+.v8 .v8-root{--hero-fg:#234932;--hero-em:#345929}
+.v8 .v8-oak{--hero-fg:#3e382f;--hero-em:#695235}
+.v8 .v8-light{--hero-fg:#fff;--hero-em:#ffe6ac}
+.v8 .v8-junk{--hero-fg:#103e2c;--hero-em:#103e2c}
+.v8 .v8-coatings{--hero-fg:#fff;--hero-em:#ffc38b}
+.v8 .v8-sunday{--hero-fg:#25483f;--hero-em:#873d38}
+.v8 .v8-detail{--hero-fg:#fff;--hero-em:#d8efe3}
+.v8 .v8-hand{--hero-fg:#182e47;--hero-em:#8d4714}
+.v8 .v8-juniper{--hero-fg:#fff;--hero-em:#e0f88b}
+.v8 .v8-ember{--hero-fg:#262522;--hero-em:#8c3020}
+.v8 .v8-cedar{--hero-fg:#1b3442;--hero-em:#75451a}
+.v8 .v8-highline{--hero-fg:#fff;--hero-em:#e0f7ce}
+.v8 .v8-northstar{--hero-fg:#fff;--hero-em:#ffcf69}
+.v8 .v8-harbor{--hero-fg:#123f58;--hero-em:#12617e}
+.v8 .v8-hero .v8-copy{color:var(--hero-fg);opacity:1}
+.v8 .v8-hero .v8-copy h1{color:var(--hero-fg)!important;opacity:1;-webkit-text-stroke:0;text-shadow:none}
+.v8 .v8-hero .v8-copy h1 em{color:var(--hero-em)!important;opacity:1;-webkit-text-stroke:0;text-shadow:none}
+.v8 .v8-hero .v8-copy p{color:var(--hero-fg)!important;font-size:18px;line-height:1.65;font-weight:500;opacity:1}
+.v8 .v8-hero .v8-copy .eyebrow{color:var(--hero-fg)!important;font-size:12px;line-height:1.6;letter-spacing:.1em;opacity:1}
+.v8 .v8-hero .v8-smallnote{color:var(--hero-fg);font-size:13px;line-height:1.6;opacity:1}
+.v8 .v8-hero .v8-world{opacity:.08;z-index:1}
+.v8 .v8-hero .v8-visual figcaption{color:var(--hero-fg);font-size:11px;line-height:1.6;letter-spacing:.07em;opacity:1}
+.v8 .v8-breeze .v8-visual figcaption{position:relative;background:#edf5f4;padding-left:12px;padding-right:12px}
+.v8 .v8-hero .button{font-size:14px;line-height:1.45;min-height:52px}
+.v8 .v8-roof .button{background:#b71f2b!important;color:#fff!important}
+.v8 .v8-roof .v8-visual figcaption{padding-right:130px}
+/* Photo backgrounds retain their detail outside the reading area. */
+.v8 .v8-electric .v8-visual{opacity:1}
+.v8 .v8-electric .v8-visual:after{background:linear-gradient(90deg,rgba(11,17,25,.96) 0%,rgba(11,17,25,.88) 45%,rgba(11,17,25,.35) 100%)}
+.v8 .v8-pool .v8-visual:after{background:linear-gradient(90deg,rgba(3,32,45,.94) 0%,rgba(3,32,45,.86) 52%,rgba(3,32,45,.30) 100%)}
+.v8 .v8-light .v8-visual:after{background:linear-gradient(180deg,rgba(5,25,29,.81),rgba(5,25,29,.86))}
+.v8 .v8-detail .v8-visual:after{background:linear-gradient(90deg,rgba(4,10,13,.95) 0%,rgba(4,10,13,.89) 56%,rgba(4,10,13,.25) 100%)}
+.v8 .v8-juniper .v8-visual:after{background:linear-gradient(90deg,rgba(4,31,23,.95) 0%,rgba(4,31,23,.87) 55%,rgba(4,31,23,.25) 100%)}
+@media(max-width:800px){
+ .v8 .v8-hero .v8-copy p{font-size:16px!important;line-height:1.65}
+ .v8 .v8-hero .v8-copy .eyebrow{font-size:11px;line-height:1.6;letter-spacing:.08em}
+ .v8 .v8-hero .button{font-size:13px;min-height:48px;padding:13px 18px}
+ .v8 .v8-hero .v8-visual figcaption{font-size:10px;line-height:1.5}
+ .v8 .v8-roof .v8-visual figcaption{padding-left:0;padding-right:20px}
+ .v8 .v8-electric .v8-visual:after{background:linear-gradient(180deg,rgba(11,17,25,.93),rgba(11,17,25,.84))}
+ .v8 .v8-pool .v8-visual:after{background:linear-gradient(180deg,rgba(3,32,45,.93),rgba(3,32,45,.83))}
+ .v8 .v8-light .v8-visual:after{background:linear-gradient(180deg,rgba(5,25,29,.89),rgba(5,25,29,.82))}
+ .v8 .v8-detail .v8-visual:after{background:linear-gradient(180deg,rgba(4,10,13,.93),rgba(4,10,13,.82))}
+ .v8 .v8-juniper .v8-visual:after{background:linear-gradient(180deg,rgba(4,31,23,.94),rgba(4,31,23,.83))}
+}

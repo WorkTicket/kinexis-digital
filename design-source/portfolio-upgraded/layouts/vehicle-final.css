@@ -1,0 +1,37 @@
+/* Final vehicle placement: one branded vehicle, only in its dedicated section. */
+.hero .vehicle{display:none!important}
+.fleet-section .fleet-vehicle{display:block!important;position:relative!important;inset:auto!important;width:100%!important;height:auto!important;max-width:1040px!important;max-height:none!important;object-fit:contain!important;object-position:center!important;margin:38px auto 0!important;grid-column:1/-1}
+.cp-questions>.container>.fleet-vehicle,.hr-answers>.container>.fleet-vehicle,.bc-questions>.container>.fleet-vehicle{margin-top:22px!important}
+.fleet-section .ve-fleet,.fleet-section .cl-van,.fleet-section .of-fleet{display:grid!important;grid-template-columns:minmax(0,1fr) 220px;gap:40px;align-items:center}
+.fleet-section .ve-fleet .fleet-vehicle,.fleet-section .cl-van .fleet-vehicle,.fleet-section .of-fleet .fleet-vehicle{grid-column:auto;margin:0!important}
+.fleet-section .ve-fleet p,.fleet-section .cl-van span,.fleet-section .of-fleet span{min-width:0}
+.bh-dive.fleet-section>.container{grid-template-columns:1fr;gap:36px}
+.bh-dive.fleet-section>.container>div:last-child{padding:35px 40px;margin:0}
+.bh-dive.fleet-section .fleet-vehicle{margin:0 auto!important}
+.bz-questions.fleet-section>.container{grid-template-columns:1fr 1.25fr;gap:55px}
+.bz-questions.fleet-section .bz-fleet{max-width:none;width:100%;padding:30px 18px}
+.bz-questions.fleet-section .fleet-vehicle{margin:0!important}
+.ag-illumination.fleet-section .ag-people{height:auto;min-height:480px;gap:24px;align-items:end}
+.ag-illumination.fleet-section .ag-people img:first-child{width:25%;height:440px;object-fit:contain;object-position:bottom;flex-shrink:0}
+.ag-illumination.fleet-section .ag-people .fleet-vehicle{width:73%!important;min-width:0;flex-shrink:1;margin:0!important}
+.ll-garage.fleet-section .fleet-vehicle{width:96%!important;margin-top:35px!important;margin-bottom:0!important}
+.fleet-section .rs-truck{margin-left:auto!important;margin-right:0!important;width:87%!important}
+@media(min-width:801px) and (max-width:1100px){
+ .fleet-section .ve-fleet,.fleet-section .cl-van,.fleet-section .of-fleet{grid-template-columns:minmax(0,1fr) 170px;gap:25px}
+ .bz-questions.fleet-section>.container{gap:30px}
+}
+@media(max-width:800px){
+ .fleet-section .fleet-vehicle{width:100%!important;height:auto!important;max-width:720px!important;margin:28px auto 0!important;grid-column:1/-1}
+ .fleet-section .ve-fleet,.fleet-section .cl-van,.fleet-section .of-fleet{display:flex!important;flex-direction:column;gap:18px;align-items:center}
+ .fleet-section .ve-fleet .fleet-vehicle,.fleet-section .cl-van .fleet-vehicle,.fleet-section .of-fleet .fleet-vehicle{width:100%!important;margin:0!important}
+ .fleet-section .ve-fleet p,.fleet-section .cl-van span,.fleet-section .of-fleet span{max-width:100%;text-align:center;margin:0;font-size:13px}
+ .bh-dive.fleet-section>.container{gap:28px}
+ .bh-dive.fleet-section>.container>div:last-child{margin:0;padding:22px 12px}
+ .bz-questions.fleet-section>.container{grid-template-columns:1fr;gap:28px}
+ .bz-questions.fleet-section .bz-fleet{max-width:100%;margin:0;padding:25px 12px;border-radius:110px 110px 5px 5px}
+ .ag-illumination.fleet-section .ag-people{min-height:0;gap:16px;flex-wrap:wrap;height:auto}
+ .ag-illumination.fleet-section .ag-people img:first-child{width:42%;height:260px}
+ .ag-illumination.fleet-section .ag-people .fleet-vehicle{width:100%!important;flex-basis:100%;margin:0!important}
+ .ll-garage.fleet-section .fleet-vehicle{width:100%!important;margin-top:28px!important}
+ .fleet-section .rs-truck{width:100%!important}
+}

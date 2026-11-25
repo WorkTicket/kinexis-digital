@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="430" viewBox="0 0 960 430" role="img" aria-label="Dos visitas de pintura, dos siguientes pasos"><defs><linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f4f7ff"/></linearGradient><linearGradient id="barTrack" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#eef2ff"/><stop offset="100%" stop-color="#f7f9ff"/></linearGradient></defs><rect width="960" height="430" fill="#ffffff"/><rect x="0" y="0" width="8" height="430" fill="#0b3dff"/>
+<rect x="28" y="24" width="52" height="6" rx="3" fill="#ff6a00"/>
+<text x="28" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em" fill="#0a1230">Dos visitas de pintura, dos siguientes pasos</text>
+<text x="28" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#53607e">La división del artículo, para comparar tu página de inicio.</text>
+<rect x="28" y="122" width="436" height="214" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="28" y="122" width="436" height="8" rx="4" fill="#0b3dff"/>
+<rect x="50" y="146" width="91.2" height="28" rx="14" fill="#e9eeff"/>
+<text x="66" y="165" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#0b3dff">Interior</text>
+<rect x="50" y="188" width="16" height="16" rx="4" fill="#0b3dff"/>
+<path d="M54.5 196 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="76" y="200" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">Cuántos cuartos o superficies</text>
+<rect x="50" y="216" width="16" height="16" rx="4" fill="#0b3dff"/>
+<path d="M54.5 224 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="76" y="228" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">Las fotos ayudan a clasificar</text>
+<rect x="50" y="244" width="16" height="16" rx="4" fill="#0b3dff"/>
+<path d="M54.5 252 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="76" y="256" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">Visita si el precio es final</text>
+<rect x="496" y="122" width="436" height="214" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="496" y="122" width="436" height="8" rx="4" fill="#ff6a00"/>
+<rect x="518" y="146" width="192.0" height="28" rx="14" fill="#fff1e6"/>
+<text x="534" y="165" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ff6a00">Exterior o gabinetes</text>
+<rect x="518" y="188" width="16" height="16" rx="4" fill="#ff6a00"/>
+<path d="M522.5 196 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="544" y="200" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">Preparación y clima en exterior</text>
+<rect x="518" y="216" width="16" height="16" rx="4" fill="#ff6a00"/>
+<path d="M522.5 224 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="544" y="228" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">Número de puertas en gabinetes</text>
+<rect x="518" y="244" width="16" height="16" rx="4" fill="#ff6a00"/>
+<path d="M522.5 252 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="544" y="256" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">No uses un solo formulario vago</text>
+<line x1="28" y1="386" x2="932" y2="386" stroke="#e1e6f2" stroke-width="1"/>
+<text x="28" y="404" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#53607e">La misma empresa. La página no debería obligarlos a compartir un botón.</text>
+</svg>

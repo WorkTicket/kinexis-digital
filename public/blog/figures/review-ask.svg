@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="390" viewBox="0 0 960 390" role="img" aria-label="Ask while the result is still there"><defs><linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f4f7ff"/></linearGradient><linearGradient id="barTrack" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#eef2ff"/><stop offset="100%" stop-color="#f7f9ff"/></linearGradient></defs><rect width="960" height="390" fill="#ffffff"/><rect x="0" y="0" width="8" height="390" fill="#0b3dff"/>
+<rect x="28" y="24" width="52" height="6" rx="3" fill="#ff6a00"/>
+<text x="28" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em" fill="#0a1230">Ask while the result is still there</text>
+<text x="28" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#53607e">One direct link. Three ways to hand it over.</text>
+<line x1="130.5" y1="138" x2="829.5" y2="138" stroke="#e1e6f2" stroke-width="3"/>
+<circle cx="130.5" cy="138" r="8" fill="#ffffff" stroke="#0b3dff" stroke-width="3"/>
+<circle cx="130.5" cy="138" r="3.5" fill="#0b3dff"/>
+<rect x="28" y="160" width="205" height="148" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="28" y="160" width="205" height="7" rx="3" fill="#0b3dff"/>
+<text x="130.5" y="202" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0a1230">Driveway</text>
+<text x="130.5" y="232" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">Ask when the job is done</text>
+<line x1="237" y1="138" x2="249" y2="138" stroke="#0b3dff" stroke-width="2.5" stroke-linecap="round"/><path d="M257 138 l-9 -6 v12 z" fill="#0b3dff"/>
+<circle cx="363.5" cy="138" r="8" fill="#ffffff" stroke="#0b3dff" stroke-width="3"/>
+<circle cx="363.5" cy="138" r="3.5" fill="#0b3dff"/>
+<rect x="261" y="160" width="205" height="148" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="261" y="160" width="205" height="7" rx="3" fill="#0b3dff"/>
+<text x="363.5" y="202" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0a1230">Text</text>
+<text x="363.5" y="232" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">Send the review link</text>
+<line x1="470" y1="138" x2="482" y2="138" stroke="#0b3dff" stroke-width="2.5" stroke-linecap="round"/><path d="M490 138 l-9 -6 v12 z" fill="#0b3dff"/>
+<circle cx="596.5" cy="138" r="8" fill="#ffffff" stroke="#0b3dff" stroke-width="3"/>
+<circle cx="596.5" cy="138" r="3.5" fill="#0b3dff"/>
+<rect x="494" y="160" width="205" height="148" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="494" y="160" width="205" height="7" rx="3" fill="#0b3dff"/>
+<text x="596.5" y="202" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0a1230">Email or paper</text>
+<text x="596.5" y="232" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">For people who will not</text>
+<text x="596.5" y="251" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">text</text>
+<line x1="703" y1="138" x2="715" y2="138" stroke="#0b3dff" stroke-width="2.5" stroke-linecap="round"/><path d="M723 138 l-9 -6 v12 z" fill="#0b3dff"/>
+<circle cx="829.5" cy="138" r="8" fill="#ffffff" stroke="#0b3dff" stroke-width="3"/>
+<circle cx="829.5" cy="138" r="3.5" fill="#0b3dff"/>
+<rect x="727" y="160" width="205" height="148" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="727" y="160" width="205" height="7" rx="3" fill="#0b3dff"/>
+<text x="829.5" y="202" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0a1230">Profile</text>
+<text x="829.5" y="232" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">You reply. You do not</text>
+<text x="829.5" y="251" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">invent one.</text>
+<line x1="28" y1="346" x2="932" y2="346" stroke="#e1e6f2" stroke-width="1"/>
+<text x="28" y="364" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#53607e">Do not offer a discount for a review, and do not post one yourself.</text>
+</svg>

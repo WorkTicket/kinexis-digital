@@ -1,0 +1,123 @@
+[
+  {
+    "number": 1,
+    "slug": "undertow",
+    "title": "Undertow Drainage",
+    "template": "undertow/index.html",
+    "mockup": "undertow/images/four-device-mockup.png",
+    "full_page": "undertow/images/desktop-full.png",
+    "sections": "undertow/images/section-designs.jpg",
+    "height": 6494,
+    "width": 1363
+  },
+  {
+    "number": 2,
+    "slug": "switchyard",
+    "title": "Switchyard Heating & Air",
+    "template": "switchyard/index.html",
+    "mockup": "switchyard/images/four-device-mockup.png",
+    "full_page": "switchyard/images/desktop-full.png",
+    "sections": "switchyard/images/section-designs.jpg",
+    "height": 7375,
+    "width": 1363
+  },
+  {
+    "number": 3,
+    "slug": "graft",
+    "title": "Graft Tree Care",
+    "template": "graft/index.html",
+    "mockup": "graft/images/four-device-mockup.png",
+    "full_page": "graft/images/desktop-full.png",
+    "sections": "graft/images/section-designs.jpg",
+    "height": 6762,
+    "width": 1363
+  },
+  {
+    "number": 4,
+    "slug": "tileline",
+    "title": "Tileline Bath & Tile",
+    "template": "tileline/index.html",
+    "mockup": "tileline/images/four-device-mockup.png",
+    "full_page": "tileline/images/desktop-full.png",
+    "sections": "tileline/images/section-designs.jpg",
+    "height": 7029,
+    "width": 1363
+  },
+  {
+    "number": 5,
+    "slug": "brightburrow",
+    "title": "Brightburrow Wildlife",
+    "template": "brightburrow/index.html",
+    "mockup": "brightburrow/images/four-device-mockup.png",
+    "full_page": "brightburrow/images/desktop-full.png",
+    "sections": "brightburrow/images/section-designs.jpg",
+    "height": 6854,
+    "width": 1363
+  },
+  {
+    "number": 6,
+    "slug": "riverstone",
+    "title": "Riverstone Basement Co.",
+    "template": "riverstone/index.html",
+    "mockup": "riverstone/images/four-device-mockup.png",
+    "full_page": "riverstone/images/desktop-full.png",
+    "sections": "riverstone/images/section-designs.jpg",
+    "height": 7190,
+    "width": 1363
+  },
+  {
+    "number": 7,
+    "slug": "kiln",
+    "title": "Kiln Hearth & Chimney",
+    "template": "kiln/index.html",
+    "mockup": "kiln/images/four-device-mockup.png",
+    "full_page": "kiln/images/desktop-full.png",
+    "sections": "kiln/images/section-designs.jpg",
+    "height": 7260,
+    "width": 1363
+  },
+  {
+    "number": 8,
+    "slug": "honeycomb",
+    "title": "Honeycomb Attic Co.",
+    "template": "honeycomb/index.html",
+    "mockup": "honeycomb/images/four-device-mockup.png",
+    "full_page": "honeycomb/images/desktop-full.png",
+    "sections": "honeycomb/images/section-designs.jpg",
+    "height": 7365,
+    "width": 1363
+  },
+  {
+    "number": 9,
+    "slug": "docklight",
+    "title": "Docklight Marine Detail",
+    "template": "docklight/index.html",
+    "mockup": "docklight/images/four-device-mockup.png",
+    "full_page": "docklight/images/desktop-full.png",
+    "sections": "docklight/images/section-designs.jpg",
+    "height": 6794,
+    "width": 1363
+  },
+  {
+    "number": 10,
+    "slug": "lockwell",
+    "title": "Lockwell Door Hardware",
+    "template": "lockwell/index.html",
+    "mockup": "lockwell/images/four-device-mockup.png",
+    "full_page": "lockwell/images/desktop-full.png",
+    "sections": "lockwell/images/section-designs.jpg",
+    "height": 6801,
+    "width": 1363
+  },
+  {
+    "number": 11,
+    "slug": "earthform",
+    "title": "Earthform Grading",
+    "template": "earthform/index.html",
+    "mockup": "earthform/images/four-device-mockup.png",
+    "full_page": "earthform/images/desktop-full.png",
+    "sections": "earthform/images/section-designs.jpg",
+    "height": 6880,
+    "width": 1363
+  }
+]

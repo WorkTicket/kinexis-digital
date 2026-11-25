@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="390" viewBox="0 0 960 390" role="img" aria-label="Pide la reseña mientras el resultado sigue ahí"><defs><linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f4f7ff"/></linearGradient><linearGradient id="barTrack" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#eef2ff"/><stop offset="100%" stop-color="#f7f9ff"/></linearGradient></defs><rect width="960" height="390" fill="#ffffff"/><rect x="0" y="0" width="8" height="390" fill="#0b3dff"/>
+<rect x="28" y="24" width="52" height="6" rx="3" fill="#ff6a00"/>
+<text x="28" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em" fill="#0a1230">Pide la reseña mientras el resultado sigue</text>
+<text x="28" y="102" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em" fill="#0a1230">ahí</text>
+<text x="28" y="122" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#53607e">Un enlace directo. Tres formas de entregarlo.</text>
+<line x1="130.5" y1="172" x2="829.5" y2="172" stroke="#e1e6f2" stroke-width="3"/>
+<circle cx="130.5" cy="172" r="8" fill="#ffffff" stroke="#0b3dff" stroke-width="3"/>
+<circle cx="130.5" cy="172" r="3.5" fill="#0b3dff"/>
+<rect x="28" y="194" width="205" height="148" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="28" y="194" width="205" height="7" rx="3" fill="#0b3dff"/>
+<text x="130.5" y="236" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0a1230">Entrada</text>
+<text x="130.5" y="266" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">Pide cuando el trabajo</text>
+<text x="130.5" y="285" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">terminó</text>
+<line x1="237" y1="172" x2="249" y2="172" stroke="#0b3dff" stroke-width="2.5" stroke-linecap="round"/><path d="M257 172 l-9 -6 v12 z" fill="#0b3dff"/>
+<circle cx="363.5" cy="172" r="8" fill="#ffffff" stroke="#0b3dff" stroke-width="3"/>
+<circle cx="363.5" cy="172" r="3.5" fill="#0b3dff"/>
+<rect x="261" y="194" width="205" height="148" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="261" y="194" width="205" height="7" rx="3" fill="#0b3dff"/>
+<text x="363.5" y="236" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0a1230">Texto</text>
+<text x="363.5" y="266" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">Envía el enlace de la</text>
+<text x="363.5" y="285" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">reseña</text>
+<line x1="470" y1="172" x2="482" y2="172" stroke="#0b3dff" stroke-width="2.5" stroke-linecap="round"/><path d="M490 172 l-9 -6 v12 z" fill="#0b3dff"/>
+<circle cx="596.5" cy="172" r="8" fill="#ffffff" stroke="#0b3dff" stroke-width="3"/>
+<circle cx="596.5" cy="172" r="3.5" fill="#0b3dff"/>
+<rect x="494" y="194" width="205" height="148" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="494" y="194" width="205" height="7" rx="3" fill="#0b3dff"/>
+<text x="596.5" y="236" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0a1230">Correo o papel</text>
+<text x="596.5" y="266" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">Para quien no va a</text>
+<text x="596.5" y="285" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">textear</text>
+<line x1="703" y1="172" x2="715" y2="172" stroke="#0b3dff" stroke-width="2.5" stroke-linecap="round"/><path d="M723 172 l-9 -6 v12 z" fill="#0b3dff"/>
+<circle cx="829.5" cy="172" r="8" fill="#ffffff" stroke="#0b3dff" stroke-width="3"/>
+<circle cx="829.5" cy="172" r="3.5" fill="#0b3dff"/>
+<rect x="727" y="194" width="205" height="148" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="727" y="194" width="205" height="7" rx="3" fill="#0b3dff"/>
+<text x="829.5" y="236" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0a1230">Perfil</text>
+<text x="829.5" y="266" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">Respondes. No inventas</text>
+<text x="829.5" y="285" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#53607e">una.</text>
+<line x1="28" y1="346" x2="932" y2="346" stroke="#e1e6f2" stroke-width="1"/>
+<text x="28" y="364" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#53607e">No ofrezcas un descuento por una reseña, y no publiques una tú.</text>
+</svg>

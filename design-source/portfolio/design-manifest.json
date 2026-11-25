@@ -1,0 +1,776 @@
+[
+  {
+    "slug": "Copperline-Plumbing",
+    "name": "COPPERLINE",
+    "trade": "Plumbing",
+    "ink": "#163e37",
+    "accent": "#c2794a",
+    "paper": "#fbf4e7",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-pipe.svg",
+        "label": "Leaks & repairs",
+        "description": "Track down the drip. Repair the source. Protect the rooms around it."
+      },
+      {
+        "file": "service-icons/2-drop.svg",
+        "label": "Drains & sewers",
+        "description": "Slow kitchen sink or a backed-up line? Let\u2019s get things moving."
+      },
+      {
+        "file": "service-icons/3-heat.svg",
+        "label": "Water heaters",
+        "description": "Repair and replacement options for dependable hot water."
+      },
+      {
+        "file": "service-icons/4-tap.svg",
+        "label": "Fixture installation",
+        "description": "Better taps, toilets, and fixtures, fitted with care."
+      }
+    ],
+    "photo_keys": [
+      "plumber",
+      "bathroom",
+      "room",
+      "plumber"
+    ],
+    "direction": "copper",
+    "backdrop_direction": "Exposed copper pipework",
+    "city": "Richmond",
+    "state": "Virginia",
+    "state_abbreviation": "VA"
+  },
+  {
+    "slug": "Volterra-Electric",
+    "name": "VOLTERRA",
+    "trade": "Electrical",
+    "ink": "#171d26",
+    "accent": "#ffd138",
+    "paper": "#f7f5ee",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-bolt.svg",
+        "label": "Repairs & troubleshooting",
+        "description": "Flickering lights, dead outlets, and circuits that keep tripping."
+      },
+      {
+        "file": "service-icons/2-panel.svg",
+        "label": "Panel upgrades",
+        "description": "More room for the way your home uses power today."
+      },
+      {
+        "file": "service-icons/3-bulb.svg",
+        "label": "Lighting installation",
+        "description": "Practical task lighting. Beautiful fixtures. Thoughtful placement."
+      },
+      {
+        "file": "service-icons/4-car.svg",
+        "label": "EV charging",
+        "description": "A convenient charging setup designed around your vehicle and home."
+      }
+    ],
+    "photo_keys": [
+      "electrician",
+      "lighting",
+      "electrical",
+      "interior"
+    ],
+    "direction": "electric",
+    "backdrop_direction": "Electrical circuit board",
+    "city": "Columbus",
+    "state": "Ohio",
+    "state_abbreviation": "OH"
+  },
+  {
+    "slug": "Happy-Yard",
+    "name": "HAPPY YARD",
+    "trade": "Pet Waste Removal",
+    "ink": "#25382e",
+    "accent": "#ffb72d",
+    "paper": "#fff9e9",
+    "people_style": "Illustrated mascot",
+    "primary_people_asset": "mascot-primary.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-calendar.svg",
+        "label": "Recurring cleanup",
+        "description": "Choose a regular cleanup plan around your household and dogs."
+      },
+      {
+        "file": "service-icons/2-paw.svg",
+        "label": "One-time cleanup",
+        "description": "A fresh start when the yard needs some extra attention."
+      },
+      {
+        "file": "service-icons/3-leaf.svg",
+        "label": "Yard deodorizing",
+        "description": "Ask about options for the areas that need a little extra care."
+      },
+      {
+        "file": "service-icons/4-home.svg",
+        "label": "Shared outdoor spaces",
+        "description": "Practical waste cleanup for dog-friendly properties."
+      }
+    ],
+    "photo_keys": [
+      "dog",
+      "dog-yard",
+      "landscape",
+      "dog"
+    ],
+    "direction": "happy",
+    "backdrop_direction": "Dog park with picket fence",
+    "city": "Overland Park",
+    "state": "Kansas",
+    "state_abbreviation": "KS"
+  },
+  {
+    "slug": "Breezeway-HVAC",
+    "name": "BREEZEWAY",
+    "trade": "HVAC",
+    "ink": "#143e58",
+    "accent": "#f06e54",
+    "paper": "#f7f2e9",
+    "people_style": "Illustrated mascot",
+    "primary_people_asset": "mascot-primary.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-snow.svg",
+        "label": "AC repairs",
+        "description": "Find the cause of uneven cooling, unusual noise, or warm air."
+      },
+      {
+        "file": "service-icons/2-fan.svg",
+        "label": "System replacement",
+        "description": "Compare equipment options for your home and comfort goals."
+      },
+      {
+        "file": "service-icons/3-heat.svg",
+        "label": "Heating service",
+        "description": "Practical attention before the colder days arrive."
+      },
+      {
+        "file": "service-icons/4-leaf.svg",
+        "label": "Air quality",
+        "description": "Talk through filters, airflow, and indoor air concerns."
+      }
+    ],
+    "photo_keys": [
+      "hvac",
+      "hvac",
+      "living",
+      "interior"
+    ],
+    "direction": "breeze",
+    "backdrop_direction": "Airflow streamers",
+    "city": "Tampa",
+    "state": "Florida",
+    "state_abbreviation": "FL"
+  },
+  {
+    "slug": "Harlans-Roofing",
+    "name": "HARLAN\u2019S",
+    "trade": "Roofing",
+    "ink": "#172c46",
+    "accent": "#dc383b",
+    "paper": "#fbfaf6",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-roof.svg",
+        "label": "Roof replacement",
+        "description": "A complete plan for materials, preparation, installation, and cleanup."
+      },
+      {
+        "file": "service-icons/2-shield.svg",
+        "label": "Roof repairs",
+        "description": "Targeted attention for leaks, worn flashing, and damaged shingles."
+      },
+      {
+        "file": "service-icons/3-cloud.svg",
+        "label": "Storm damage",
+        "description": "A practical assessment after wind and weather take their toll."
+      },
+      {
+        "file": "service-icons/4-search.svg",
+        "label": "Roof assessments",
+        "description": "Understand your roof\u2019s condition before you make a decision."
+      }
+    ],
+    "photo_keys": [
+      "house",
+      "roof",
+      "house",
+      "clean-home"
+    ],
+    "direction": "roof",
+    "backdrop_direction": "Dimensional roof gable",
+    "city": "Knoxville",
+    "state": "Tennessee",
+    "state_abbreviation": "TN"
+  },
+  {
+    "slug": "ClearPeak",
+    "name": "CLEARPEAK",
+    "trade": "Window Cleaning",
+    "ink": "#112e54",
+    "accent": "#1761e8",
+    "paper": "#eaf5fd",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-window.svg",
+        "label": "Window cleaning",
+        "description": "A clearer view through the glass you look at every day."
+      },
+      {
+        "file": "service-icons/2-home.svg",
+        "label": "House washing",
+        "description": "A gentle approach matched to your exterior surfaces."
+      },
+      {
+        "file": "service-icons/3-gutter.svg",
+        "label": "Gutter clearing",
+        "description": "Clear out accumulated leaves and debris."
+      },
+      {
+        "file": "service-icons/4-sun.svg",
+        "label": "Solar panel cleaning",
+        "description": "Remove surface buildup with a method suited to your panels."
+      }
+    ],
+    "photo_keys": [
+      "cleaning",
+      "house",
+      "cleaning",
+      "poolhouse"
+    ],
+    "direction": "glass",
+    "backdrop_direction": "Sunlit window panes",
+    "city": "Boise",
+    "state": "Idaho",
+    "state_abbreviation": "ID"
+  },
+  {
+    "slug": "Rinseworks",
+    "name": "RINSEWORKS",
+    "trade": "Pressure Washing",
+    "ink": "#28254b",
+    "accent": "#d7f15c",
+    "paper": "#f5f6eb",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-spray.svg",
+        "label": "Driveways & paths",
+        "description": "Lift the everyday buildup from your hard-working concrete."
+      },
+      {
+        "file": "service-icons/2-home.svg",
+        "label": "House washing",
+        "description": "A surface-conscious approach to siding and exterior trim."
+      },
+      {
+        "file": "service-icons/3-leaf.svg",
+        "label": "Patios & outdoor areas",
+        "description": "Refresh the places where your family spends time outside."
+      },
+      {
+        "file": "service-icons/4-gutter.svg",
+        "label": "Gutters & trim",
+        "description": "Bring attention to the finishing details above the front door."
+      }
+    ],
+    "photo_keys": [
+      "roof",
+      "house",
+      "poolhouse",
+      "cleaning"
+    ],
+    "direction": "rinse",
+    "backdrop_direction": "Pressure spray fan",
+    "city": "Greenville",
+    "state": "South Carolina",
+    "state_abbreviation": "SC"
+  },
+  {
+    "slug": "Liftline-Garage-Doors",
+    "name": "LIFTLINE",
+    "trade": "Garage Doors",
+    "ink": "#242d32",
+    "accent": "#ee8b36",
+    "paper": "#f3f0e6",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-garage.svg",
+        "label": "Door replacement",
+        "description": "Find a style, finish, and configuration that fits your home."
+      },
+      {
+        "file": "service-icons/2-spring.svg",
+        "label": "Springs & hardware",
+        "description": "Inspection and repair for the moving parts behind the door."
+      },
+      {
+        "file": "service-icons/3-bolt.svg",
+        "label": "Openers & controls",
+        "description": "Make daily access more convenient and predictable."
+      },
+      {
+        "file": "service-icons/4-tools.svg",
+        "label": "Repairs & tune-ups",
+        "description": "Give rough operation and unexpected noise the attention they need."
+      }
+    ],
+    "photo_keys": [
+      "garage-doors",
+      "garage",
+      "home",
+      "tools"
+    ],
+    "direction": "doors",
+    "backdrop_direction": "Sectional garage door",
+    "city": "Fort Collins",
+    "state": "Colorado",
+    "state_abbreviation": "CO"
+  },
+  {
+    "slug": "Bluehaven-Pool-Care",
+    "name": "BLUEHAVEN",
+    "trade": "Pool Care",
+    "ink": "#084e61",
+    "accent": "#49c7cc",
+    "paper": "#edf9f7",
+    "people_style": "Illustrated mascot",
+    "primary_people_asset": "mascot-primary.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-calendar.svg",
+        "label": "Routine pool care",
+        "description": "A regular visit built around your pool and its everyday needs."
+      },
+      {
+        "file": "service-icons/2-drop.svg",
+        "label": "Water testing",
+        "description": "Check water balance and discuss the adjustments it needs."
+      },
+      {
+        "file": "service-icons/3-tools.svg",
+        "label": "Equipment attention",
+        "description": "Keep an eye on pumps, filters, and the parts working behind the scenes."
+      },
+      {
+        "file": "service-icons/4-sun.svg",
+        "label": "Seasonal refresh",
+        "description": "Get your pool ready for the days you want to spend outside."
+      }
+    ],
+    "photo_keys": [
+      "pool",
+      "home",
+      "poolhouse",
+      "pool"
+    ],
+    "direction": "pool",
+    "backdrop_direction": "Pool lane and tiled water",
+    "city": "Gilbert",
+    "state": "Arizona",
+    "state_abbreviation": "AZ"
+  },
+  {
+    "slug": "Brush-and-Co",
+    "name": "BRUSH & CO.",
+    "trade": "Painting",
+    "ink": "#74323e",
+    "accent": "#ba7058",
+    "paper": "#faf0e3",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-brush.svg",
+        "label": "Interior painting",
+        "description": "Set a new tone in the rooms you spend the most time in."
+      },
+      {
+        "file": "service-icons/2-home.svg",
+        "label": "Exterior painting",
+        "description": "Give the outside a finish that feels like your home."
+      },
+      {
+        "file": "service-icons/3-cabinet.svg",
+        "label": "Cabinets & trim",
+        "description": "A more considered finish for the details around you."
+      },
+      {
+        "file": "service-icons/4-palette.svg",
+        "label": "Color guidance",
+        "description": "Talk through tones, finishes, and how the light changes your space."
+      }
+    ],
+    "photo_keys": [
+      "living",
+      "paint",
+      "interior",
+      "room"
+    ],
+    "direction": "paint",
+    "backdrop_direction": "Overlapping paint roller passes",
+    "city": "Madison",
+    "state": "Wisconsin",
+    "state_abbreviation": "WI"
+  },
+  {
+    "slug": "Root-and-Stone",
+    "name": "ROOT & STONE",
+    "trade": "Landscaping",
+    "ink": "#274b35",
+    "accent": "#b5bf8f",
+    "paper": "#f5f4e9",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-leaf.svg",
+        "label": "Landscape design",
+        "description": "A cohesive direction for planting, materials, and outdoor living."
+      },
+      {
+        "file": "service-icons/2-stone.svg",
+        "label": "Patios & hardscapes",
+        "description": "Well-placed paths and gathering spaces to ground the garden."
+      },
+      {
+        "file": "service-icons/3-garden.svg",
+        "label": "Planting & garden beds",
+        "description": "Shape, texture, and seasonal interest, thoughtfully placed."
+      },
+      {
+        "file": "service-icons/4-calendar.svg",
+        "label": "Landscape care",
+        "description": "A practical plan to keep your outdoor space growing well."
+      }
+    ],
+    "photo_keys": [
+      "clean-home",
+      "yard",
+      "garden",
+      "landscape"
+    ],
+    "direction": "root",
+    "backdrop_direction": "Botanical garden plan",
+    "city": "Asheville",
+    "state": "North Carolina",
+    "state_abbreviation": "NC"
+  },
+  {
+    "slug": "Oak-and-Form",
+    "name": "OAK & FORM",
+    "trade": "Remodeling",
+    "ink": "#3c362c",
+    "accent": "#b79a75",
+    "paper": "#f5f0e7",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-cabinet.svg",
+        "label": "Kitchen remodeling",
+        "description": "More considered storage, surfaces, lighting, and everyday flow."
+      },
+      {
+        "file": "service-icons/2-bath.svg",
+        "label": "Bathroom remodeling",
+        "description": "A calmer, more practical space for the start and end of the day."
+      },
+      {
+        "file": "service-icons/3-arch.svg",
+        "label": "Interior updates",
+        "description": "Thoughtful changes that help rooms work better together."
+      },
+      {
+        "file": "service-icons/4-ruler.svg",
+        "label": "Planning & finishes",
+        "description": "Bring materials, proportions, and priorities into a coherent plan."
+      }
+    ],
+    "photo_keys": [
+      "room",
+      "bathroom",
+      "interior",
+      "kitchen"
+    ],
+    "direction": "oak",
+    "backdrop_direction": "Architectural elevation and joinery",
+    "city": "Bend",
+    "state": "Oregon",
+    "state_abbreviation": "OR"
+  },
+  {
+    "slug": "Afterglow-Outdoor-Lighting",
+    "name": "AFTERGLOW",
+    "trade": "Outdoor Lighting",
+    "ink": "#162d2b",
+    "accent": "#d6bb83",
+    "paper": "#f4f0e6",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-bulb.svg",
+        "label": "Architectural lighting",
+        "description": "Bring attention to the lines and materials that make your home."
+      },
+      {
+        "file": "service-icons/2-leaf.svg",
+        "label": "Landscape lighting",
+        "description": "A softer way to reveal trees, planting, and garden features."
+      },
+      {
+        "file": "service-icons/3-path.svg",
+        "label": "Path & step lighting",
+        "description": "Help define the route through your outdoor space."
+      },
+      {
+        "file": "service-icons/4-tools.svg",
+        "label": "System refreshes",
+        "description": "Review existing fixtures, placement, and opportunities to improve."
+      }
+    ],
+    "photo_keys": [
+      "night",
+      "night-detail",
+      "night",
+      "yard"
+    ],
+    "direction": "light",
+    "backdrop_direction": "Night garden and path light beams",
+    "city": "Lexington",
+    "state": "Kentucky",
+    "state_abbreviation": "KY"
+  },
+  {
+    "slug": "Good-Riddance-Junk",
+    "name": "GOOD RIDDANCE",
+    "trade": "Junk Removal",
+    "ink": "#123e36",
+    "accent": "#b4ed43",
+    "paper": "#f6f8ed",
+    "people_style": "Illustrated mascot",
+    "primary_people_asset": "mascot-primary.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-chair.svg",
+        "label": "Furniture removal",
+        "description": "Make space by clearing out furniture you no longer need."
+      },
+      {
+        "file": "service-icons/2-home.svg",
+        "label": "Home cleanouts",
+        "description": "A practical plan for garages, storage areas, and spare rooms."
+      },
+      {
+        "file": "service-icons/3-tools.svg",
+        "label": "Project debris",
+        "description": "Ask about removal for non-hazardous renovation materials."
+      },
+      {
+        "file": "service-icons/4-box.svg",
+        "label": "Small business cleanouts",
+        "description": "Clear out unwanted items from offices and workspaces."
+      }
+    ],
+    "photo_keys": [
+      "moving-alt",
+      "moving-alt",
+      "room",
+      "tools"
+    ],
+    "direction": "junk",
+    "backdrop_direction": "Stacked moving boxes and loading route",
+    "city": "Omaha",
+    "state": "Nebraska",
+    "state_abbreviation": "NE"
+  },
+  {
+    "slug": "Groundwork-Coatings",
+    "name": "GROUNDWORK",
+    "trade": "Concrete Coatings",
+    "ink": "#242d35",
+    "accent": "#df8a4d",
+    "paper": "#eeeee8",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-garage.svg",
+        "label": "Garage floors",
+        "description": "A more considered finish for a hard-working part of your home."
+      },
+      {
+        "file": "service-icons/2-layers.svg",
+        "label": "Decorative finishes",
+        "description": "Compare textures and color blends for your space."
+      },
+      {
+        "file": "service-icons/3-tools.svg",
+        "label": "Surface preparation",
+        "description": "Address the existing surface before the coating goes down."
+      },
+      {
+        "file": "service-icons/4-box.svg",
+        "label": "Utility & work spaces",
+        "description": "Discuss a coating system around the way the area is used."
+      }
+    ],
+    "photo_keys": [
+      "floor",
+      "floor",
+      "tools",
+      "garage"
+    ],
+    "direction": "coatings",
+    "backdrop_direction": "Exploded floor system",
+    "city": "Grand Rapids",
+    "state": "Michigan",
+    "state_abbreviation": "MI"
+  },
+  {
+    "slug": "Sunday-House-Cleaning",
+    "name": "SUNDAY",
+    "trade": "House Cleaning",
+    "ink": "#31554d",
+    "accent": "#efb39d",
+    "paper": "#fff9ef",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-calendar.svg",
+        "label": "Recurring cleaning",
+        "description": "A regular clean around your household\u2019s routine."
+      },
+      {
+        "file": "service-icons/2-spark.svg",
+        "label": "Deep cleaning",
+        "description": "More attention for the corners that need a fresh start."
+      },
+      {
+        "file": "service-icons/3-box.svg",
+        "label": "Move-in & move-out",
+        "description": "A practical clean for the start of a new chapter."
+      },
+      {
+        "file": "service-icons/4-home.svg",
+        "label": "One-time refresh",
+        "description": "Get your home ready for guests or simply reset the week."
+      }
+    ],
+    "photo_keys": [
+      "cleaning",
+      "living",
+      "bathroom",
+      "room"
+    ],
+    "direction": "sunday",
+    "backdrop_direction": "Folded linen and morning sun",
+    "city": "Lancaster",
+    "state": "Pennsylvania",
+    "state_abbreviation": "PA"
+  },
+  {
+    "slug": "Stillwater-Auto-Detail",
+    "name": "STILLWATER",
+    "trade": "Auto Detailing",
+    "ink": "#10191c",
+    "accent": "#b9d5c9",
+    "paper": "#edf3ef",
+    "people_style": "Generated photographic model",
+    "primary_people_asset": "person-photographic.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-car.svg",
+        "label": "Exterior detailing",
+        "description": "A considered wash and finish for the surfaces outside."
+      },
+      {
+        "file": "service-icons/2-chair.svg",
+        "label": "Interior refresh",
+        "description": "Give the seats, surfaces, and everyday touchpoints some attention."
+      },
+      {
+        "file": "service-icons/3-spark.svg",
+        "label": "Full detail",
+        "description": "Bring the interior and exterior together in one appointment."
+      },
+      {
+        "file": "service-icons/4-shield.svg",
+        "label": "Protection options",
+        "description": "Discuss suitable next steps for maintaining the finish."
+      }
+    ],
+    "photo_keys": [
+      "car",
+      "car-detail",
+      "car",
+      "tools"
+    ],
+    "direction": "detail",
+    "backdrop_direction": "Automotive studio light bars",
+    "city": "Tulsa",
+    "state": "Oklahoma",
+    "state_abbreviation": "OK"
+  },
+  {
+    "slug": "Goodhand-Home-Services",
+    "name": "GOODHAND",
+    "trade": "Handyman",
+    "ink": "#233c63",
+    "accent": "#e7a24e",
+    "paper": "#fbf6ec",
+    "people_style": "Illustrated mascot",
+    "primary_people_asset": "mascot-primary.png",
+    "service_icons": [
+      {
+        "file": "service-icons/1-tools.svg",
+        "label": "Everyday repairs",
+        "description": "Practical help for the wear and tear around your home."
+      },
+      {
+        "file": "service-icons/2-ruler.svg",
+        "label": "Mounting & installation",
+        "description": "Shelves, hardware, and the finishing pieces that need fitting."
+      },
+      {
+        "file": "service-icons/3-arch.svg",
+        "label": "Trim & carpentry",
+        "description": "Small improvements that help a room feel more complete."
+      },
+      {
+        "file": "service-icons/4-list.svg",
+        "label": "Home project lists",
+        "description": "Bring several suitable jobs together in one planned visit."
+      }
+    ],
+    "photo_keys": [
+      "garage",
+      "wood",
+      "tools",
+      "room"
+    ],
+    "direction": "hand",
+    "backdrop_direction": "Workshop pegboard and hand tools",
+    "city": "Des Moines",
+    "state": "Iowa",
+    "state_abbreviation": "IA"
+  }
+]

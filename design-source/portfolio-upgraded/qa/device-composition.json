@@ -1,0 +1,174 @@
+{
+  "template_sha256": "63fe71a2bcf1827edba9628505978d4289f6f2c8ae897b153e70e4fc71055079",
+  "method": "Updated hero-readable screenshot composition in original four-device frame. Lossless RGBA verified.",
+  "designs": [
+    {
+      "slug": "Copperline-Plumbing",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "f832f2ac6b3e98ff55f26971331e17819f079f57dc5bb9b75d9589118d737537"
+    },
+    {
+      "slug": "Volterra-Electric",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "b0278a311662498ef3cff7386abf5dec3902570f2519bd26053c0dfbcbc09524"
+    },
+    {
+      "slug": "Happy-Yard",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "3602e4079ba3eee0a4002c43e3e0327ee14f8e1ed5c87d1cffda59b680a985d3"
+    },
+    {
+      "slug": "Breezeway-HVAC",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "4282f3af701606629e0999d91191b2ea89034666e51dedc34af506fec75f074f"
+    },
+    {
+      "slug": "Harlans-Roofing",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "6729c1e07783e69c91eb0301b291ff3461e2cc5b906534ea9ddfa393782bdc3f"
+    },
+    {
+      "slug": "ClearPeak",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "6bc10433649300f93d2ba0ed1e9e78a701e10c8b6fa9b0b8766757e1d27a45f5"
+    },
+    {
+      "slug": "Rinseworks",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "f748ad15d02c7af3e987ceff7a65ec1ac625998c0d470b1c51c484d965f29d4d"
+    },
+    {
+      "slug": "Liftline-Garage-Doors",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "4c8d42b5cb34c271cbeb576e9179cb3d4ccd5fad67138b292f173ab0d03fe62f"
+    },
+    {
+      "slug": "Bluehaven-Pool-Care",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "1def22ffb5f58de9dc1e8c5c63e1d1f7d04866451a1b05220f5199fbf311af82"
+    },
+    {
+      "slug": "Brush-and-Co",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "b3533e8628bb12fbea2e423a87f5a659cc99fa81657303734b0edb690885a511"
+    },
+    {
+      "slug": "Root-and-Stone",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "56e4351eefa770a53dac1125d0397d301aacb8b61f1e953ed8c219892e422bad"
+    },
+    {
+      "slug": "Oak-and-Form",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "bba8003ac7871161ed8c733acecbf58b82cab55b5abf34835c0c18816d313f0b"
+    },
+    {
+      "slug": "Afterglow-Outdoor-Lighting",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "4cb8a17dea2763062088ed2eacd6829d3f2d3a9e0083828f6e62d09744b9cf08"
+    },
+    {
+      "slug": "Good-Riddance-Junk",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "46514b3a07ec96477c467d7c2d2b3276dd8bff515aa0a4a8b9a2b064ee95d679"
+    },
+    {
+      "slug": "Groundwork-Coatings",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "0e606df31d5cd4401d17578dccea8663cb5218825b8de2918239d2001df9097b"
+    },
+    {
+      "slug": "Sunday-House-Cleaning",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "4c52b90e50728985325acfd8806979f4ac9a9ef0218a3175244dec612e5889c9"
+    },
+    {
+      "slug": "Stillwater-Auto-Detail",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "d2952cd5e389604af1882936941d83dd08beeebba0da6a4ed14cc8255b58094e"
+    },
+    {
+      "slug": "Goodhand-Home-Services",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "a91c76c31e9756d493b08db68eb5fd84901ab0c21554bce9bb4ca8051b62e7f2"
+    },
+    {
+      "slug": "Juniper-Tree-Co",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "367b7d2b145657a4daf69eb87c2dc4c03961f94af03eee2e45a468d9e5537bc4"
+    },
+    {
+      "slug": "Ember-and-Flue",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "ca60ef799d2a56ab070dfeb3eb81f4536b6c560252ae3a473b372db2644046d3"
+    },
+    {
+      "slug": "Cedarline-Fence",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "06386b405a13ccf00728120b21664ff1e95894dc3206ae49bf617549e8542360"
+    },
+    {
+      "slug": "Highline-Pest",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "7140f45a2f56a80017b0234f7a02f65bdf004ccfb31cc12bd674ac8c46516919"
+    },
+    {
+      "slug": "Northstar-Moving",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "39d4398f3b1b10948792012115fadc579a882df27f8ae3ca9a5c0c63c097527b"
+    },
+    {
+      "slug": "Harborline-Gutters",
+      "width": 1536,
+      "height": 1024,
+      "lossless_RGBA_verified": true,
+      "sha256": "ed312d67544acc5a84c6542b043a85bfd66d14045e2d6d75aca28600595f6680"
+    }
+  ]
+}

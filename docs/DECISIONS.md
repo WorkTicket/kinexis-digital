@@ -1,0 +1,75 @@
+# DECISIONS.md
+
+## Architecture/stack
+- Next.js 16 App Router, TypeScript strict, Tailwind v4
+- Deploy to Cloudflare Workers via OpenNext adapter
+- Path alias `@/*` -> `./src/*`
+- Images unoptimized (Cloudflare Images not enabled yet) - see README
+
+## Design/UX
+- Sticker/cartoon style with navy/orange/cobalt, hard shadows
+- Single primary CTA per screen where possible
+- Responsive-first, accessibility considered
+- Local fonts with swap/fallback tracking to avoid layout shift
+
+## Routing/SEO
+- Canonical metadata in `src/lib/pages.ts` (single source of truth)
+- Many legacy redirects in `next.config.ts` (html, old paths, retired industry slugs) to preserve crawl signals
+- `robots.ts`, `sitemap.ts` present; post-deploy checks + IndexNow in deploy flow
+- `pay`/utility pages marked non-indexable where appropriate
+
+## Content/claims
+- Do not invent claims/pricing - use repo as source of truth
+- Free homepage preview emphasized; plans as documented in pages
+- Indexable Spanish is LatAm `/es` (USD). `/es-es` **301s to `/es`** (owner 2026-11-16) — Spain visitor locale is no longer a separate indexed tree. Euro display helpers in `src/i18n/prices.ts` remain in code but are not reached via public `/es-es` URLs.
+
+## i18n maintainability (deferred epic)
+- EN pages live as per-route files under `src/app/(en)/`; Spanish is a catch-all + `SpanishSite.tsx` / `SpanishIndustry.tsx` monolith with a separate `PAGE_META` map.
+- Coverage guard: `npm run check:spanish-mirror` asserts `MIRROR_PATHS` ⊆ static `SPANISH_STATIC_META_PATHS` + industry/blog data.
+- **Deferred (do not start in a drive-by):** split Spanish into shared locale-aware section components, unify metadata with `PAGES`, dedupe industry + home markup. Track as its own epic when EN/ES drift becomes costly.
+
+## Conferbot / lead intel
+- Separate Cloudflare D1 binding `LEAD_DB` (not `INVOICE_DB`) for chat/leads/outbox; migration `migrations-lead/0001_conferbot_lead_intel.sql`. Binding omitted from `wrangler.jsonc` until real DB ids exist (placeholders break `wrangler` / OpenNext deploys). Merging to `main` does not deploy; production ships are manual (`npm run deploy`).
+- Webhook HMAC + redaction + feature flags; see `docs/CONFERBOT-INTEGRATION.md`
+- Integration and notify flags default off; no production secrets in git
+- **Widget load (owner 2026-11-15):** live chat is a functional feature, not analytics. `ConferbotWidget` loads for every public visitor when `NEXT_PUBLIC_CONFERBOT_ENABLED=1` (skips `/admin`), regardless of `kinexis_consent` analytics choice. Deferred via `requestIdleCallback` (~2.5s timeout) or first scroll/pointer/touch/key; module-level guard prevents double-init across client navigations. Privacy / cookie banner copy already describes only GA4 + Meta as consent-gated — no chat-waits-for-consent wording found, so no privacy copy change in that PR (owner can still review if product wants chat named under Necessary).
+- **Widget defer past cookie dock (owner 2026-11-16):** still not analytics-gated (Accept / Reject / Save all proceed). Do not inject `widget.min.js` / open `wdt.conferbot.com` socket.io while `html.consent-open` — the launcher is already CSS-hidden (#57), and Conferbot’s websocket upgrade returns console 400 (Best Practices). Wait until CookieConsent chrome is present and the dock is closed, then keep idle/input deferral. Missing-chrome safety arms after ~8s only if the dock is not open.
+- **Widget mobile lift (owner 2026-11-15):** launcher is `#open-chatbot.chatbot__icon` inside `<conferbot-widget>` open shadow DOM (not an iframe). Conferbot sets `bottom` via inline styles + `!important` media queries, so site `globals.css` never wins. `ConferbotWidget` measures `.float-cta`, then sets host `data-cb-own-m-bottom` / `--cb-o-m-bottom` and injects shadow `#kx-chat-lift` (MQ-scoped `@media (max-width:860px)` + CSS vars) so the bubble sits ~12px above the sticky bar (updates on resize / matchMedia / float ResizeObserver / `no-float` / consent). Desktop clears class, vars, stylesheet, and leftover inline bottoms.
+- **Widget lift hardening (owner 2026-11-16):** positioner is page-lifetime (`liftArmed` singleton — React remount cleanup must not clear the lift). Re-binds float + host/shadow observers, re-appends `#kx-chat-lift` last after Conferbot styles, permanent 1s sync (no 20s cutoff), floors measured bottom against `--float-bar-h` + gap, targets `#open-chatbot.chatbot__icon`.
+- **Widget lift resize reset (owner 2026-11-16):** do not pin launcher via sticky element inline `bottom` — that survived mobile→desktop resize after sticky CTA lift. Prefer host CSS vars + mobile-MQ-scoped shadow rules; strip competing inlines on apply/clear so the bubble resets when the sticky bar hides or the viewport crosses 860px.
+- **Widget vs cookie banner (owner 2026-11-16):** chat still loads independent of analytics consent, but while the cookie dock is open (`html.consent-open`) the site hides the `<conferbot-widget>` host entirely (launcher + CTA) via light-DOM CSS so it does not compete with the banner. After accept / reject / save preferences, the host shows again.
+- **Mobile proactive greeting (owner 2026-11-16):** Conferbot embed API has no per-viewport greeting switch. Turn the proactive welcome/greeting popup off for mobile in the **Conferbot dashboard** (Customize / Widget Settings). Do not add site CSS/JS to suppress it. Launcher stays; desktop greeting unchanged unless the dashboard says otherwise.
+- **Deploy Conferbot env isolation (owner 2026-11-16):** pre-deploy `check`/`test:e2e` must force `NEXT_PUBLIC_CONFERBOT_ENABLED=0`, but that must not stick on `process.env` into `build:worker` (Next prefers shell env over `.env.production`, which previously shipped chat off). `scripts/deploy-production.mjs` scopes `0` to gate child envs only, unsets the var for the Worker build, and fails closed if `.open-next/` lacks public bot id `6afa0edabbad567d637ee189`.
+
+## Payments ops
+- Offline reconciliation lives in `src/lib/payment-reconciliation.ts` + `scripts/reconcile-invoice-ledger.mjs`. Remote D1 SELECTs require `RECONCILE_CONFIRM=YES`. Rejected PayPal captures log `kind: "payment_alert"` for Workers Observability; optional SMTP batch alerts are owner-PC only (`RECONCILE_ALERT_MAIL=1`). See `docs/engineering/PAYMENT-RECONCILIATION.md`.
+
+## D1 backups
+- Invoice ledger backups are owner-PC `wrangler d1 export` via `scripts/d1-backup-invoice-ledger.mjs` (`D1_BACKUP_CONFIRM=YES`). Dumps go under gitignored `artifacts/d1-backups/` and must be stored off-repo. Restore is owner-gated; prefer preview binding verification before any production binding change. See `docs/engineering/D1-BACKUP-RESTORE.md`.
+
+## Security/headers
+- CSP, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-Frame-Options, COOP, CORP configured in `next.config.ts` (includes Conferbot CDN/WDT hosts for future widget)
+- Live HSTS on proxied apex/www comes from Cloudflare zone `security_header` (`max-age=31536000; includeSubDomains`; preload off). Keep `next.config.ts` aligned. Proposal for CSP nonce / Trusted Types: `docs/engineering/SECURITY-HEADERS-CSP-PROPOSAL.md` (SEC-01 remains owner-gated).
+- Powered-by header disabled
+- Contact/checkout/reviews share KV rate limits (`src/lib/rate-limit.ts`): sliding window of timestamps per bucket+IP (not a single boolean cooldown). Missing KV fails open for local/tests; KV errors fail closed; empty IP fails closed for checkout/invoice-admin and fails open (logged) for contact/review. Durable Object coordination is an optional owner-gated upgrade.
+- On-site reviews are queued pending staff approval; moderation email links open a **confirm page** (GET), then mutate via **POST** with CSPRNG keys (`/api/reviews/moderate`) — avoids mail-scanner prefetch publishes
+- Contact attachments limited to PDF/Word/images; phone validated server-side; `FORM_ENDPOINT` must be https; request bodies also checked after parse (`rejectReadOversize`)
+- API routes log structured errors via `src/lib/api-log.ts` (no PII)
+
+## Config notes
+- `SITE.announce` configurable in `src/lib/site.ts`
+- Kit asset versioning via `KIT_ASSET_VERSION` for cache busting
+- Experimental `cpus: 4` in next.config
+- Facebook/Trustpilot API fetches live in `facebook-api.ts` / `trustpilot-api.ts` (`server-only`); public URL constants stay client-safe
+
+## Performance
+- Lighthouse budgets (`scripts/lighthouse-budget.mjs`) cover mobile **and** desktop; `verify:prod` and workflow `lighthouse-prod.yml` (main / manual) hit live www read-only. PR CI does not run prod Lighthouse (speed + avoid load).
+- First-party RUM: sampled `Rum.tsx` + `web-vitals` → `POST /api/rum` → Workers Observability logs (`docs/engineering/RUM.md`). No paid APM; path + metric fields only.
+- Locale layouts use `revalidate = 86400` so OpenNext KV cache interception can serve HTML without booting Next
+- Industry LCP art uses capped 480/768/960 WebP+AVIF derivatives only (never the multi-hundred-KB master WebP)
+- Interaction boot ships as minified `boot.min.js` (source remains `public/assets/js/boot.js`; `scripts/minify-boot.mjs` runs in build)
+- Heavy client islands (checkout, calendar, review form) load via `next/dynamic` so Spanish monolith routes stay light
+- Language switch stays a tiny client component (`usePathname`) so layouts never call `headers()` and pages can stay statically generated for OpenNext cache + defer-chunks
+- Meta Pixel loads from `boot.min.js` on first input (or 45s fallback), same idea as GA — keeps fbevents off the Lighthouse critical path; CSP allows Meta openbridge hosts (`*.a.run.app`, `*.on.aws`)
+- Do not re-enable async/deferred Next CSS injects in `defer-chunks.mjs` — that caused FOUC and hydration failures before
+- Prefer `experimental.inlineCss` (Next 16) to remove the first-load render-blocking stylesheet request without changing painted CSS; keep defer-chunks as a legacy-inject stripper only

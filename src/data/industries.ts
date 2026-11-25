@@ -1,0 +1,734 @@
+import type { QA } from "@/lib/content";
+
+export type IndustryPoint = { title: string; text: string; icon: string };
+
+export type FeatureKey = "calls" | "quote-requests" | "reviews" | "bookings" | "service-area";
+
+export type Industry = {
+  slug: string;
+  name: string;
+  /** One line on the hub and homepage cards. */
+  card: string;
+  /** live = indexable; hold = noindex and out of sitemap until proof/content is ready. */
+  status: "live" | "hold";
+  /** One primary keyword for this hub URL (cannibalization lock). */
+  primaryKeyword: string;
+  /** Portfolio template shown on the industry page, when one matches this trade. */
+  projectSlug?: string;
+  /** Live client proof block on the hub (from LIVE_SITES). */
+  proof?: {
+    liveSiteSlug: string;
+    annotations: { title: string; text: string }[];
+    quoteId?: string;
+  };
+  metaTitle: string;
+  metaDescription: string;
+  h1: string;
+  mark: string;
+  sub: string;
+  heroAlt: string;
+  intro: [string, string];
+  problemsTitle: string;
+  problemsMark: string;
+  problems: [IndustryPoint, IndustryPoint, IndustryPoint];
+  servicesTitle: string;
+  servicesMark: string;
+  services: [IndustryPoint, IndustryPoint, IndustryPoint];
+  serviceArea: string;
+  features: [FeatureKey, FeatureKey, FeatureKey, FeatureKey];
+  /** Replaces the shared feature sentence when this trade needs a more specific line. */
+  featureText?: Partial<Record<FeatureKey, string>>;
+  faqs: QA[];
+  related: [string, string, string, string];
+};
+
+export const INDUSTRIES: Industry[] = [
+  {
+    slug: "plumbing",
+    name: "Plumbing",
+    card: "Leak calls, drains and water heaters",
+    status: "live",
+    primaryKeyword: "plumber website design",
+    proof: {
+      liveSiteSlug: "preferred-plumbing",
+      annotations: [
+        { title: "Local hero + phone", text: "Spirit Lake / North Idaho headline with tap-to-call and free-estimate CTA above the fold — not a slogan-only hero." },
+        { title: "Trust strip early", text: "Licensed & insured, owner-operated, and free estimates sit under the hero so emergency callers see proof before scrolling." },
+        { title: "Job-type paths", text: "Separate cards for repairs, radiant heat, tankless heaters, drains, hydronics, and new construction instead of one generic services dump." },
+        { title: "Honest hours in FAQ", text: "Urgent-repair FAQ states staffed hours (Sun–Fri 7am–5pm, Saturday closed) instead of promising 24/7 the shop cannot cover." },
+      ],
+      quoteId: "hunter-norris",
+    },
+    metaTitle: "Plumber Website Design Pricing | $97/mo",
+    metaDescription: "Plumbing website design pricing from $97/mo. Pages for leaks, drains, and water heaters, plus Google review requests and optional missed-call text-back.",
+    h1: "Website Design for Plumbers Built for Emergency Calls",
+    mark: "Emergency Calls",
+    sub: "A plumbing site has to work while someone is standing in a puddle. Emergency repair, a slow drain and a water-heater quote are three different jobs.",
+    intro: [
+      "Kinexis builds plumber websites for shops across the United States, from one-truck operators to multi-crew companies. Most plumbing searches happen on a phone, often after hours, and the person calling is already comparing the first two shops that picked up. A homepage that leads with a slogan and hides the number is how those jobs go to the next listing.",
+      "We build the site around the work you actually run: leaks and bursts, drains, water heaters, repipes and the remodel fixtures that can wait until tomorrow. You see a homepage preview before you pay.",
+    ],
+    problemsTitle: "Why plumbing sites lose the job",
+    problemsMark: "lose the job",
+    problems: [
+      { title: "One page for every job", text: "A burst pipe and a bathroom remodel need different paths. Give each job its own service page and clear next step.", icon: "separate-service-pages" },
+      { title: "The number is a scavenger hunt", text: "Keep tap-to-call easy to find before the photos and longer story, so urgent callers can reach your team.", icon: "visible-phone-number" },
+      { title: "No follow-up after a missed call", text: "When you miss a call on a job, optional text-back lets the caller share what they need for follow-up.", icon: "missed-call-follow-up" },
+    ],
+    heroAlt: "Plumber working beneath a kitchen sink on exposed pipes",
+    servicesTitle: "Pages a plumbing site should have",
+    servicesMark: "plumbing site",
+    services: [
+      { title: "Leak Repair", text: "Leaks, bursts and no-water calls, with hours that match the crew you actually staff.", icon: "leak-repair" },
+      { title: "Drain Cleaning", text: "A separate path for clogs and camera work so it does not read like a water-heater ad.", icon: "drain-cleaning" },
+      { title: "Water Heaters", text: "Repair versus replacement, brands you install, and a straight way to ask for a quote.", icon: "water-heaters" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["calls", "quote-requests", "reviews", "service-area"],
+    faqs: [
+      { q: "Should a plumber advertise 24/7 if the shop closes at six?", a: "Only if someone answers. We write the hours you keep. A page that promises a night tech you do not have creates angry calls, not booked work." },
+      { q: "Do the website plans include monthly SEO?", a: "Every site is built fast, with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
+      { q: "Can review requests go out after a plumbing job?", a: "On Lead System and Plus, a text goes out after the job with a direct link to your Google profile. You are not chasing people from the truck." },
+      { q: "How much does a plumber website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation. See the pricing page for what each plan includes." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop and the site comes offline unless you arrange a buyout (a written one-time $1,497 purchase of the site files) or move to Own It before the paid period ends." },
+      { q: "Is Own It better than a monthly plan for plumbers?", a: "Both are valid. Monthly plans are $0 down and month-to-month. Own It is one payment of $1,497 with the site files yours from launch day. Choose based on cash flow and whether you want Lead System tools like review requests and optional missed-call text-back." },
+      { q: "Can you write my leak repair and drain pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
+      { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
+      { q: "Can my plumbing site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
+    related: ["hvac", "electrical", "remodeling", "garage-doors"],
+  },
+  {
+    slug: "hvac",
+    name: "HVAC",
+    card: "No-cool repair and system replacement",
+    status: "live",
+    primaryKeyword: "hvac website design",
+    metaTitle: "HVAC Website Design Pricing | $97/mo",
+    metaDescription: "HVAC website design pricing from $97/mo. Separate paths for no-cool repair and system replacement, plus Google reviews and optional missed-call text-back.",
+    h1: "HVAC Website Design for Repair and Replacement Leads",
+    mark: "Repair and Replacement Leads",
+    sub: "A no-cool call is not a system quote. The site should send each one down its own path, and stay honest in the weeks when the weather is boring.",
+    intro: [
+      "Kinexis builds HVAC websites for contractors across the United States, from one-truck operators to multi-crew shops. HVAC demand spikes when the house is miserable and goes quiet when it is not. A site that treats every month like July, or dumps repair, install and maintenance onto one page, spends the busy weeks confusing people and the slow weeks with nothing to offer.",
+      "We separate same-day service from replacement and give maintenance its own job: fill the shoulder season. The homepage preview shows that structure before you commit to a plan.",
+    ],
+    problemsTitle: "What HVAC sites get wrong",
+    problemsMark: "get wrong",
+    problems: [
+      { title: "Repair buried under a brand story", text: "No-cool callers need your hours, service area and phone number near the top, before they have to scroll.", icon: "repair-call-path" },
+      { title: "Install treated like an emergency", text: "Replacement shoppers compare quotes, efficiency and warranties. Give them a consult path, not repair urgency.", icon: "replacement-quote-path" },
+      { title: "No plan for the mild months", text: "Tune-ups and memberships fill quieter months. Give maintenance its own page instead of burying it with repairs.", icon: "seasonal-maintenance" },
+    ],
+    heroAlt: "HVAC technician inspecting an outdoor condenser unit",
+    servicesTitle: "What we put on an HVAC site",
+    servicesMark: "HVAC site",
+    services: [
+      { title: "No-Cool Repair", text: "Speed, hours and the symptoms people search — written for a phone, not a brochure.", icon: "audit-speed" },
+      { title: "System Replacement", text: "Options, what a consult includes, and financing only if you actually offer it.", icon: "system-replacement" },
+      { title: "Maintenance", text: "A quieter offer for tune-ups and memberships, sold as fewer emergency visits.", icon: "calendar" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["calls", "quote-requests", "reviews", "service-area"],
+    faqs: [
+      { q: "Will the site push replacement when the caller needs a repair?", a: "No. Repair and replacement get separate pages and separate calls to action. Mixing them trains the wrong person to fill out the wrong form." },
+      { q: "Can the site mention financing?", a: "Yes, on the install path, and only for financing you really offer. We do not invent terms." },
+      { q: "What happens when a call comes in during a heat wave and nobody answers?", a: "On Lead System and Plus, optional missed-call text-back can reply on your tracking number after carrier approval. Approval usually takes 10–15 days and is not guaranteed, so it is not an instant fallback when the board is full." },
+      { q: "Can you write my repair and replacement pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
+      { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
+      { q: "Can my HVAC site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
+    related: ["plumbing", "electrical", "roofing", "garage-doors"],
+  },
+  {
+    slug: "electrical",
+    name: "Electrical",
+    card: "Panels, EV chargers and troubleshooting",
+    status: "live",
+    primaryKeyword: "electrician website design",
+    projectSlug: "union-electric",
+    metaTitle: "Electrician Website Design Pricing | $97/mo",
+    metaDescription: "Electrician website design pricing from $97/mo. Panels, EV chargers, and troubleshooting, plus Google review requests and optional missed-call text-back.",
+    h1: "Website Design for Electricians That Earns the Call",
+    mark: "Earns the Call",
+    sub: "Hiring an electrician depends on trust. Your site should show your license, the work you take on, and a clear way to contact you.",
+    intro: [
+      "Kinexis builds electrician websites for shops across the United States, from solo electricians to multi-crew companies. Homeowners searching for a panel upgrade or an EV charger are nervous about who they let in the house. A template that could belong to any contractor, with no mention of licensing or the actual work, does not answer that.",
+      "We build pages for the jobs that pay: troubleshooting, panels, EV chargers, lighting and the small repairs that fill a day. The copy stays specific to electrical work, and the preview lets you judge it before you buy.",
+    ],
+    problemsTitle: "Where electrician sites lose trust",
+    problemsMark: "lose trust",
+    problems: [
+      { title: "No proof you are licensed", text: "Show license, insurance and the work you take on where homeowners can review those details before calling.", icon: "license-proof" },
+      { title: "EV chargers stuffed under “services”", text: "Give charger installs a dedicated page with visit details, rather than a short bullet under outlet repair.", icon: "extra-page" },
+      { title: "Commercial and residential services mixed together", text: "Homeowners and property managers need different service details. Separate their paths when you serve both.", icon: "separate-buyer-paths" },
+    ],
+    heroAlt: "Electrician inspecting an open electrical panel",
+    servicesTitle: "Pages that match electrical search",
+    servicesMark: "electrical search",
+    services: [
+      { title: "Panel Upgrades", text: "When a panel is the job, what the visit includes, and how to ask for a quote.", icon: "shield" },
+      { title: "EV Chargers", text: "Home chargers you install, what the site visit checks, and a short quote form.", icon: "ev-chargers" },
+      { title: "Troubleshooting", text: "Outlets, breakers and partial outages, with a phone path for real emergencies.", icon: "troubleshooting" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["calls", "quote-requests", "reviews", "service-area"],
+    faqs: [
+      { q: "Can you show my license number on the site?", a: "Yes. Send the number and the state. We put it where people look, not in a footer nobody opens." },
+      { q: "I do residential only. Will the site still talk about commercial?", a: "No. We write the work you want. Advertising jobs you do not staff just creates calls you have to turn down." },
+      { q: "How do review requests work for an electrical business?", a: "Lead System and Plus can send a text with a direct link to your Google profile after a job." },
+      { q: "Can you write my panel and EV charger pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
+      { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
+      { q: "Can my electrical site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
+    related: ["hvac", "plumbing", "garage-doors", "remodeling"],
+  },
+  {
+    slug: "roofing",
+    name: "Roofing",
+    card: "Repairs, replacements and storm calls",
+    status: "live",
+    primaryKeyword: "roofing website design",
+    projectSlug: "red-oak-roofing",
+    metaTitle: "Roofing Website Design Pricing | $97/mo",
+    metaDescription: "Roofing website design pricing from $97/mo. Repair and replacement pages, Google review requests, and optional missed-call text-back. Free preview.",
+    h1: "Website Design for Roofers That Books Storm Inspections",
+    mark: "Storm Inspections",
+    sub: "After a storm, every roofer sounds the same. The site should say what you repair, what you replace, and how an inspection actually works.",
+    intro: [
+      "Kinexis builds roofing websites for contractors across the United States, from storm crews to year-round roofing shops. Roofing searches split in two. A leak that needs a repair this week, and a replacement the owner has been putting off. Storm weeks add a third: people who have been called by three door-knockers and do not trust any of them.",
+      "We write the difference. Repair pages ask for the visit. Replacement pages explain materials, what the inspection covers, and how you handle insurance questions without promising a claim outcome. You approve the homepage before anything is billed.",
+    ],
+    problemsTitle: "Roofing sites that all look like storm chasers",
+    problemsMark: "storm chasers",
+    problems: [
+      { title: "Insurance claims you cannot control", text: "Describe your inspection and insurance process without promising claim approval or a payout you cannot control.", icon: "insurance-process" },
+      { title: "Repair and replacement on one page", text: "A shingle repair and a full replacement need separate pages, quotes and clear next steps for each customer.", icon: "repair-replacement-pages" },
+      { title: "Photos that are not your roofs", text: "Use completed roof photos where possible; stock homes do less to show the work and projects you actually perform.", icon: "real-project-photos" },
+    ],
+    heroAlt: "Roofer inspecting shingles on a residential roof",
+    servicesTitle: "What belongs on a roofing site",
+    servicesMark: "roofing site",
+    services: [
+      { title: "Roof Repairs", text: "Leaks, missing shingles and the visits you can still get on the calendar this week.", icon: "tools" },
+      { title: "Roof Replacement", text: "Materials you install, what an inspection includes, and a short quote form.", icon: "replacements" },
+      { title: "Storm Calls", text: "How you triage after weather, written so it does not read like a call-center script.", icon: "bolt" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["calls", "quote-requests", "reviews", "service-area"],
+    faqs: [
+      { q: "Will you write insurance-claim copy?", a: "We will explain how you document a roof and what the homeowner should ask their carrier. We will not promise that a claim will be approved." },
+      { q: "I do not have job photos yet. Can you still build the site?", a: "Yes. The free preview uses realistic layout copy so you can judge the design. Your photos replace placeholders before launch. We do not pass off stock jobs as yours." },
+      { q: "Do roofers get the same four plans?", a: "Yes. Website, Lead System, Plus or Own It. Lead System and Plus include a review request after the job. Missed-call text-back is an optional add-on." },
+      { q: "Can you write my repair and inspection pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
+      { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
+      { q: "Can my roofing site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
+    related: ["pressure-washing", "painting", "remodeling", "window-cleaning"],
+  },
+  {
+    slug: "garage-doors",
+    name: "Garage Doors",
+    card: "Broken springs, openers and new doors",
+    status: "live",
+    primaryKeyword: "garage door website design",
+    projectSlug: "liftline-garage-doors",
+    metaTitle: "Garage Door Website Design Pricing | $97/mo",
+    metaDescription: "Garage door website design pricing from $97/mo. Repair and new-door paths, Google review requests, and optional missed-call text-back. Free preview.",
+    h1: "Website Design for Garage Door Repair and New Installs",
+    mark: "Repair and New Installs",
+    sub: "A broken spring is a same-day search. A new door is a style and price conversation. The site should not make those people fill out the same form.",
+    intro: [
+      "Kinexis builds garage door websites for companies across the United States, from spring-repair shops to full door installers. Garage door customers find you from the driveway, on a phone, with the door stuck open or a spring that just snapped. They want to know if you can come today, what it costs to look, and whether you sell the door or only the parts.",
+      "We split repair from replacement. Repair pages lead with the phone. New-door pages show styles and a short way to ask for a measure. The preview is the homepage first, so you can see the split before you pick a plan.",
+    ],
+    problemsTitle: "Garage door sites that waste the emergency",
+    problemsMark: "waste the emergency",
+    problems: [
+      { title: "A quote form on a broken spring", text: "For a stuck-open door or broken spring, make the phone easy to find; save longer forms for planned quotes.", icon: "emergency-phone-path" },
+      { title: "Styles with no prices context", text: "Explain what affects price—size, insulation, opener and haul-away—even if you do not publish a price menu.", icon: "quote-price-context" },
+      { title: "No follow-up after the measure", text: "After a measure, offer a clear follow-up path if a call is missed while your crew is installing nearby.", icon: "quote-follow-up" },
+    ],
+    heroAlt: "Garage-door technician working on an open residential garage door",
+    servicesTitle: "Pages a garage door company needs",
+    servicesMark: "garage door",
+    services: [
+      { title: "Broken Springs", text: "The dangerous jobs, with a clear warning not to DIY and a tap-to-call path.", icon: "broken-springs" },
+      { title: "Opener Repair", text: "Repair versus a new operator, including the brands you actually stock on the truck.", icon: "bolt" },
+      { title: "New Doors", text: "Style, insulation and a measure request — built for someone comparing two quotes.", icon: "better-design" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["calls", "quote-requests", "reviews", "service-area"],
+    faqs: [
+      { q: "Should repair and new doors be different pages?", a: "Yes. Repair is a phone call. A new door is a measure and a quote. One page trying to do both usually does neither." },
+      { q: "Can the site list the door brands I sell?", a: "Yes. Send the brands you are authorized to sell. We will not invent a lineup." },
+      { q: "How fast can a small edit go live after launch?", a: "It depends on the plan. Website includes up to two small edits a month. Lead System and Plus include unlimited small edits, handled one at a time." },
+      { q: "Can you write my spring and new-door pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
+      { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
+      { q: "Can my garage doors site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
+    related: ["electrical", "hvac", "roofing", "plumbing"],
+  },
+  {
+    slug: "painting",
+    name: "Painting",
+    card: "Interior, exterior and cabinet finishes",
+    status: "live",
+    primaryKeyword: "website design for painters",
+    metaTitle: "Painting Contractor Website Design From $97/mo",
+    metaDescription: "Website design for painters from $97/mo. Interior, exterior, and cabinet pages with a clear estimate path, Google reviews, and optional text-back.",
+    h1: "Website Design for Painters That Makes Quotes Easy",
+    mark: "Makes Quotes Easy",
+    sub: "Painting is judged on photos and how easy it is to book a walkthrough. A site that looks like a handyman coupon page underprices you before the first call.",
+    intro: [
+      "People hiring a painter already know they need paint. They are deciding who will prep, who will show up, and who will not leave tape on the glass. Color grids and a phone number are not that argument.",
+      "We separate interior, exterior and cabinet or trim work, then make the estimate path obvious: what you need from them, whether you quote from photos, and how a walkthrough is booked. The homepage preview comes first.",
+    ],
+    problemsTitle: "Why painting sites fail to get estimates",
+    problemsMark: "get estimates",
+    problems: [
+      { title: "Interior and exterior treated as one job", text: "A single room and a two-story exterior differ in crew, season and scope. Give each type of work its own page.", icon: "interior-exterior-pages" },
+      { title: "No finished-work photos", text: "Painting buyers want to see completed rooms. Make room for your project photos instead of generic stock interiors.", icon: "finished-work-gallery" },
+      { title: "A form that asks for too much", text: "Start quote requests with project type, location and contact details; ask for photos when you follow up.", icon: "short-estimate-form" },
+    ],
+    heroAlt: "Painter applying paint to an interior wall",
+    servicesTitle: "What a painting site should explain",
+    servicesMark: "painting site",
+    services: [
+      { title: "Interior Painting", text: "Rooms, prep, and how you protect floors and furniture on every interior job.", icon: "palette" },
+      { title: "Exterior Painting", text: "Siding, trim and the season you will and will not schedule for exterior paint.", icon: "exterior" },
+      { title: "Cabinet Finishes", text: "The finer work, priced and described apart from a whole-house repaint job.", icon: "sparkle" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["quote-requests", "calls", "reviews", "service-area"],
+    featureText: { "quote-requests": "A short form for project photos, walkthroughs, and when to expect an estimate." },
+    faqs: [
+      { q: "Can customers request an estimate from the site?", a: "Yes. The form asks for the kind of work, a way to reach them, and photos if they have them. You see it as a tracked form lead." },
+      { q: "I paint in English and Spanish. Is there a plan for that?", a: "Plus is the bilingual plan: the site and review requests in English and Spanish. Optional text-back is available in both languages too." },
+      { q: "Do you write the page copy?", a: "We can use copy you already have, or quote writing separately. The free preview uses realistic copy for the business so you can judge the layout." },
+      { q: "How much does a painting website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop unless you arrange a buyout ($1,497) or move to Own It before the paid period ends." },
+      { q: "Do the website plans include monthly SEO?", a: "Every site is built with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
+    ],
+    related: ["remodeling", "pressure-washing", "roofing", "window-cleaning"],
+  },
+  {
+    slug: "remodeling",
+    name: "Remodeling",
+    card: "Kitchens, baths and the longer quote",
+    status: "live",
+    primaryKeyword: "website design for remodeling contractors",
+    projectSlug: "tileline-bath-tile",
+    metaTitle: "Remodeling Website Design From $97/mo",
+    metaDescription: "Website design for remodeling contractors from $97/mo. Kitchen and bath consult pages, Google review requests, and optional missed-call text-back.",
+    h1: "Website Design for Remodelers: Kitchens and Baths",
+    mark: "Kitchens and Baths",
+    sub: "A remodel is a long sale. The site should show finished rooms, explain how a project starts, and not shout like a drain-cleaning ad.",
+    intro: [
+      "Kitchen and bath projects involve a different decision from an urgent heating repair. People look at photos, ask about permits if relevant, and then request a consultation. The website should guide them through that process.",
+      "We explain the project types, your process, and what you need to prepare an estimate. Service pages stay focused on kitchens, baths, and the other remodeling work you want to take on.",
+    ],
+    problemsTitle: "Remodeling sites that scare off the consult",
+    problemsMark: "scare off",
+    problems: [
+      { title: "No project photos above the fold", text: "Put project photos near the top so visitors see your work before scrolling through the rest of the page.", icon: "first-screen-portfolio" },
+      { title: "A made-up starting price", text: "Explain what shapes a remodeling budget instead of listing a starting price that may not fit the project scope.", icon: "payment" },
+      { title: "Emergency language on a design project", text: "Replace emergency-style calls to action with a consult, a clear timeline and a way to reach your team.", icon: "consultation-path" },
+    ],
+    heroAlt: "Remodeling contractor reviewing details in a finished kitchen",
+    servicesTitle: "Pages a remodeler should publish",
+    servicesMark: "remodeler",
+    services: [
+      { title: "Kitchens", text: "Scope you take, what the consult covers, and a gallery that is actually your work.", icon: "preview" },
+      { title: "Bathrooms", text: "Separate from kitchens — different budget, different photos, different questions.", icon: "bathrooms" },
+      { title: "Detailed Estimates", text: "Design, selections, build, and how change orders work. This is the trust page.", icon: "detailed-estimates" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["quote-requests", "calls", "reviews", "service-area"],
+    faqs: [
+      { q: "Will the site promise a project price?", a: "Only if you give us a range you are willing to say in public. Otherwise we explain what the consult covers and how a quote is built." },
+      { q: "Can I start with a handful of project photos?", a: "Yes. The layout is built for real rooms. A few strong projects beat a grid of borrowed images." },
+      { q: "Is a remodel a fit for the monthly plans?", a: "Yes. The site is the same four plans. Lead System and Plus still help: a review request when the project is done, and optional missed-call text-back while you are on a jobsite." },
+      { q: "How much does a remodeling website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop unless you arrange a buyout ($1,497) or move to Own It before the paid period ends." },
+      { q: "Do the website plans include monthly SEO?", a: "Every site is built with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
+    ],
+    related: ["painting", "plumbing", "electrical", "roofing"],
+  },
+  {
+    slug: "landscaping",
+    name: "Landscaping",
+    card: "Maintenance routes and design-build work",
+    status: "live",
+    primaryKeyword: "landscaping website design",
+    proof: {
+      liveSiteSlug: "a1-landscaping",
+      annotations: [
+        { title: "Place-first headline", text: "Cedar Falls / Iowa positioning and a free-quote CTA sit in the hero so local searchers know the crew covers their market." },
+        { title: "Maintenance vs projects", text: "Service list separates lawn care and maintenance from retaining walls, paver patios, and driveways — different buyers, different next steps." },
+        { title: "Before/after proof", text: "Homepage gallery uses slider comparisons of real Cedar Falls jobs instead of stock landscaping photos." },
+        { title: "Clear service area", text: "Cedar Falls, Waterloo, and Black Hawk County are named up front so route density stays honest." },
+      ],
+    },
+    metaTitle: "Landscaping Website Design Pricing | $97/mo",
+    metaDescription: "Landscaping website design from $97/mo. Weekly maintenance and design-build on separate pages, plus Google review requests and optional text-back.",
+    h1: "Website Design for Landscapers: Routes and Projects",
+    mark: "Routes and Projects",
+    sub: "Mowing routes and a patio install are different businesses that often share a truck. The site should not pretend they are the same lead.",
+    intro: [
+      "Kinexis builds landscaping websites for crews across the United States, from route businesses to design-build shops. A homeowner who wants a weekly cut is shopping price, reliability and whether you serve their neighborhood. A homeowner who wants a patio is shopping photos and whether you design or only install. One “landscaping services” page fails both.",
+      "We split maintenance from project work, name the service area you can actually crew, and leave the design honest about seasonality. You see the homepage before you choose a plan.",
+    ],
+    problemsTitle: "Landscaping sites that attract the wrong work",
+    problemsMark: "wrong work",
+    problems: [
+      { title: "Maintenance hidden under design photos", text: "Balance project photos with maintenance details, so route customers can find recurring service without searching.", icon: "maintenance-service-page" },
+      { title: "Projects with no process", text: "Explain the design-build steps—site visit, concept and installation—and offer a clear consultation path.", icon: "consultation-path" },
+      { title: "A service area you cannot staff", text: "List the towns your crews cover, not a wider service area that creates appointments you cannot staff.", icon: "realistic-service-area" },
+    ],
+    heroAlt: "Landscaper planting shrubs in a finished garden",
+    servicesTitle: "How we structure a landscaping site",
+    servicesMark: "landscaping site",
+    services: [
+      { title: "Maintenance Routes", text: "Mowing, beds, cleanups and what a weekly route agreement actually includes.", icon: "calendar" },
+      { title: "Landscape Design", text: "Patios, plantings and the other projects you want finished photos to sell.", icon: "landscape-design" },
+      { title: "Design-Build", text: "Site visit, concept and install on one path — not treated like a weekly mow.", icon: "design-build" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["bookings", "quote-requests", "service-area", "reviews"],
+    faqs: [
+      { q: "Should weekly mowing and hardscape be on the same site?", a: "Same site, different pages. The calls to action stay different so a mowing lead is not asked to book a design consult." },
+      { q: "Can the site talk about seasons?", a: "Yes. We write what you sell in spring, summer and fall, and we do not leave a winter cleanup offer up as if it were July." },
+      { q: "How do reviews work for a route business?", a: "Lead System and Plus send a review request by text after a job. For weekly accounts, you choose when that ask goes out so you are not texting the same lawn every Tuesday." },
+      { q: "How much does a landscaping website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop unless you arrange a buyout ($1,497) or move to Own It before the paid period ends." },
+      { q: "Do the website plans include monthly SEO?", a: "Every site is built with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
+      { q: "Can you write my maintenance and project pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
+      { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
+      { q: "Can my landscaping site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
+    related: ["yard-care", "pressure-washing", "pool-care", "window-cleaning"],
+  },
+  {
+    slug: "pool-care",
+    name: "Pool Care",
+    card: "Weekly service, repairs and equipment",
+    status: "hold",
+    primaryKeyword: "website design for pool service",
+    metaTitle: "Pool Service Websites From $97/mo",
+    metaDescription: "Pool service website design from $97/mo. Weekly routes, repairs, and equipment, with Google review requests and optional missed-call text-back.",
+    h1: "Website Design for Pool Service Routes and Repairs",
+    mark: "Routes and Repairs",
+    sub: "Weekly pool routes are won on reliability and the map you cover. A green pool or a dead pump is a different call, and it should not wait behind a membership pitch.",
+    intro: [
+      "Pool companies lose leads in two directions. Route customers cannot tell if you service their neighborhood. Repair customers with cloudy water cannot find a number because the homepage is a gallery of resort pools you did not build.",
+      "We make the weekly service obvious, give repairs and equipment their own pages, and state the area your techs already drive. The free preview is a homepage in that shape, before you pick Website, Lead System, Plus or Own It.",
+    ],
+    problemsTitle: "Pool sites that do not match the route",
+    problemsMark: "the route",
+    problems: [
+      { title: "A resort photo for a weekly route", text: "Use photos of the residential pools you service; resort imagery can set the wrong customer expectation.", icon: "residential-pool-proof" },
+      { title: "Repairs with no path", text: "Give pump, heater and green-pool repairs a service page and call path, not a note under general service.", icon: "repair-call-path" },
+      { title: "Neighborhoods you do not drive", text: "Show the neighborhoods your route visits, so customers can check whether you serve their address.", icon: "route-coverage" },
+    ],
+    heroAlt: "Pool technician skimming leaves from a residential pool",
+    servicesTitle: "Pages a pool company should have",
+    servicesMark: "pool company",
+    services: [
+      { title: "Weekly Service", text: "What a visit includes, how often you come, and how a route slot is requested.", icon: "calendar" },
+      { title: "Pool Repairs", text: "Green pools, equipment failures and calls that cannot wait for the next route day.", icon: "repairs" },
+      { title: "Equipment", text: "Pumps, heaters and the brands you install, kept separate from the weekly visit.", icon: "equipment" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["bookings", "calls", "service-area", "reviews"],
+    faqs: [
+      { q: "Can the site sell weekly service and one-time repairs?", a: "Yes. They are separate pages with separate next steps, so a green-pool call is not asked to join a route first." },
+      { q: "Do you build pool construction sites?", a: "This page is for service, repair and equipment. If you also remodel pools, we will say so only where that work is real." },
+      { q: "What does the free preview include?", a: "A homepage concept for your business. No card and no obligation. The full site starts after you approve it and choose a plan." },
+      { q: "How much does a pool service website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop unless you arrange a buyout ($1,497) or move to Own It before the paid period ends." },
+      { q: "Do the website plans include monthly SEO?", a: "Every site is built with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
+    ],
+    related: ["landscaping", "pressure-washing", "yard-care", "window-cleaning"],
+  },
+  {
+    slug: "pressure-washing",
+    name: "Pressure Washing",
+    card: "Houses, concrete and roof soft washes",
+    status: "live",
+    primaryKeyword: "pressure washing website design",
+    projectSlug: "rinseworks",
+    metaTitle: "Pressure Washing Websites From $97/mo",
+    metaDescription: "Pressure washing website design from $97/mo. Houses, concrete, and roof washes with a short quote form, plus Google reviews and optional text-back.",
+    h1: "Website Design for Pressure Washing With Before-and-After Proof",
+    mark: "Before-and-After Proof",
+    sub: "This trade is won with photos and a fast quote. A site that talks about “solutions” and never shows a driveway is asking people to imagine the result.",
+    intro: [
+      "Kinexis builds pressure washing websites for crews across the United States, from one-truck washers to multi-crew soft-wash teams. House washes, concrete, fences and roof soft washes are different chemicals, different risk and different prices. Customers still lump them together until the site teaches the difference.",
+      "We give each surface its own page, build the layout around before-and-after photos, and keep the quote form short: address, surface, and a photo if they have one. You see that homepage as a free preview first.",
+    ],
+    problemsTitle: "Pressure washing sites that all read alike",
+    problemsMark: "read alike",
+    problems: [
+      { title: "Every surface on one list", text: "Separate house, roof and driveway washing so customers can compare suitable services and request a quote.", icon: "surface-service-pages" },
+      { title: "No before-and-after", text: "Where you have them, show before-and-after project photos as proof instead of using images as decoration.", icon: "before-after-proof" },
+      { title: "Quotes that start from nothing", text: "Ask for the surface and a photo to make quote requests useful before scheduling an on-site visit.", icon: "photo-based-quotes" },
+    ],
+    heroAlt: "Worker pressure-washing a residential driveway",
+    servicesTitle: "Pages that match how people search",
+    servicesMark: "people search",
+    services: [
+      { title: "House Washing", text: "Siding types you will and will not wash, and what each house visit includes.", icon: "sparkle" },
+      { title: "Concrete Cleaning", text: "Oil, rust and flatwork jobs that are a different search than a house wash.", icon: "equipment" },
+      { title: "Roof Washing", text: "Soft wash only if that is what you do, with the safety limits written clearly.", icon: "shield" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["quote-requests", "calls", "service-area", "reviews"],
+    faqs: [
+      { q: "What if I do not wash roofs?", a: "Then the site will not offer roof washing. We would rather miss a keyword than book a job you do not want." },
+      { q: "Can customers attach a photo to the quote form?", a: "The form can ask them to reply with photos, or we can keep it to the details you need and have you request pictures by text. We will not bolt on a heavy upload tool you do not need." },
+      { q: "Is ongoing SEO included?", a: "The site ships with clean structure, fast pages and real service pages. Ongoing SEO is a separate quote. It is not part of the four website plans." },
+      { q: "Can you write my house and concrete pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
+      { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
+      { q: "Can my pressure washing site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
+    related: ["roofing", "painting", "window-cleaning", "landscaping"],
+  },
+  {
+    slug: "window-cleaning",
+    name: "Window Cleaning",
+    card: "Home routes and storefront schedules",
+    status: "hold",
+    primaryKeyword: "website design for window cleaning",
+    projectSlug: "clearpeak",
+    metaTitle: "Window Cleaning Websites From $97/mo",
+    metaDescription: "Window cleaning website design from $97/mo. Home routes and storefronts with Google review requests and optional text-back.",
+    h1: "Website Design for Window Cleaning Routes and Storefronts",
+    mark: "Routes and Storefronts",
+    sub: "A house and a storefront are both glass, and they are not the same sale. One is a route. The other is a schedule a manager has to approve.",
+    intro: [
+      "Window cleaning is a recurring business. The site has to make the first clean easy to book and make the return visit feel obvious: how often, what is included, and whether screens, tracks and hard-water stains are in or out.",
+      "We split homes from commercial glass, state the stories and reach you will take, and keep the service area tied to the route. The homepage preview shows that before you pay.",
+    ],
+    problemsTitle: "Window sites that under-explain the visit",
+    problemsMark: "under-explain",
+    problems: [
+      { title: "Homes and storefronts combined", text: "Separate residential and storefront cleaning; each customer needs different proof, scheduling and next steps.", icon: "residential-commercial-paths" },
+      { title: "No word on what is included", text: "List whether service includes screens, sills and interior glass, so customers know what a visit covers.", icon: "visit-inclusions" },
+      { title: "No path back to a recurring clean", text: "Make recurring service easy to request after the first visit, so customers can find both options clearly.", icon: "recurring-cleaning-path" },
+    ],
+    heroAlt: "Window cleaner using a squeegee on a home's exterior window",
+    servicesTitle: "What we publish for window cleaners",
+    servicesMark: "window cleaners",
+    services: [
+      { title: "Residential Windows", text: "Stories you will climb, interior versus exterior, and how to request a first clean.", icon: "location" },
+      { title: "Storefronts", text: "A commercial path with a schedule, not a coupon meant for a three-bed house.", icon: "desktop" },
+      { title: "Recurring Routes", text: "Monthly or quarterly service, written as the normal next step after the first visit.", icon: "calendar" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["bookings", "calls", "service-area", "reviews"],
+    faqs: [
+      { q: "Can the site offer one-time and recurring cleans?", a: "Yes. The first clean and the route are both on the site, with the route presented as the thing most customers should be on." },
+      { q: "I also wash gutters or do light pressure washing. Should that be on this site?", a: "If it is a real service with its own price, it gets its own page. If it is a side add-on you rarely want, we leave it off." },
+      { q: "How do I get reviews without asking at the door?", a: "Lead System and Plus text a Google review link after the job. You pick the timing so a first clean can earn the review before you sell the route." },
+      { q: "How much does a window cleaning website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop unless you arrange a buyout ($1,497) or move to Own It before the paid period ends." },
+      { q: "Do the website plans include monthly SEO?", a: "Every site is built with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
+    ],
+    related: ["pressure-washing", "painting", "landscaping", "yard-care"],
+  },
+  {
+    slug: "yard-care",
+    name: "Yard Care",
+    card: "Weekly lawn routes and pet-waste stops",
+    status: "hold",
+    primaryKeyword: "website design for lawn care",
+    projectSlug: "happy-yard",
+    metaTitle: "Lawn Care Websites From $97/mo",
+    metaDescription: "Lawn care website design from $97/mo. Recurring routes with a simple signup path, plus Google review requests and optional missed-call text-back.",
+    h1: "Website Design for Lawn Care Built for Recurring Routes",
+    mark: "Recurring Routes",
+    sub: "Yard care is won street by street. The site should say what the visit includes, which neighborhoods you run, and how someone gets on the route.",
+    intro: [
+      "Lawn routes, cleanup and pet-waste service live or die on density. A website that claims the whole city, then describes nothing about the visit, attracts leads your crew cannot absorb and gives the right neighborhood nothing specific to trust.",
+      "We write the services you repeat every week, name the areas you already drive, and make signup a short form instead of a phone tag game. Pet-waste service gets its own page when that is a real offer, not a joke in the footer.",
+    ],
+    problemsTitle: "Yard-care sites that fight the route",
+    problemsMark: "fight the route",
+    problems: [
+      { title: "A citywide promise", text: "List the towns and routes you can staff, rather than promising service across an area you cannot cover.", icon: "route-service-area" },
+      { title: "Pet waste treated as an afterthought", text: "If offered, give pet-waste service its own page and signup path instead of hiding it under lawn care.", icon: "extra-page" },
+      { title: "No explanation of the visit", text: "List what visits include—mowing, edging, blowing or waste removal—before a customer requests service.", icon: "visit-inclusions" },
+    ],
+    heroAlt: "Lawn-care worker mowing a residential lawn",
+    servicesTitle: "Pages a yard-care route needs",
+    servicesMark: "yard-care route",
+    services: [
+      { title: "Lawn Routes", text: "What every visit includes and how often you come through the growing season.", icon: "lawn-routes" },
+      { title: "Pet-Waste Service", text: "Frequency, yards you will take, and a straight signup — not buried under lawn care.", icon: "pet-waste" },
+      { title: "Recurring Bookings", text: "How a first visit becomes a standing slot, without phone tag to stay on the route.", icon: "recurring-bookings" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["bookings", "calls", "service-area", "reviews"],
+    faqs: [
+      { q: "Should I have a separate page for every neighborhood?", a: "No. One honest service-area page beats twenty thin pages that swap the town name. Thin city pages are how sites get ignored, not how they rank." },
+      { q: "Can pet-waste customers sign up without calling?", a: "Yes. A short form is enough: name, address, how often, and how to reach them. You see it as a form lead." },
+      { q: "Which plan fits a route business?", a: "Website if you only need the site. Lead System if you also want review requests, a monthly report, and optional missed-call text-back. Plus adds Spanish." },
+      { q: "How much does a lawn care website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop unless you arrange a buyout ($1,497) or move to Own It before the paid period ends." },
+      { q: "Do the website plans include monthly SEO?", a: "Every site is built with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
+    ],
+    related: ["landscaping", "pool-care", "pressure-washing", "window-cleaning"],
+  },
+  {
+    slug: "junk-removal",
+    name: "Junk Removal",
+    card: "Haul-away, cleanouts and same-week loads",
+    status: "live",
+    primaryKeyword: "junk removal website design",
+    projectSlug: "good-riddance-junk",
+    metaTitle: "Junk Removal Website Design From $97/mo",
+    metaDescription: "Junk removal website design from $97/mo. Separate paths for haul-away and estate cleanouts, plus Google review requests and optional missed-call text-back.",
+    h1: "Website Design for Junk Removal That Gets the Same-Day Call",
+    mark: "Same-Day Call",
+    sub: "A couch on the curb is not an estate cleanout. The site should send each job down its own path, with a phone for urgent loads and a short form for planned hauls.",
+    intro: [
+      "Kinexis builds junk removal websites for haulers across the United States, from one-truck crews to multi-truck shops. Most searches happen on a phone when something needs to leave today — or when a landlord is pricing a unit cleanout. A homepage that hides the number behind stock before-and-afters loses the same-day load to whoever answers first.",
+      "We separate same-week haul-away from planned cleanouts, make load size and access notes easy to send, and keep the service area honest to the routes you already run. You see a homepage preview before you pay.",
+    ],
+    problemsTitle: "Why junk removal sites lose the load",
+    problemsMark: "lose the load",
+    problems: [
+      { title: "One form for every pile", text: "Separate curbside pickups from full cleanouts; each job needs its own quote details and booking path.", icon: "separate-buyer-paths" },
+      { title: "The number buried under photos", text: "Place tap-to-call before project photos and long copy, so callers can find your number without hunting.", icon: "emergency-phone-path" },
+      { title: "Missed calls without follow-up", text: "When you miss a call on a job, optional text-back lets the caller explain what they need for follow-up.", icon: "quote-follow-up" },
+    ],
+    heroAlt: "Junk-removal crew loading furniture onto a trailer",
+    servicesTitle: "Pages a junk removal site should have",
+    servicesMark: "junk removal site",
+    services: [
+      { title: "Same-Week Haul-Away", text: "Furniture, appliances and curb piles, with a phone path for loads that cannot wait.", icon: "tools" },
+      { title: "Estate & Garage Cleanouts", text: "A quieter quote path for multi-room jobs — volume, access and a short form.", icon: "equipment" },
+      { title: "Recurring Property Hauls", text: "Landlord and HOA routes when you run them, kept separate from one-off piles.", icon: "calendar" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["calls", "quote-requests", "reviews", "service-area"],
+    faqs: [
+      { q: "Should I advertise same-day junk removal if I cannot always make it?", a: "Only where you can keep the promise. We write the windows you actually staff. Overpromising same-day outside your route creates no-shows and bad reviews." },
+      { q: "Do the website plans include monthly SEO?", a: "Every site is built fast, with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
+      { q: "Can review requests go out after a haul?", a: "On Lead System and Plus, a text goes out after the job with a direct link to your Google profile. You are not chasing people from the truck." },
+      { q: "How much does a junk removal website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation. See the pricing page for what each plan includes." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop and the site comes offline unless you arrange a buyout (a written one-time $1,497 purchase of the site files) or move to Own It before the paid period ends." },
+      { q: "Is Own It better than a monthly plan for junk haulers?", a: "Both are valid. Monthly plans are $0 down and month-to-month. Own It is one payment of $1,497 with the site files yours from launch day. Choose based on cash flow and whether you want Lead System tools like review requests and optional missed-call text-back." },
+      { q: "Can you write my haul-away and cleanout pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
+      { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
+      { q: "Can my junk removal site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." },
+    ],
+    related: ["pressure-washing", "remodeling", "garage-doors", "landscaping"],
+  },
+  {
+    slug: "tree-care",
+    name: "Tree Care",
+    card: "Trimming, removals and storm work",
+    status: "live",
+    primaryKeyword: "tree service website design",
+    projectSlug: "graft-tree-care",
+    metaTitle: "Tree Service Website Design Pricing | $97/mo",
+    metaDescription: "Tree service website design from $97/mo. Separate paths for trimming, removals, and storm work, plus Google review requests and optional text-back.",
+    h1: "Website Design for Tree Care Built for Storm and Trim Jobs",
+    mark: "Storm and Trim Jobs",
+    sub: "A hanging limb after a storm is not a canopy thin. The site should send each job down its own path, with insurance and safety cues where a nervous homeowner can see them.",
+    intro: [
+      "Kinexis builds tree service websites for arborists and tree crews across the United States. Storm calls want a phone and an honest window. Planned trimming and removals want photos of real jobs, insurance cues and a consult that does not feel like a call center.",
+      "We separate emergency storm work from trimming and full removals, leave room for your crew and chipper photos, and keep the service area tied to where you already run. You see a homepage preview before you pay.",
+    ],
+    problemsTitle: "Why tree service sites lose the job",
+    problemsMark: "lose the job",
+    problems: [
+      { title: "Storm and trim on one page", text: "Separate storm damage from routine pruning; each customer needs different timing and clear next steps.", icon: "consultation-path" },
+      { title: "No insurance or safety proof", text: "Show insurance and crew-safety information near the contact path, where homeowners can find it easily.", icon: "insurance-process" },
+      { title: "A service area you cannot crew", text: "List towns your crew can serve, avoiding requests outside your normal route and jobs you cannot schedule.", icon: "route-service-area" },
+    ],
+    heroAlt: "Arborist inspecting a mature tree in a residential yard",
+    servicesTitle: "Pages a tree care site should have",
+    servicesMark: "tree care site",
+    services: [
+      { title: "Tree Trimming", text: "Canopy work and maintenance visits, with a clear way to request a site visit.", icon: "leaf" },
+      { title: "Tree Removal", text: "Full takedowns, stump options you actually offer, and a consult — not a panic banner.", icon: "tools" },
+      { title: "Storm Calls", text: "How you triage after weather, written so it does not promise a truck you cannot send.", icon: "shield" },
+    ],
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
+    features: ["calls", "quote-requests", "reviews", "service-area"],
+    faqs: [
+      { q: "Should my tree site promise 24/7 storm response?", a: "Only if someone answers. We write the windows you actually staff after weather. A page that promises a night crew you do not have creates angry calls, not booked work." },
+      { q: "Do the website plans include monthly SEO?", a: "Every site is built fast, with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
+      { q: "Can review requests go out after a removal?", a: "On Lead System and Plus, a text goes out after the job with a direct link to your Google profile. You are not chasing people from the truck." },
+      { q: "How much does a tree service website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation. See the pricing page for what each plan includes." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop and the site comes offline unless you arrange a buyout (a written one-time $1,497 purchase of the site files) or move to Own It before the paid period ends." },
+      { q: "Is Own It better than a monthly plan for tree crews?", a: "Both are valid. Monthly plans are $0 down and month-to-month. Own It is one payment of $1,497 with the site files yours from launch day. Choose based on cash flow and whether you want Lead System tools like review requests and optional missed-call text-back." },
+      { q: "Can you write my trim and removal pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
+      { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
+      { q: "Can my tree care site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." },
+    ],
+    related: ["landscaping", "roofing", "pressure-washing", "yard-care"],
+  },
+];
+
+/** Old industry URLs that no longer match this site. They 301 to the hub. */
+export const RETIRED_INDUSTRY_SLUGS = [
+  "automotive",
+  "beauty-wellness",
+  "construction",
+  "dental",
+  "ecommerce",
+  "education",
+  "financial-services",
+  "fintech",
+  "fitness",
+  "healthcare",
+  "home-services",
+  "hospitality",
+  "legal",
+  "manufacturing",
+  "professional-services",
+  "real-estate",
+  "restaurants",
+  "saas",
+  "technology",
+];
+
+export function getIndustry(slug: string): Industry | undefined {
+  return INDUSTRIES.find((industry) => industry.slug === slug);
+}
+
+/** Prefer `industry.related`, then fill from other live trades so grids stay even. */
+export function relatedIndustries(industry: Industry, limit = 3): Industry[] {
+  const preferred = industry.related.flatMap((slug) => {
+    const match = getIndustry(slug);
+    return match && match.status === "live" ? [match] : [];
+  });
+  if (preferred.length >= limit) return preferred.slice(0, limit);
+
+  const taken = new Set([industry.slug, ...preferred.map((item) => item.slug)]);
+  const fillers = INDUSTRIES.filter((item) => item.status === "live" && !taken.has(item.slug));
+  return [...preferred, ...fillers].slice(0, limit);
+}
+
+/** Blog slug stems from the SEO coding plan (cost + pages posts). */
+const SEO_POST_STEM: Record<string, { cost: string; pages: string }> = {
+  plumbing: { cost: "plumber-website-cost", pages: "plumbing-website-pages" },
+  hvac: { cost: "hvac-website-cost", pages: "hvac-website-pages" },
+  electrical: { cost: "electrician-website-cost", pages: "electrician-website-pages" },
+  roofing: { cost: "roofing-website-cost", pages: "roofing-website-pages" },
+  "garage-doors": { cost: "garage-door-website-cost", pages: "garage-door-website-pages" },
+  painting: { cost: "painting-website-cost", pages: "painting-website-pages" },
+  remodeling: { cost: "remodeling-website-cost", pages: "remodeling-website-pages" },
+  landscaping: { cost: "landscaping-website-cost", pages: "landscaping-website-pages" },
+  "pool-care": { cost: "pool-service-website-cost", pages: "pool-service-website-pages" },
+  "pressure-washing": { cost: "pressure-washing-website-cost", pages: "pressure-washing-website-pages" },
+  "window-cleaning": { cost: "window-cleaning-website-cost", pages: "window-cleaning-website-pages" },
+  "yard-care": { cost: "lawn-care-website-cost", pages: "lawn-care-website-pages" },
+  "junk-removal": { cost: "junk-removal-website-cost", pages: "junk-removal-website-pages" },
+  "tree-care": { cost: "tree-service-website-cost", pages: "tree-service-website-pages" },
+};
+
+export function industryCostPostPath(slug: string): string {
+  return `/blog/${SEO_POST_STEM[slug]?.cost ?? `${slug}-website-cost`}`;
+}
+
+export function industryPagesPostPath(slug: string): string {
+  return `/blog/${SEO_POST_STEM[slug]?.pages ?? `${slug}-website-pages`}`;
+}

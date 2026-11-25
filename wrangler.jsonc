@@ -1,0 +1,151 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kinexis-digital",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": true,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "redact_query_string": true,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+      "head_sampling_rate": 1
+    }
+  },
+  "vars": {
+    "CONTACT_TO": "hello@kinexisdigital.com,coltonwehr@kinexisdigital.com,coltondwehr@icloud.com",
+    "NEXT_PUBLIC_GA_ID": "G-Z8245BRX2L",
+    "NEXT_PUBLIC_META_PIXEL_ID": "1577328887491986"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "REVIEWS",
+      "id": "a792812e80e749b781bfa5b4bf7b49e1",
+      "preview_id": "57c783f8849a49e9831bcba52f0d311b"
+    },
+    {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "e27eeb06cb014f2193285774f49cbd9b",
+      "preview_id": "3b472da9db2b4518b4cc1a7beff1695f"
+    }
+  ],
+  // Created 2026-11-15 in ENAM. Migration 0001 is already applied. Do not recreate.
+  // An older unrelated database named kinexis is not this ledger. Leave it alone.
+  "d1_databases": [
+    {
+      "binding": "INVOICE_DB",
+      "database_name": "kinexis-invoice-ledger",
+      "database_id": "077c8e46-2ea8-4997-8b6a-c06902194575",
+      "migrations_dir": "migrations"
+    }
+    // LEAD_DB is intentionally omitted until the owner creates real D1 databases
+    // and binds them. Schema lives in migrations-lead/0001_conferbot_lead_intel.sql.
+    // Do not reintroduce placeholder database_id values — they break wrangler deploy.
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1-next-cache-queue",
+      "new_sqlite_classes": ["DOQueueHandler"]
+    }
+  ],
+  "send_email": [
+    {
+      "name": "CONTACT_EMAIL",
+      "allowed_destination_addresses": [
+        "hello@kinexisdigital.com",
+        "coltonwehr@kinexisdigital.com",
+        "coltondwehr@icloud.com"
+      ]
+    }
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "kinexis-digital"
+    }
+  ],
+  // Custom domains (enable once the zone is attached to this account):
+  "routes": [
+    { "pattern": "kinexisdigital.com", "custom_domain": true },
+    { "pattern": "www.kinexisdigital.com", "custom_domain": true }
+  ],
+  // Preview-only Worker — deploy with: opennextjs-cloudflare deploy --env preview
+  // Never use this env for production DNS (apex/www).
+  "env": {
+    "preview": {
+      "name": "kinexis-digital-preview",
+      "workers_dev": true,
+      "routes": [
+        { "pattern": "preview.kinexisdigital.com", "custom_domain": true }
+      ],
+      "vars": {
+        // Preview never uses CONTACT_TO / production inboxes. Set CONTACT_PREVIEW_TO
+        // to a sink address that is also listed under send_email.allowed_destination_addresses.
+        // Empty CONTACT_PREVIEW_TO fail-closes contact and review team mail (no send).
+        "NEXT_PUBLIC_IS_PREVIEW": "1",
+        "CONTACT_TO": "",
+        "CONTACT_PREVIEW_TO": ""
+      },
+      "kv_namespaces": [
+        {
+          "binding": "REVIEWS",
+          "id": "57c783f8849a49e9831bcba52f0d311b"
+        },
+        {
+          "binding": "NEXT_INC_CACHE_KV",
+          "id": "3b472da9db2b4518b4cc1a7beff1695f"
+        }
+      ],
+      // Preview ledger, created 2026-11-15 in ENAM. Migration 0001 is already applied.
+      "d1_databases": [
+        {
+          "binding": "INVOICE_DB",
+          "database_name": "kinexis-invoice-ledger-preview",
+          "database_id": "5a474f5a-4ac9-4d4c-8309-943c3d52981b",
+          "migrations_dir": "migrations"
+        }
+        // Preview LEAD_DB omitted until owner creates kinexis-lead-intel-preview
+        // and binds it. Apply migrations-lead/ with --env preview only then.
+      ],
+      "durable_objects": {
+        "bindings": [
+          {
+            "name": "NEXT_CACHE_DO_QUEUE",
+            "class_name": "DOQueueHandler"
+          }
+        ]
+      },
+      "services": [
+        {
+          "binding": "WORKER_SELF_REFERENCE",
+          "service": "kinexis-digital-preview"
+        }
+      ],
+      "send_email": [
+        {
+          "name": "CONTACT_EMAIL",
+          "allowed_destination_addresses": [
+            "hello@kinexisdigital.com",
+            "coltonwehr@kinexisdigital.com",
+            "coltondwehr@icloud.com"
+          ]
+        }
+      ]
+    }
+  }
+}
