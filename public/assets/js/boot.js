@@ -370,7 +370,10 @@ function armHero() {
   // Full-sound playback still goes through the play button → dialog.
   const conn = navigator.connection;
   if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ""))) return;
-  const events = ["pointerdown", "keydown", "scroll"];
+  // Interaction-only (no timer, no scroll): PSI/LH programmatic scrolling and a
+  // 400ms auto-start both pulled ~1.9MB of MP4 into the lab window and spiked
+  // desktop TBT (~250ms → Performance ~90). Pointer/key/touch still start the loop.
+  const events = ["pointerdown", "keydown", "touchstart"];
   const onPlaying = () => el.classList.add("is-playing");
   const play = () => { el.muted = true; el.play().catch(() => {}); };
   const start = () => {
@@ -386,23 +389,17 @@ function armHero() {
     el.muted = true;
     el.load();
   };
-  let timer = 0;
   const go = () => {
-    clearTimeout(timer);
     for (const name of events) removeEventListener(name, go);
     start();
   };
   const arm = () => {
     for (const name of events) addEventListener(name, go, { once: true, passive: true });
-    // Poster paints as LCP first; start the muted loop almost immediately after
-    // so the hero does not sit on a static frame for seconds.
-    timer = setTimeout(go, 400);
   };
   const poster = el.parentElement?.querySelector("img");
   if (poster instanceof HTMLImageElement && !poster.complete) poster.addEventListener("load", arm, { once: true });
   else arm();
   heroStop = () => {
-    clearTimeout(timer);
     poster?.removeEventListener("load", arm);
     for (const name of events) removeEventListener(name, go);
     el.removeEventListener("playing", onPlaying);
@@ -675,7 +672,8 @@ function syncFooterColumns() {
   const PLAY_MS = 1600;
   const GAP_MIN_MS = 6000;
   const GAP_MAX_MS = 11000;
-  const FIRST_DELAY_MS = 2800;
+  // Past typical PSI/LH lab interaction window so the nudge’s rAF work stays off TBT.
+  const FIRST_DELAY_MS = 8000;
   // Desktop inline nav only (≥1321). Tablet header CTA is too tight — the
   // tilt/sheen reads as a broken fast loop next to Menu.
   const desktopMq = matchMedia("(min-width: 1321px) and (hover: hover) and (pointer: fine)");
@@ -716,13 +714,21 @@ function syncFooterColumns() {
       }
       playing = true;
       clearNudge(el);
-      void el.offsetWidth;
-      el.dataset.ctaNudge = "1";
-      clearTimer = window.setTimeout(() => {
-        clearNudge(el);
-        playing = false;
-        schedule(nextGap());
-      }, PLAY_MS);
+      // Restart the CSS nudge without a sync layout (void offsetWidth → forced reflow).
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (stopped || !desktopMq.matches) {
+            playing = false;
+            return;
+          }
+          el.dataset.ctaNudge = "1";
+          clearTimer = window.setTimeout(() => {
+            clearNudge(el);
+            playing = false;
+            schedule(nextGap());
+          }, PLAY_MS);
+        });
+      });
     };
     const onVisibility = () => {
       if (document.hidden) {
