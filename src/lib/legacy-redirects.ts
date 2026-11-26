@@ -42,7 +42,6 @@ const NESTED_LIVE_INDUSTRY: Record<string, string> = {
 
 /** Old article slugs mapped to the closest current page. */
 const BLOG: Record<string, string> = {
-  "diseno-web-para-contratistas": "/blog/web-design-for-contractors",
   "small-business-website-cost": "/pricing",
   "website-not-generating-leads": "/blog/turn-clicks-into-calls",
   "website-traffic-no-calls": "/blog/turn-clicks-into-calls",
@@ -154,9 +153,13 @@ export const LEGACY_REDIRECTS = [
   { source: "/es-es/resources/:path*", destination: "/es/blog", statusCode: 301 as const },
   ...localizedWildcard("/blog/category/:slug", "/blog"),
   ...Object.entries(BLOG).flatMap(([slug, destination]) => localized(`/blog/${slug}`, destination)),
-  // Preserve this Spanish checklist article's language and content intent.
+  // Preserve Spanish-slug article language/intent (do not send to a generic EN industry page).
   ...go("/blog/pagina-web-para-plomeros", "/es/blog/pagina-web-para-plomeros"),
   ...go("/en/blog/pagina-web-para-plomeros", "/es/blog/pagina-web-para-plomeros"),
+  ...go("/blog/diseno-web-para-contratistas", "/es/blog/web-design-for-contractors"),
+  ...go("/en/blog/diseno-web-para-contratistas", "/es/blog/web-design-for-contractors"),
+  ...go("/es/blog/diseno-web-para-contratistas", "/es/blog/web-design-for-contractors"),
+  ...go("/es-es/blog/diseno-web-para-contratistas", "/es/blog/web-design-for-contractors"),
   ...go("/blog/como-pedir-resenas-en-google", "/blog/how-to-ask-for-google-reviews-contractor"),
   ...go("/en/blog/como-pedir-resenas-en-google", "/blog/how-to-ask-for-google-reviews-contractor"),
   // No standalone video-review pages exist; retire their URLs directly to

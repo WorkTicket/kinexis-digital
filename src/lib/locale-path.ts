@@ -57,6 +57,40 @@ export function isMirrored(pathname: string): boolean {
   return MIRROR.has(englishPath(pathname));
 }
 
+/**
+ * hreflang set. `es` and `es-US` share the Latam URL. `es-419` is not a valid
+ * hreflang code. Spain (`es-ES`) is omitted — `/es-es` 301s to `/es`.
+ *
+ * EN-only pages (tools, case studies, unmirrored posts) self-reference
+ * `en-US` + `x-default`. Do not invent `/es/…` counterparts.
+ */
+export function hreflangLanguages(pathname: string): Record<string, string> | undefined {
+  const en = englishPath(pathname);
+  const blogSlug = en.startsWith("/blog/") ? en.slice("/blog/".length) : "";
+  // Retired English Spanish-slug posts: Spanish-only hreflang (no EN alternate).
+  if (blogSlug && EN_REDIRECTED_BLOG_SLUGS.has(blogSlug)) {
+    const es = withLocale("es-419", en);
+    return {
+      es,
+      "es-US": es,
+      "x-default": es,
+    };
+  }
+  if (isMirrored(en)) {
+    const es = withLocale("es-419", en);
+    return {
+      "en-US": en,
+      es,
+      "es-US": es,
+      "x-default": en,
+    };
+  }
+  return {
+    "en-US": en,
+    "x-default": en,
+  };
+}
+
 /** Keep Spanish navigation on English URLs when a page has no Spanish copy. */
 export function localeHref(locale: Locale, pathname: string): string {
   const suffixAt = pathname.search(/[?#]/);

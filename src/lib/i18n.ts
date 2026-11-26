@@ -7,6 +7,7 @@ import {
   EN_REDIRECTED_BLOG_SLUGS,
   MIRROR_PATHS,
   englishPath,
+  hreflangLanguages,
   isLocale,
   isMirrored,
   localeHref,
@@ -22,6 +23,7 @@ export {
   EN_REDIRECTED_BLOG_SLUGS,
   MIRROR_PATHS,
   englishPath,
+  hreflangLanguages,
   isLocale,
   isMirrored,
   localeHref,
@@ -62,31 +64,6 @@ export function ogLocale(locale: Locale): string {
  */
 export function localeIndexable(locale: Locale): boolean {
   return locale === "en" || locale === "es-419";
-}
-
-/**
- * hreflang set. `es` and `es-US` share the Latam URL. `es-419` is not a valid
- * hreflang code. Spain (`es-ES`) is omitted — `/es-es` 301s to `/es`.
- */
-export function hreflangLanguages(pathname: string): Record<string, string> | undefined {
-  const en = englishPath(pathname);
-  if (!isMirrored(en) || !localeIndexable("en")) return undefined;
-  const es = withLocale("es-419", en);
-  const blogSlug = en.startsWith("/blog/") ? en.slice("/blog/".length) : "";
-  // Retired English Spanish-slug posts: Spanish-only hreflang (no EN alternate).
-  if (blogSlug && EN_REDIRECTED_BLOG_SLUGS.has(blogSlug)) {
-    return {
-      es,
-      "es-US": es,
-      "x-default": es,
-    };
-  }
-  return {
-    "en-US": en,
-    es,
-    "es-US": es,
-    "x-default": en,
-  };
 }
 
 export const getLocale = cache(async (): Promise<Locale> => {

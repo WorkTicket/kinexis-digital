@@ -89,13 +89,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     images: [`${SITE.url}${portfolioFile(project.image)}`],
   }));
 
-  const caseStudies = CASE_STUDIES.map((study) => ({
-    url: `${SITE.url}/case-studies/${study.slug}`,
-    lastModified: day(SITE_CONTENT_UPDATED),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-    images: [`${SITE.url}${study.overviewImage}`],
-  }));
+  const caseStudies = CASE_STUDIES.map((study) => {
+    const path = `/case-studies/${study.slug}`;
+    const languages = languagesFor(path);
+    return {
+      url: absolute(path),
+      lastModified: day(SITE_CONTENT_UPDATED),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      images: [`${SITE.url}${study.overviewImage}`],
+      ...(languages ? { alternates: { languages } } : {}),
+    };
+  });
 
   return [...pages, ...industries, ...posts, ...projects, ...caseStudies];
 }
