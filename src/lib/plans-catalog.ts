@@ -33,6 +33,11 @@ export type CatalogPlan = {
   checkoutFeatures: string[];
 };
 
+/** Optional Own It Site Care after the included first 12 months (USD / mo). */
+export const SITE_CARE_MONTHLY_USD = 39;
+/** Hosting and small edits included with Own It before optional Site Care. */
+export const OWN_IT_INCLUDED_HOSTING_MONTHS = 12;
+
 export const CATALOG_PLANS: CatalogPlan[] = [
   {
     slug: "website",

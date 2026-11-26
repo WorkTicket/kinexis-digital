@@ -36,6 +36,7 @@
     "check:spanish-mirror": "node scripts/check-spanish-mirror.mjs",
     "check:industry-icons": "node scripts/check-industry-icons.mjs",
     "check:commercial": "node scripts/check-commercial-consistency.mjs",
+    "check:contractor-website-cost": "node scripts/check-contractor-website-cost.mjs",
     "check:seo-ownership": "node scripts/check-seo-ownership.mjs",
     "check:meta-length": "node scripts/check-meta-length.mjs",
     "check:blog-images": "node scripts/check-blog-images.mjs",

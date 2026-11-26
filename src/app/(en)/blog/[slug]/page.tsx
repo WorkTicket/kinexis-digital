@@ -6,6 +6,7 @@ import { contentMetadata } from "@/lib/seo";
 import { ArticleSchema } from "@/components/JsonLd";
 import { PageHero, Section, CtaBand, Faq } from "@/components/ui";
 import { BlogFigureList } from "@/components/BlogFigures";
+import ContractorWebsiteCostCalculator from "@/components/tools/ContractorWebsiteCostCalculator";
 import { EN_POST_CONTENT } from "@/data/posts-en";
 import { BLOG_IMAGE_WIDTHS, IMAGE_SIZES, imageSrcSet, imageVariant, still } from "@/lib/image-sources";
 
@@ -130,6 +131,15 @@ export default async function BlogPostPage({ params }: Props) {
                   <h2>{section.h2}</h2>
                   <div className="blog-section__body" dangerouslySetInnerHTML={{ __html: section.html }} />
                   <BlogFigureList slug={slug} index={idx} sectionCount={content.sections.length} />
+                  {slug === "monthly-website-vs-own-it" && section.h2 === "The numbers, once, in one place" ? (
+                    <div className="blog-section__tool" style={{ marginTop: "1.5rem" }}>
+                      <h3>Compare published totals over time</h3>
+                      <p className="muted">
+                        Adjust plan and months below. The tables above stay as the no-JavaScript fallback with the published year-one and 24-month figures.
+                      </p>
+                      <ContractorWebsiteCostCalculator />
+                    </div>
+                  ) : null}
                 </section>
               ))}
 

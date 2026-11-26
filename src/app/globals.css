@@ -2395,6 +2395,12 @@ button.chatbot__icon__cta{
 .missed-call-calc input,.missed-call-calc select{border:1px solid var(--border);border-radius:12px;padding:.7rem .85rem;font:inherit}
 .missed-call-calc__results{display:grid;gap:.55rem;padding:1rem;border-radius:14px;background:var(--bg-tint);border:2px solid var(--border)}
 .missed-call-calc__formula{font-size:.92rem;color:var(--muted)}
+.contractor-cost-calc__period{border:0;margin:0;padding:0;display:grid;gap:.75rem;grid-column:1/-1}
+.contractor-cost-calc__period legend{font-weight:600;margin-bottom:.15rem}
+.contractor-cost-calc__presets{display:flex;flex-wrap:wrap;gap:.5rem}
+.contractor-cost-calc__toggle{display:flex!important;align-items:flex-start;gap:.65rem;grid-column:1/-1;font-weight:600}
+.contractor-cost-calc__toggle input{width:1.1rem;height:1.1rem;margin-top:.2rem;flex:0 0 auto}
+.contractor-cost-calc__toggle span{font-weight:600}
 @media (max-width:720px){.missed-call-calc__grid{grid-template-columns:1fr}}
 .review-qr-tool{border:1px solid var(--border);border-radius:18px;padding:1.25rem;background:#fff;box-shadow:var(--shadow);display:grid;gap:1rem}
 .review-qr-tool__field{display:grid;gap:.35rem;font-weight:600}

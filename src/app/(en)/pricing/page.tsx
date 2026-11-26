@@ -234,6 +234,13 @@ export default function Page() {
           </div>
         </aside>
         <OwnershipCompare />
+        <p className="center muted" style={{ marginTop: "1.25rem" }}>
+          Want the same published prices over 1–5 years?{" "}
+          <Link href="/blog/monthly-website-vs-own-it#cost-calculator" prefetch={false}>
+            Open the contractor website cost calculator
+          </Link>
+          .
+        </p>
       </Section>
 
       <Section>
