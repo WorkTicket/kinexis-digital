@@ -625,7 +625,7 @@ export const PILLAR_POSTS_MORE: Record<string, PillarPostBody> = {
     ],
   },
   "turn-clicks-into-calls": {
-    lead: `The ad worked, or the map did, or a neighbor sent your link. They are on the page. That is not a job. A job starts when someone taps the number or sends a form you actually answer. Everything between the arrival and that tap is where service sites get fancy and go quiet: three buttons, a chat, a PDF, a story. The person with the dead furnace does not need a menu of ways to interact with your brand. They need the next step to be obvious and the reply to be soon.`,
+    lead: `The ad worked, or the map did, or a neighbor sent your link. They are on the page. That is not a job. This guide is about clicks to calls: getting from that arrival to a real conversation. A job starts when someone taps the number or sends a form you actually answer. Everything between the arrival and that tap is where service sites get fancy and go quiet: three buttons, a chat, a PDF, a story. The person with the dead furnace does not need a menu of ways to interact with your brand. They need the next step to be obvious and the reply to be soon.`,
     sections: [
       {
         h2: `A visit is not a conversation`,
@@ -637,7 +637,8 @@ export const PILLAR_POSTS_MORE: Record<string, PillarPostBody> = {
         h2: `One main next step per page`,
         html: `<p>Call, quote form, chat, download, and “follow us” should not compete on the first screen. Pick the step that matches the job. Urgent repair: tap-to-call, with hours that are true. Planned work: a short form, with the phone still visible for people who hate forms. Secondary stuff—gallery, about, financing—can sit lower, where it helps someone who is already leaning in.</p>
 <p>Label the step like a person. “Call for a no-cool visit” beats “Contact.” “Request a water-heater estimate” beats “Submit.” The label is doing the sorting that your services page refused to do. If you only have one page for everything, you are forced into a vague button. That is a reason to split the jobs, which <a href="/blog/plumbing-website-pages">plumbing pages</a> and the other trade page guides cover. This article assumes the page has a job and is failing the handoff.</p>
-<p>On a phone the main button should be hittable without a zoom and without dismissing a layer first. Layout details live in <a href="/blog/make-your-website-mobile-ready">making the site mobile-ready</a>. If the words are right and the button is buried, you still do not have a next step. You have a suggestion.</p>`,
+<p>On a phone the main button should be hittable without a zoom and without dismissing a layer first. Layout details live in <a href="/blog/make-your-website-mobile-ready">making the site mobile-ready</a>. If the words are right and the button is buried, you still do not have a next step. You have a suggestion.</p>
+<p><strong>Example (hypothetical):</strong> Picture a first mobile screen for someone who searched a no-heat HVAC problem on a phone in a cold driveway. Above the fold: a tap-to-call phone button large enough for a thumb, a plain line with the hours you really answer, and one short link to a quote form underneath for people who hate calling first. The gallery, the company story, financing badges, and the social icons sit below the fold—available after they can already start a conversation. Do not treat this as a client case or a measured outcome; it is only a sketch of one clear next step on a phone-sized first screen. If your live page buries the number under a hero video or a chat bubble, the click already paid for the stall, and another redesign color will not fix the handoff.</p>`,
       },
       {
         h2: `Emergency and estimate are different doors`,
