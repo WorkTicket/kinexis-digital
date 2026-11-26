@@ -27,6 +27,16 @@ export type CostTradeSpec = {
   buyerDecisionHtml: string;
   /** FAQs that only make sense for this trade. */
   extraFaqs: { q: string; a: string }[];
+  /**
+   * Optional pricing-section H2. Defaults to "Kinexis Prices for Business Websites"
+   * so unset trades render identically to today’s shared heading.
+   */
+  pricingH2?: string;
+  /**
+   * Optional HTML after the shared plan table (no second table). Omit for
+   * byte-identical output on trades that do not set it.
+   */
+  pricingNoteHtml?: string;
 };
 
 /** Shared plan facts — keep short so trade-unique copy dominates similarity. */
@@ -122,8 +132,8 @@ export function buildCostPostBody(spec: CostTradeSpec): CostPostBody {
         html: spec.buyerDecisionHtml,
       },
       {
-        h2: "Kinexis Prices for Business Websites",
-        html: PLAN_TABLE,
+        h2: spec.pricingH2 ?? "Kinexis Prices for Business Websites",
+        html: spec.pricingNoteHtml ? `${PLAN_TABLE}${spec.pricingNoteHtml}` : PLAN_TABLE,
       },
       {
         h2: "What It Costs Over 24 Months",
@@ -220,6 +230,8 @@ export const COST_TRADE_SPECS: CostTradeSpec[] = [
     payingForHtml: `<p>You are paying for repair, replacement, and inspection pages that behave differently—plus storm documentation that looks like your jobs, not stock blue-sky roofs. The inspection form should submit with wet fingers: big fields, obvious button, photo upload optional.</p><p>You are paying for clear insurance-process copy without claim promises. Homeowners want to know how you inspect and document; they do not need a guarantee you cannot keep.</p>`,
     buyerDecisionH2: "After hail: repair, replace, or book an inspection first?",
     buyerDecisionHtml: `<p>Post-storm visitors are not browsing shingle color chips. They want an inspection window and a crew that knows how documentation works with their insurer. Active leaks still deserve the phone over any form.</p><p>Repair and full replacement should not share one vague “roofing services” page. A patch lead and a tear-off lead need different photos, different timelines, and different next steps. Put the inspection CTA where hail searchers land; keep brand essays secondary.</p><ul><li>Active leak: phone first</li><li>Hail / storm: short inspection form that works on mobile</li><li>Planned replacement: gallery + consult, not emergency tone</li></ul><p>If storm weeks bury your office line, Lead System text-back is the plan question. See a homepage direction free in 2 business days at <a href="/contact">/contact</a>—no card.</p>`,
+    pricingH2: "Roofing website design pricing: the four Kinexis options",
+    pricingNoteHtml: `<p>These are website design plan prices for a roofing contractor site—not a quote for a roofing job, inspection, or insurance claim. Storm-week missed calls are when Lead System’s optional text-back matters most: a second tracking number is $1/mo if used, plus carrier rates; carrier approval usually takes 10–15 days and is not guaranteed. Website at $97/mo fits a shop whose office answers the phone; Own It at $1,497 is a one-time purchase and does not include the 60-day lead guarantee, which applies only on Lead System and Plus. Every plan includes a 30-day money-back guarantee.</p>`,
     extraFaqs: [
       { q: "Can my roofing site promise insurance will pay for a full replacement?", a: "No. Explain how you document damage and work with adjusters, but do not promise claim outcomes. That language creates liability and angry homeowners when carriers disagree." },
       { q: "What fields belong on a hail inspection form?", a: "Keep it short for wet-finger mobile use: name, phone, rough address or area, and optional photos if safe. Save long material questionnaires for after you confirm the appointment." },
