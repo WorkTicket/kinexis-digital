@@ -94,7 +94,9 @@ export const INDUSTRIES: Industry[] = [
       { q: "Is Own It better than a monthly plan for plumbers?", a: "Both are valid. Monthly plans are $0 down and month-to-month. Own It is one payment of $1,497 with the site files yours from launch day. Choose based on cash flow and whether you want Lead System tools like review requests and optional missed-call text-back." },
       { q: "Can you write my leak repair and drain pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
       { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
-      { q: "Can my plumbing site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
+      { q: "Can my plumbing site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." },
+      { q: "How should one plumbing site handle emergency calls and scheduled work?", a: "Give them different next steps on the same site. Leaks and no-water jobs need a large tap-to-call path and hours you actually staff. Water-heater installs and fixture remodels can use a short estimate form, with the phone still visible. Mixing both into one vague “plumbing services” button makes urgent callers hunt and planned shoppers feel rushed." },
+      { q: "We cover several towns from one shop. What belongs on the service-area page?", a: "List the towns or radius you actually send trucks to, plus any hard limits (no crawlspaces in certain cities, no after-hours outside a core set). Keep it one page. Repeating the same leak copy on ten city URLs does not help callers and creates thin pages that all say the same thing." }],
     related: ["hvac", "electrical", "remodeling", "garage-doors"],
   },
   {
