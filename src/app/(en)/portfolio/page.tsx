@@ -65,7 +65,7 @@ export default function Page() {
           </div>
         </div>
         <div className="portfolio--live">
-          {LIVE_SITES.map((site, index) => {
+          {LIVE_SITES.map((site) => {
             const host = siteHost(site.url);
             const study = CASE_STUDIES.find((item) => item.liveSiteSlug === site.slug);
             return (
@@ -84,7 +84,6 @@ export default function Page() {
                           width={study?.heroWidth ?? 400}
                           height={study?.heroHeight ?? 300}
                           className="shot__img"
-                          eager={index === 0}
                         />
                       </div>
                     </div>

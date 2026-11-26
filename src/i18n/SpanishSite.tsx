@@ -992,7 +992,7 @@ function Blog({ locale, tx, href, lang, band }: PageBits) {
                   <p className="post__excerpt muted">{post.excerpt}</p>
                   <div className="post__meta">
                     <span>{post.readTime.replace(" min read", " min de lectura")}</span>
-                    <Link href={href(`/blog/${post.slug}`)} className="btn btn--ghost btn--sm" aria-label={tx(`Leer ${post.title}`)} prefetch={false}>{tx("Leer la guía")}</Link>
+                    <Link href={href(`/blog/${post.slug}`)} className="btn btn--ghost btn--sm" aria-label={tx(`Leer la guía: ${post.title}`)} prefetch={false}>{tx("Leer la guía")}</Link>
                   </div>
                 </div>
               </article>
@@ -1376,12 +1376,12 @@ function Portfolio({ locale, tx, href, lang, band }: PageBits) {
       <Section>
         <div className="container">
           <div className="showcase__head"><div><p className="eyebrow">{tx("Sitios en vivo")}</p><h2><HL text={tx("Sitios de clientes")} mark={tx("clientes")} /></h2></div></div>
-          <div className="portfolio--live">{LIVE_SITES.map((site, index) => {
+          <div className="portfolio--live">{LIVE_SITES.map((site) => {
             let host = site.url;
             try { host = new URL(site.url).host.replace(/^www\./, ""); } catch { /* keep url */ }
             return (
               <a key={site.slug} className="live-site" href={site.url} target="_blank" rel="noopener noreferrer">
-                <div className="shot shot--static" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={portfolioCardFile(site.image, 400)} srcSet={portfolioCardSrcSet(site.image)} avifSrcSet={portfolioCardSrcSet(site.image, "avif")} sizes={IMAGE_SIZES.portfolioCard} alt="" width={400} height={300} className="shot__img" eager={index === 0} /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
+                <div className="shot shot--static" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={portfolioCardFile(site.image, 400)} srcSet={portfolioCardSrcSet(site.image)} avifSrcSet={portfolioCardSrcSet(site.image, "avif")} sizes={IMAGE_SIZES.portfolioCard} alt="" width={400} height={300} className="shot__img" /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
                 <span className="live-site__copy"><span className="live-site__status"><span className="live-site__dot" aria-hidden="true" />{tx("En vivo")}</span><span className="live-site__id"><span className="live-site__name">{site.name}</span><span className="live-site__meta"><span>{site.trade}</span><span className="live-site__host">{host}</span></span></span></span>
               </a>
             );

@@ -7,7 +7,8 @@ type Props = {
   width: number;
   height: number;
   className?: string;
-  /** In-view images (the LCP) load with the document. Everything else waits until it nears the viewport. */
+  /** Near-fold images may load with the document. Never uses fetchpriority=high —
+   * that is reserved for real LCP art (PageHero / CampaignHeroArtwork / HeroFilm). */
   eager?: boolean;
   onError?: () => void;
   /** Shown in place of the image if the file fails. Handled outside React so the picture stays static. */
@@ -32,7 +33,7 @@ export function DeferredImg({ src, srcSet, avifSrcSet, sizes, alt, width, height
         className={className}
         loading="eager"
         decoding="async"
-        fetchPriority="high"
+        fetchPriority="auto"
         data-fallback={fallback}
         onError={onError}
       />

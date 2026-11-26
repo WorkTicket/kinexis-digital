@@ -61,7 +61,8 @@ export function CampaignHeroArtwork({
       <img
         src={fallback}
         alt={alt}
-        width={1440}
+        /* Match .art-wrap 1:1 so layout/LCP don’t wait on a 16:9 intrinsic box. */
+        width={810}
         height={810}
         loading={priority ? "eager" : "lazy"}
         // sync when priority: campaign art is the LCP element on pricing/portfolio/etc.

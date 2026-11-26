@@ -81,7 +81,7 @@ export default function Page() {
                   <p className="post__excerpt muted">{post.excerpt}</p>
                   <div className="post__meta">
                     <span>{post.readTime}</span>
-                    <Link href={`/blog/${post.slug}`} className="btn btn--ghost btn--sm" aria-label={`Read ${post.title}`} prefetch={false}>Read the guide</Link>
+                    <Link href={`/blog/${post.slug}`} className="btn btn--ghost btn--sm" aria-label={`Read the guide: ${post.title}`} prefetch={false}>Read the guide</Link>
                   </div>
                 </div>
               </article>

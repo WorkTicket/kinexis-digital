@@ -99,9 +99,10 @@ else if(p==="/es-es"||p.indexOf("/es-es/")===0){esSuffix="-es";p=p==="/es-es"?"/
 if(p.length>1&&p.charAt(p.length-1)==="/")p=p.slice(0,-1);
 var head=document.currentScript&&document.currentScript.parentNode?document.currentScript.parentNode:document.head;
 var before=document.currentScript||head.firstChild;
-function insertPreload(href,type){
+function insertPreload(href,type,media){
  var l=document.createElement("link");
  l.rel="preload";l.as="image";l.href=href;if(type)l.type=type;
+ if(media)l.media=media;
  l.setAttribute("fetchpriority","high");
  head.insertBefore(l,before);
  return l;
@@ -115,7 +116,10 @@ function insertPreload(href,type){
 var campaign={${campaignEntries}};
 var campaignFile=campaign[p];
 if(campaignFile){
- insertPreload("/assets/kinexis/page-art/"+campaignFile+"-mobile"+esSuffix+".avif?v="+${version},"image/avif");
+ var base="/assets/kinexis/page-art/"+campaignFile;
+ // Match CampaignHeroArtwork: only the active breakpoint candidate is high-priority.
+ insertPreload(base+"-mobile"+esSuffix+".avif?v="+${version},"image/avif","(max-width: 860px)");
+ insertPreload(base+"-desktop"+esSuffix+".avif?v="+${version},"image/avif","(min-width: 861px)");
  return;
 }
 var map={${entries}};

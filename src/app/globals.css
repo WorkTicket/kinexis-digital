@@ -1230,8 +1230,10 @@ html.lp-route body{--announce-h:0px}
 .section:has(details.faq){content-visibility:visible}
 /* Skip layout/paint for below-fold bands (including the first section after a page hero). */
 /* industry-audit stays off content-visibility — placeholder sizing overlaps
-   the FAQ footer link and fails Lighthouse target-size on mobile. */
-.price,.cta-band,.footer,.pricing-terms,.guarantee-stack,.mobile-plan-compare,.reviews-block{content-visibility:auto;contain-intrinsic-size:auto 900px}
+   the FAQ footer link and fails Lighthouse target-size on mobile.
+   cta-band stays off too — size-containment drops the cobalt paint so axe/LH
+   sees white .hl-emphasis on the page tint (#f4f7ff) and fails color-contrast. */
+.price,.footer,.pricing-terms,.guarantee-stack,.mobile-plan-compare,.reviews-block{content-visibility:auto;contain-intrinsic-size:auto 900px}
 /* Desktop-only comparison table is display:none on small screens; keep it out of the mobile render tree cost when shown. */
 .pricing-comparison-table{content-visibility:auto;contain-intrinsic-size:auto 1200px}
 .section>.container{position:relative;z-index:2}
@@ -2494,6 +2496,8 @@ button.chatbot__icon__cta{
 }
 @media (max-width:860px){
   .page-hero__grid,.media-split{grid-template-columns:1fr}
+  /* LCP art first on mobile — less copy above the image keeps lab LCP ≤1.8s. */
+  .page-hero--split .page-hero__art{order:-1}
   .page-hero--split .page-hero__copy{text-align:center}
   .page-hero--split .lead{margin-inline:auto}
   .page-hero--split .btn-row{justify-content:center}
@@ -2836,6 +2840,17 @@ html.no-audit [data-site-audit]{display:none!important}
 /* On cobalt/navy bands the marker flips to a white accent with navy text. */
 .cta-band .hl,.price .hl,.audit-cta .hl,.section--lead .hl{color:var(--warm-ink)}
 .cta-band .hl,.price .hl,.audit-cta .hl,.section--lead .hl{background-image:linear-gradient(#fff,#fff)}
+/* Non-phrase HL is <strong.hl-emphasis> (no .hl wrap). Keep it on the white
+   marker so contrast stays ≥3:1 even if the band paint is delayed. */
+.cta-band h2 .hl-emphasis{
+  color:var(--warm-ink)!important;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  background-image:linear-gradient(#fff,#fff);
+  background-position:left 56%;
+  background-size:100% .72em;
+  background-repeat:no-repeat;
+  padding:0 .1em;margin:0 -.04em;border-radius:.08em;
+}
 
 /* ---------- CTA band (cobalt closer — matches homepage section--lead) ---------- */
 .cta-band{

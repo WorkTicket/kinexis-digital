@@ -69,11 +69,15 @@ export function proxy(request: NextRequest) {
   // Edge country for cookie-banner geo (avoids a critical-path /cdn-cgi/trace fetch).
   const country = (request.headers.get("cf-ipcountry") || "").toUpperCase();
   if (/^[A-Z]{2}$/.test(country) && country !== "XX" && country !== "T1") {
-    response.cookies.set("kx_country", country, {
-      path: "/",
-      maxAge: 60 * 60 * 24,
-      sameSite: "lax",
-    });
+    // Skip Set-Cookie when unchanged so cache HIT HTML stays cookie-free and TTFB stays flat.
+    const existing = request.cookies.get("kx_country")?.value;
+    if (existing !== country) {
+      response.cookies.set("kx_country", country, {
+        path: "/",
+        maxAge: 60 * 60 * 24,
+        sameSite: "lax",
+      });
+    }
   }
   if (isPreviewHost(host)) {
     response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
