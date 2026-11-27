@@ -20,7 +20,7 @@ export const LEAD_FIELDS: Field[] = [
   { label: "Email", name: "email", kind: "email", auto: "email" },
   { label: "Phone", name: "phone", kind: "tel", auto: "tel" },
   { label: "Business Name", name: "business", required: true, auto: "organization" },
-  { label: "Business type and city (e.g. HVAC in Phoenix)", name: "trade", required: true },
+  { label: "Trade & city (e.g. Plumbing, Boise)", name: "trade", required: true },
   { label: "Current website (optional)", name: "website", auto: "url" },
 ];
 
@@ -30,7 +30,7 @@ export const LEAD_FIELDS_ES: Field[] = [
   { label: "Correo", name: "email", kind: "email", auto: "email" },
   { label: "Teléfono", name: "phone", kind: "tel", auto: "tel" },
   { label: "Nombre del negocio", name: "business", required: true, auto: "organization" },
-  { label: "Tipo de negocio y ciudad (ej. HVAC en Phoenix)", name: "trade", required: true },
+  { label: "Oficio y ciudad (ej. Plomería, Boise)", name: "trade", required: true },
   { label: "Sitio web actual (opcional)", name: "website", auto: "url" },
 ];
 
@@ -238,7 +238,7 @@ export default function Form({
             ? <textarea name={f.name} rows={4} placeholder=" " required={f.required} />
             : <input type={f.kind ?? "text"} name={f.name} placeholder=" " autoComplete={f.auto} required={f.required} />}
           <span>{contactInquiry && f.name === "trade"
-            ? (contactInquiry.locale === "es" ? "Tipo de negocio y ciudad" : "Business type and city")
+            ? (contactInquiry.locale === "es" ? "Oficio y ciudad" : "Trade & city")
             : contactInquiry?.locale === "es" && f.name === "website"
               ? "Sitio web (opcional)"
               : f.label}</span>

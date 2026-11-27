@@ -62,9 +62,11 @@ const leakedPreview =
 // NEXT_PUBLIC_SITE_URL in the parent shell and Next will not override it.
 delete process.env.NEXT_PUBLIC_IS_PREVIEW;
 process.env.NEXT_PUBLIC_SITE_URL = PRODUCTION_SITE_URL;
-// Always ping search after a production ship (override a leftover SEARCH_NOTIFY=0
-// from preview deploys). Set SEARCH_NOTIFY=0 explicitly only by editing this file.
-process.env.SEARCH_NOTIFY = "1";
+// Default: ping search after a production ship. Set SEARCH_NOTIFY=0 in the
+// shell to skip IndexNow/search notify for this run (requested for cosmetic ships).
+if (process.env.SEARCH_NOTIFY !== "0") {
+  process.env.SEARCH_NOTIFY = "1";
+}
 // Never pin Conferbot off on the parent env — that used to leak into build:worker
 // and override .env.production. Gate steps set 0 only on their child env.
 delete process.env.NEXT_PUBLIC_CONFERBOT_ENABLED;

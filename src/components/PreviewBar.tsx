@@ -7,7 +7,7 @@ const SLIM_FIELDS_EN: Field[] = [
   { label: "Email (or phone)", name: "email", kind: "email", auto: "email" },
   { label: "Phone (e.g. 307-555-0142)", name: "phone", kind: "tel", auto: "tel" },
   { label: "Business Name *", name: "business", required: true, auto: "organization" },
-  { label: "Trade and city * (e.g. Plumbing in Boise)", name: "trade", required: true },
+  { label: "Trade & city * (e.g. Plumbing, Boise)", name: "trade", required: true },
   {
     label: "Photos (optional)",
     name: "photos",
@@ -22,7 +22,7 @@ const SLIM_FIELDS_ES: Field[] = [
   { label: "Correo (o teléfono)", name: "email", kind: "email", auto: "email" },
   { label: "Teléfono (ej. 307-555-0142)", name: "phone", kind: "tel", auto: "tel" },
   { label: "Nombre del negocio *", name: "business", required: true, auto: "organization" },
-  { label: "Oficio y ciudad * (ej. Plomería en Boise)", name: "trade", required: true },
+  { label: "Oficio y ciudad * (ej. Plomería, Boise)", name: "trade", required: true },
   {
     label: "Fotos (opcional)",
     name: "photos",
