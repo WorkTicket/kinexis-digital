@@ -29,7 +29,9 @@ Refresh these IDs in Cloudflare immediately before any production deploy or roll
 
 ## Preview isolation
 
-Until `kinexis-digital-preview` is restored and `preview.kinexisdigital.com` returns a healthy response:
+**2026-11-28 inventory:** `kinexis-digital-preview` is still absent from the Cloudflare account Worker list; `preview.kinexisdigital.com` returned HTTP 503 in the audit. Restore only with owner-approved `npm run deploy:preview` (creates the preview Worker from `wrangler.jsonc` `env.preview`). Keep `kinexis-ops-api-staging` / `kinexis-ops-queue` out of this path.
+
+Until the hosted preview is healthy:
 
 - Use local OpenNext preview (`npm run preview`) and mocked fixtures.
 - Hosted preview must keep `NEXT_PUBLIC_IS_PREVIEW=1`, empty production GA/Meta bake-in, empty sitemap / noindex, empty `CONTACT_TO`, and a dedicated `CONTACT_PREVIEW_TO` sink listed in `send_email` allowlist.
