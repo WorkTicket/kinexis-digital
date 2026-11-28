@@ -4,7 +4,12 @@ import { STILL_VERSION } from "../src/lib/image-sources";
 async function installMockAnalytics(page: import("@playwright/test").Page, ads = false, meta = false) {
   await page.addInitScript(({ adsEnabled, metaEnabled }) => {
     type Config = Record<string, string>;
-    const target = window as unknown as { __KINEXIS_CFG__?: Config };
+    const target = window as unknown as {
+      __KINEXIS_CFG__?: Config;
+      __KINEXIS_ALLOW_ANALYTICS_HOST__?: boolean;
+    };
+    // Localhost is not a production analytics host; e2e opts in explicitly.
+    target.__KINEXIS_ALLOW_ANALYTICS_HOST__ = true;
     let config = target.__KINEXIS_CFG__;
     Object.defineProperty(target, "__KINEXIS_CFG__", {
       configurable: true,
@@ -430,6 +435,26 @@ test.describe("marketing journeys", () => {
     await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(expectedY);
   });
 
+  test("ok without accepted does not fire generate_lead", async ({ page }) => {
+    await installMockAnalytics(page);
+    await page.route("**/api/contact", (route) => route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true }),
+    }));
+    await page.goto("/");
+    await waitForBoot(page);
+    const form = page.locator('form[data-conversion="preview"]').first();
+    await form.locator('input[name="name"]').fill("Test Visitor");
+    await form.locator('input[name="email"]').fill("visitor@example.test");
+    await form.locator('input[name="business"]').fill("Test Business");
+    await form.locator('input[name="trade"]').fill("Plumbing in Boise");
+    await form.locator('button[type="submit"]').click();
+    await expect(form).toHaveClass(/is-done/);
+    expect((await gaEvents(page)).filter((event) => event.name === "generate_lead")).toHaveLength(0);
+    expect((await gaEvents(page)).filter((event) => event.name === "preview_form_submit")).toHaveLength(0);
+  });
+
   test("free-preview conversion fires once and only after confirmed success", async ({ page }) => {
     await installMockAnalytics(page);
     let submissions = 0;
@@ -439,7 +464,7 @@ test.describe("marketing journeys", () => {
       return route.fulfill({
         status: submissions === 1 ? 502 : 200,
         contentType: "application/json",
-        body: JSON.stringify(submissions === 1 ? { error: "Mock delivery failure" } : { ok: true }),
+        body: JSON.stringify(submissions === 1 ? { error: "Mock delivery failure" } : { ok: true, accepted: true }),
       });
     });
     await page.goto("/");
@@ -471,7 +496,7 @@ test.describe("marketing journeys", () => {
     await page.route("**/api/contact", (route) => route.fulfill({
       status: 200,
       contentType: "application/json",
-      body: JSON.stringify({ ok: true }),
+      body: JSON.stringify({ ok: true, accepted: true }),
     }));
     await page.goto("/");
     await waitForBoot(page);
@@ -497,7 +522,7 @@ test.describe("marketing journeys", () => {
     let submitted = "";
     await page.route("**/api/contact", async (route) => {
       submitted = route.request().postData() || "";
-      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, accepted: true }) });
     });
     await page.goto("/?utm_source=first_source&utm_campaign=first_campaign&utm_source=ambiguous&gclid=click-id&fbclid=fb-id");
     await waitForBoot(page);
@@ -543,7 +568,7 @@ test.describe("marketing journeys", () => {
     await page.route("**/api/contact", (route) => route.fulfill({
       status: 200,
       contentType: "application/json",
-      body: JSON.stringify({ ok: true }),
+      body: JSON.stringify({ ok: true, accepted: true }),
     }));
     await page.goto("/");
     await waitForBoot(page);
@@ -569,7 +594,7 @@ test.describe("marketing journeys", () => {
     await page.route("**/api/contact", (route) => route.fulfill({
       status: 200,
       contentType: "application/json",
-      body: JSON.stringify({ ok: true }),
+      body: JSON.stringify({ ok: true, accepted: true }),
     }));
     await page.goto("/audit");
     await waitForBoot(page);
@@ -598,7 +623,7 @@ test.describe("marketing journeys", () => {
       await route.fulfill({
         status: 200,
         contentType: "application/json",
-        body: JSON.stringify({ ok: true }),
+        body: JSON.stringify({ ok: true, accepted: true }),
       });
     });
     const forms = [
@@ -676,7 +701,7 @@ test.describe("marketing journeys", () => {
     let updateSubmission = "";
     await page.route("**/api/contact", async (route) => {
       updateSubmission = route.request().postDataBuffer()?.toString("latin1") || "";
-      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, accepted: true }) });
     });
     await page.goto("/update");
     await waitForBoot(page);
@@ -882,7 +907,11 @@ test.describe("marketing journeys", () => {
     });
     await page.addInitScript(() => {
       type Config = Record<string, string>;
-      const target = window as unknown as { __KINEXIS_CFG__?: Config };
+      const target = window as unknown as {
+        __KINEXIS_CFG__?: Config;
+        __KINEXIS_ALLOW_ANALYTICS_HOST__?: boolean;
+      };
+      target.__KINEXIS_ALLOW_ANALYTICS_HOST__ = true;
       let config = target.__KINEXIS_CFG__;
       Object.defineProperty(target, "__KINEXIS_CFG__", {
         configurable: true,
@@ -906,8 +935,11 @@ test.describe("marketing journeys", () => {
       document.querySelector('a[href^="tel:"]')?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
     await firePhoneTap();
-    await expect.poll(async () => (await gaEvents(page)).filter((event) => event.name === "generate_lead").length).toBe(1);
+    // Phone taps are diagnostic only — never generate_lead / CRM leads.
     await expect.poll(async () => (await gaEvents(page)).filter((event) => event.name === "phone_tap").length).toBe(1);
+    expect((await gaEvents(page)).filter((event) => event.name === "generate_lead")).toHaveLength(0);
+    const phoneTap = (await gaEvents(page)).find((event) => event.name === "phone_tap");
+    expect((phoneTap?.params as { event_role?: string } | undefined)?.event_role).toBe("diagnostic");
 
     await setConsent(page, true, true);
     await firePhoneTap();
@@ -942,8 +974,8 @@ test.describe("marketing journeys", () => {
         revoked: fbq?.queue?.some((args) => args[0] === "consent" && args[1] === "revoke") ?? false,
       };
     });
-    // generate_lead + phone_tap still record in GA after ads withdrawal; Meta Lead does not.
-    expect(adsWithdrawn.gaEvents).toBe(beforeWithdraw.gaEvents + 2);
+    // phone_tap (diagnostic) still records in GA after ads withdrawal; Meta Lead does not.
+    expect(adsWithdrawn.gaEvents).toBe(beforeWithdraw.gaEvents + 1);
     expect(adsWithdrawn.adStorage).toBe("denied");
     expect(adsWithdrawn.leads).toBe(beforeWithdraw.metaLeads);
     expect(adsWithdrawn.revoked).toBe(true);

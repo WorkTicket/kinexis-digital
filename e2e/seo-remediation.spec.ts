@@ -3,6 +3,9 @@ import { LEGACY_REDIRECTS } from "../src/lib/legacy-redirects";
 
 async function enableMockLeadTracking(page: Page, baseURL?: string) {
   const origin = baseURL || "http://localhost:3000";
+  await page.addInitScript(() => {
+    (window as Window & { __KINEXIS_ALLOW_ANALYTICS_HOST__?: boolean }).__KINEXIS_ALLOW_ANALYTICS_HOST__ = true;
+  });
   await page.context().addCookies([{
     name: "kinexis_consent",
     value: "v1|a=1|d=0",
@@ -20,9 +23,11 @@ async function readyMockLeadTracking(page: Page) {
   await page.evaluate(() => {
     const target = window as Window & {
       __KINEXIS_CFG__?: { ga?: string };
+      __KINEXIS_ALLOW_ANALYTICS_HOST__?: boolean;
       dataLayer?: unknown[];
       gtag?: (...args: unknown[]) => void;
     };
+    target.__KINEXIS_ALLOW_ANALYTICS_HOST__ = true;
     if (target.__KINEXIS_CFG__) target.__KINEXIS_CFG__.ga = "G-TEST123";
     window.dispatchEvent(new Event("pointerdown"));
     target.dataLayer = [];
@@ -249,7 +254,7 @@ test.describe("KX-SEO-002 Release 1", () => {
       await page.route("**/api/contact", async (request) => {
         requestCount += 1;
         await pendingRequest;
-        await request.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
+        await request.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true,"accepted":true}' });
       });
 
       await page.goto(route);

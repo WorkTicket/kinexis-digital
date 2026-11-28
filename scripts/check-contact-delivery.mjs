@@ -35,7 +35,13 @@ try {
     }
     return POST(new Request("http://localhost/api/contact", { method: "POST", headers, body: form }));
   };
-  assert.equal((await submit({ topic: "strategy-call", file: new File(["drawing"], "brief.txt", { type: "text/plain" }) })).status, 200);
+  {
+    const res = await submit({ topic: "strategy-call", file: new File(["drawing"], "brief.txt", { type: "text/plain" }) });
+    assert.equal(res.status, 200);
+    const body = await res.json();
+    assert.equal(body.ok, true);
+    assert.equal(body.accepted, true);
+  }
   assert.deepEqual(delivery.to, ["inbox@example.com", "owner@example.com"]);
   assert.equal(delivery.replyTo.address, "client@example.com");
   assert.match(delivery.subject, /Strategy call/);
@@ -116,7 +122,31 @@ try {
   assert.equal((await POST(new Request("http://localhost/api/contact", { method: "POST", headers: { "Content-Type": "text/plain" }, body: "name=Client" }))).status, 415);
   assert.equal((await POST(new Request("http://localhost/api/contact", { method: "POST", headers: { "Content-Type": "multipart/form-data", "Content-Length": String(23 * 1024 * 1024) }, body: "x" }))).status, 413);
   delivery = undefined;
-  assert.equal((await submit({ _gotcha: "bot" })).status, 200);
+  {
+    const honeypot = await submit({ _gotcha: "bot" });
+    assert.equal(honeypot.status, 200);
+    const body = await honeypot.json();
+    assert.equal(body.ok, true);
+    assert.notEqual(body.accepted, true);
+  }
+  assert.equal(delivery, undefined);
+  delivery = undefined;
+  {
+    const fast = await submit({ kx_form_started_at: String(Date.now()) });
+    assert.equal(fast.status, 200);
+    const body = await fast.json();
+    assert.equal(body.ok, true);
+    assert.notEqual(body.accepted, true);
+  }
+  assert.equal(delivery, undefined);
+  delivery = undefined;
+  {
+    const disposable = await submit({ email: "bot@mailinator.com" });
+    assert.equal(disposable.status, 200);
+    const body = await disposable.json();
+    assert.equal(body.ok, true);
+    assert.notEqual(body.accepted, true);
+  }
   assert.equal(delivery, undefined);
   mailer.createTransport = () => ({ sendMail: async () => { throw new Error("SMTP unavailable"); } });
   assert.equal((await submit()).status, 502);
@@ -145,7 +175,7 @@ try {
   delete process.env.NEXT_PUBLIC_IS_PREVIEW;
   delete process.env.CONTACT_PREVIEW_TO;
 
-  console.log("Contact delivery checks passed: SMTP routing, audit routing, attachment, validation, honeypot, failure, missing configuration, and preview email isolation.");
+  console.log("Contact delivery checks passed: SMTP routing, accepted marker, audit routing, attachment, validation, honeypot/too-fast/disposable spam gates, failure, missing configuration, and preview email isolation.");
 } finally {
   mailer.createTransport = originalTransport;
   for (const key of keys) {

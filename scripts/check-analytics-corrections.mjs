@@ -44,7 +44,12 @@ assert.deepEqual(attribution.sanitizeMarketingAttribution({
 
 const boot = await readFile(path.join(root, "public/assets/js/boot.js"), "utf8");
 assert.match(boot, /track\("generate_lead",\s*leadPayload\)/);
+assert.match(boot, /body\.accepted === true/);
+assert.match(boot, /kx_transaction_id/);
+assert.match(boot, /isProductionAnalyticsHost/);
+assert.match(boot, /kinexisdigital\.com/);
 assert.match(boot, /event_role:\s*"diagnostic"/);
+assert.match(boot, /track\("phone_tap"/);
 assert.match(boot, /QUEUEABLE_GA/);
 assert.match(boot, /flushPendingTrack/);
 assert.match(boot, /setTimeout\(loadGa,\s*45000\)/);
@@ -63,4 +68,4 @@ assert.match(boot, /trackMeta\("Lead"/);
 assert.match(boot, /allow_google_signals:\s*false/);
 assert.match(boot, /ad_storage:\s*"denied"/);
 
-console.log("Analytics correction contract checks passed: attribution sanitization, canonical lead event, consent gates, pending flush, GA4-only (no Google Ads signals), and in-flight form deduplication.");
+console.log("Analytics correction contract checks passed: attribution sanitization, accepted generate_lead, host gate, consent gates, pending flush, GA4-only (no Google Ads signals), and in-flight form deduplication.");

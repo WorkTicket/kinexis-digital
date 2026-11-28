@@ -4,18 +4,19 @@
 
 | Form | GA4 primary | GA4 diagnostic | Meta | Success only |
 |---|---|---|---|---|
-| Homepage / shared preview bar | `generate_lead` (sole key-event candidate) | `preview_form_submit` (`event_role=diagnostic`, non-key) | one `Lead`, `content_name=homepage_preview` | yes |
-| Contact (`/contact`, `/es/contact`) | existing form behavior | — | one `Lead`, `content_name=contact_form` | yes |
-| Website audit | `audit_request` | — | one `Lead`, `content_name=website_audit` | yes |
-| Get-a-website landing page | existing preview form behavior | — | one `Lead`, `content_name=lp_get_a_website` | yes |
-| Phoenix preview landing page | existing preview form behavior | — | one `Lead`, `content_name=lp_phoenix_preview` | yes |
-| Strategy call booking | none | — | one `Lead`, `content_name=strategy_call` | yes |
-| Client intake | none | — | one `Lead`, `content_name=intake_form` | yes |
-| Shared footer inquiry | existing form behavior | — | one `Lead`, `content_name=footer_form` | yes |
-| Google review QR preview | existing preview form behavior | — | one `Lead`, `content_name=review_qr_tool_preview` | yes |
+| Homepage / shared preview bar | `generate_lead` (sole key event) after `accepted` | `preview_form_submit` (`event_role=diagnostic`, non-key) | one `Lead`, `content_name=homepage_preview` | yes |
+| Contact (`/contact`, `/es/contact`) | `generate_lead` after `accepted` | — | one `Lead`, `content_name=contact_form` | yes |
+| Website audit | `generate_lead` after `accepted` | `audit_request` (diagnostic) | one `Lead`, `content_name=website_audit` | yes |
+| Get-a-website landing page | `generate_lead` after `accepted` | `preview_form_submit` | one `Lead`, `content_name=lp_get_a_website` | yes |
+| Phoenix preview landing page | `generate_lead` after `accepted` | `preview_form_submit` | one `Lead`, `content_name=lp_phoenix_preview` | yes |
+| Strategy call booking | `generate_lead` after `accepted` | — | one `Lead`, `content_name=strategy_call` | yes |
+| Client intake | `generate_lead` after `accepted` | — | one `Lead`, `content_name=intake_form` | yes |
+| Shared footer inquiry | `generate_lead` after `accepted` | — | one `Lead`, `content_name=footer_form` | yes |
+| Google review QR preview | `generate_lead` after `accepted` | `preview_form_submit` | one `Lead`, `content_name=review_qr_tool_preview` | yes |
+| Phone `tel:` tap | none | `phone_tap` (diagnostic) | optional Meta `Lead` `content_name=phone_tap` | n/a |
 | Client site update (`/update`) | none | none | none | excluded |
 
-`generate_lead` and the diagnostic event keep their established names for compatibility; only one is intended as the primary preview conversion. The browser suppresses concurrent submission events while the request is in flight. It cannot deduplicate distinct submissions or recover whether an ambiguous network/mail retry was already delivered.
+Unified `generate_lead` (Prompt 4) fires only when the API returns `accepted:true`. Params are enums/paths only — no PII. In-flight `WeakSet` plus `transaction_id` reduce double counts; durable CRM dedupe awaits approved migration.
 
 The Meta `content_name` is selected from the fixed form map in `src/lib/meta-capi.ts`, never from the current URL. Both Pixel and CAPI use that same map; the URL is carried separately as `form_path`. The API only queues CAPI after successful delivery and with advertising consent. `/update` has no map entry and is excluded.
 

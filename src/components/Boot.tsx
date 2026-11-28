@@ -15,7 +15,10 @@ declare global {
       metaContentNameByForm: Readonly<Record<MetaLeadForm, string>>;
       conferbotBotId: string;
       conferbotLocale: string;
+      /** Present only when TURNSTILE_ENABLED=1 — site key is public by design; secret stays server-side. */
+      turnstileSiteKey?: string;
     };
+    __KINEXIS_ALLOW_ANALYTICS_HOST__?: boolean;
     __KINEXIS_TRACK_META_LEAD__?: (form: string, path: string, eventId: string) => void;
     __KINEXIS_PENDING_META_LEADS__?: PendingMetaLead[];
     __KINEXIS_MIRRORS__?: readonly string[];
@@ -48,6 +51,9 @@ export default function Boot({
   const conferbotOn = process.env.NEXT_PUBLIC_CONFERBOT_ENABLED === "1";
   const botFromEnv = (process.env.NEXT_PUBLIC_CONFERBOT_BOT_ID || "").trim();
   const conferbotBotId = conferbotOn ? botFromEnv || PUBLIC_CONFERBOT_BOT_ID : "";
+  // Turnstile default OFF — Colton must approve keys before TURNSTILE_ENABLED=1.
+  const turnstileOn = process.env.TURNSTILE_ENABLED === "1";
+  const turnstileSiteKey = turnstileOn ? (process.env.TURNSTILE_SITE_KEY || "").trim() : "";
   const config = JSON.stringify({
     email,
     ga,
@@ -56,6 +62,7 @@ export default function Boot({
     metaContentNameByForm: META_CONTENT_NAME_BY_FORM,
     conferbotBotId,
     conferbotLocale: conferbotLocale(locale),
+    ...(turnstileSiteKey ? { turnstileSiteKey } : {}),
   }).replace(/</g, "\\u003c");
   return (
     <>
@@ -69,7 +76,7 @@ export default function Boot({
           fire without consent. */}
       {/* lazyOnload avoids a head preload that contends with LCP; boot still
           wires menus, forms, marks, and film after the window load event. */}
-      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=65" strategy="lazyOnload" />
+      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=67" strategy="lazyOnload" />
       {/* Separate file so Conferbot lift/load is not one long task with boot.
           /assets is served immutable for a year: bump ?v= whenever conferbot.js changes. */}
       <Script id="kinexis-conferbot" src="/assets/js/conferbot.min.js?v=3" strategy="lazyOnload" />

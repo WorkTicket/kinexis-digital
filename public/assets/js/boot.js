@@ -1139,6 +1139,15 @@ function formCopy() {
 }
 
 const leadFormsInFlight = new WeakSet();
+const leadFormStartedAt = new WeakMap();
+document.addEventListener("focusin", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+  const form = target.closest("form[data-lead]");
+  if (!(form instanceof HTMLFormElement)) return;
+  if (!leadFormStartedAt.has(form)) leadFormStartedAt.set(form, Date.now());
+  ensureTurnstileWidget(form);
+});
 document.addEventListener("change", (event) => {
   const target = event.target;
   if (!(target instanceof HTMLInputElement)) return;
@@ -1184,6 +1193,33 @@ document.addEventListener("change", (event) => {
   const error = form.querySelector("[data-inquiry-error]");
   if (error) error.textContent = "";
 });
+
+function ensureTurnstileWidget(form) {
+  const siteKey = cfg.turnstileSiteKey;
+  if (!siteKey || typeof siteKey !== "string") return;
+  if (form.querySelector(".cf-turnstile, input[name='cf-turnstile-response']")) return;
+  if (!document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) {
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    script.async = true;
+    document.head.appendChild(script);
+  }
+  const mount = document.createElement("div");
+  mount.className = "cf-turnstile";
+  mount.dataset.sitekey = siteKey;
+  mount.dataset.size = "compact";
+  const submit = form.querySelector('button[type="submit"]');
+  if (submit) submit.before(mount);
+  else form.append(mount);
+  const tryRender = () => {
+    if (window.turnstile && typeof window.turnstile.render === "function") {
+      try { window.turnstile.render(mount); } catch { /* ignore */ }
+      return;
+    }
+    setTimeout(tryRender, 200);
+  };
+  tryRender();
+}
 
 document.addEventListener("submit", async (event) => {
   const form = event.target;
@@ -1283,19 +1319,34 @@ document.addEventListener("submit", async (event) => {
     ? cfg.metaContentNameByForm[metaForm]
     : "";
   data.set("kx_form_path", location.pathname);
+  data.set("kx_landing_page", (() => {
+    try {
+      const touch = readFirstTouch() || currentFirstTouch();
+      return String(touch.landing_page || location.pathname).slice(0, 200);
+    } catch {
+      return location.pathname;
+    }
+  })());
+  // First focus/interaction time — not submit time — so too-fast spam checks work.
+  if (!leadFormStartedAt.has(form)) leadFormStartedAt.set(form, Date.now());
+  data.set("kx_form_started_at", String(leadFormStartedAt.get(form)));
   if (conversion === "preview" || conversion === "audit") {
     data.set("kx_conversion", conversion);
-    appendAttribution(data);
   }
+  // Attribution on all counted marketing forms (first-touch UTMs — no PII).
   const isCountedLead = Boolean(metaContentName) && !String(data.get("request") || "").trim();
+  if (isCountedLead) appendAttribution(data);
   let metaEventId = "";
+  let transactionId = "";
   if (isCountedLead) {
     try { metaEventId = crypto.randomUUID(); } catch { /* unavailable */ }
+    try { transactionId = crypto.randomUUID(); } catch { /* unavailable */ }
     if (metaEventId) {
       data.set("kx_meta_form", metaForm);
       data.set("kx_event_id", metaEventId);
       data.set("kx_form_path", location.pathname);
     }
+    if (transactionId) data.set("kx_transaction_id", transactionId);
   }
   const button = form.querySelector("button[type=submit]");
   button?.classList.add("is-loading");
@@ -1329,32 +1380,42 @@ document.addEventListener("submit", async (event) => {
           }
         }
       }
+      const accepted = body && body.accepted === true;
+      const tradeRaw = String(data.get("trade") || "").trim();
+      const TRADE_ENUM = new Set(["Plumbing", "Landscaping", "Roofing", "Tree service", "Other trade"]);
+      const inquiryType = conversion === "preview" || conversion === "audit"
+        ? conversion
+        : (metaForm || "contact");
+      // Unified generate_lead (Prompt 4): all mapped marketing forms after accepted delivery.
+      // Params are enums/paths only — never name/email/phone/business/city free text.
       const leadPayload = {
         form_id: form.getAttribute("name") || form.id || metaForm || "lead",
-        form_name: metaContentName || metaForm || "lead",
         page_path: location.pathname,
-        source: String(data.get("source") || ""),
-        landing_page: String(data.get("landing_page") || location.pathname),
+        source: String(data.get("kx_attr_utm_source") || data.get("source") || "").slice(0, 100),
+        landing_page: String(data.get("kx_landing_page") || location.pathname).slice(0, 200),
+        method: "form",
+        inquiry_type: String(inquiryType).slice(0, 40),
+        transaction_id: transactionId || metaEventId || "",
       };
+      if (TRADE_ENUM.has(tradeRaw)) leadPayload.trade = tradeRaw;
       const formVariant = form.classList.contains("form--slim") ? "slim" : "full";
-      if (isCountedLead) {
-        // Canonical GA4 key event for every mapped lead form.
+      if (accepted && isCountedLead) {
         track("generate_lead", leadPayload);
       }
-      if (conversion === "preview") {
+      if (accepted && conversion === "preview") {
         track("preview_form_submit", {
           form_variant: formVariant,
           page_path: location.pathname,
           event_role: "diagnostic",
         });
-      } else if (conversion === "audit") {
+      } else if (accepted && conversion === "audit") {
         track("audit_request", {
           form_id: form.getAttribute("name") || form.id || "audit",
           page_path: location.pathname,
           event_role: "diagnostic",
         });
       }
-      if (metaEventId) {
+      if (accepted && metaEventId) {
         const pendingMetaLead = { form: metaForm, path: location.pathname, eventId: metaEventId };
         if (window.__KINEXIS_TRACK_META_LEAD__) {
           window.__KINEXIS_TRACK_META_LEAD__(pendingMetaLead.form, pendingMetaLead.path, pendingMetaLead.eventId);
@@ -1435,6 +1496,13 @@ function syncLangSwitch() {
     a.setAttribute("href", href);
   });
 }
+/** Production GA4 only — never load production measurement on localhost/preview/workers.dev. */
+function isProductionAnalyticsHost() {
+  // E2E / Playwright may set this after granting mock consent; never set in production HTML.
+  if (window.__KINEXIS_ALLOW_ANALYTICS_HOST__ === true) return true;
+  const host = (location.hostname || "").toLowerCase();
+  return host === "kinexisdigital.com" || host === "www.kinexisdigital.com";
+}
 function consentAllowsAnalytics() {
   const c = readConsent();
   return c.decided && c.analytics;
@@ -1451,7 +1519,7 @@ function attributionValue(value, max, pattern) {
   return text.length > 0 && text.length <= max && pattern.test(text) ? text : "";
 }
 function currentFirstTouch() {
-  const values = {};
+  const values = { landing_page: location.pathname };
   const params = new URLSearchParams(location.search);
   for (const key of UTM_KEYS) {
     const all = params.getAll(key);
@@ -1600,6 +1668,7 @@ function flushPendingTrack(channel) {
 }
 
 function track(name, params, options) {
+  if (!isProductionAnalyticsHost()) return;
   if (!consentAllowsAnalytics()) {
     if (!options?.skipQueue && QUEUEABLE_GA.has(name)) queuePendingTrack("ga", name, params);
     return;
@@ -1757,6 +1826,7 @@ function clearGaArm() {
   gaArmed = false;
 }
 function loadGa() {
+  if (!isProductionAnalyticsHost()) return;
   if (!consentAllowsAnalytics()) return;
   if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
   if (gaLoaded) return;
@@ -1876,14 +1946,8 @@ document.addEventListener("click", (event) => {
   if (!(link instanceof HTMLAnchorElement)) return;
   const href = link.getAttribute("href") || "";
   if (href.startsWith("tel:")) {
-    const leadPayload = {
-      form_id: "phone_tap",
-      form_name: "phone_tap",
-      page_path: location.pathname,
-      link_url: href,
-    };
-    track("generate_lead", leadPayload);
-    track("phone_tap", { link_url: href, page_path: location.pathname, event_role: "diagnostic" });
+    // Diagnostic only — phone taps are not GA4 generate_lead / CRM leads.
+    track("phone_tap", { page_path: location.pathname, event_role: "diagnostic" });
     let phoneEventId = "";
     try { phoneEventId = crypto.randomUUID(); } catch { /* unavailable */ }
     trackMeta("Lead", {

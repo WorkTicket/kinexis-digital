@@ -52,7 +52,7 @@ test("preview choice expands the form and confirmation links to intake", async (
   let submitted = "";
   await page.route("**/api/contact", async (route) => {
     submitted = route.request().postDataBuffer()?.toString("latin1") || "";
-    await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
+    await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true,"accepted":true}' });
   });
   await page.goto("/contact");
   await waitForContactFormReady(page);
@@ -131,7 +131,7 @@ test("preview requires uploaded assets or explicit permission for stock fallback
   await page.route("**/api/contact", async (route) => {
     submissionCount += 1;
     submitted = route.request().postDataBuffer()?.toString("latin1") || "";
-    await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
+    await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true,"accepted":true}' });
   });
   await page.goto("/contact");
   await waitForBoot(page);
@@ -163,7 +163,7 @@ test("other contact reasons do not require preview details or show the intake fo
   await page.route("**/api/contact", async (route) => {
     submissionCount += 1;
     submitted = route.request().postData() || "";
-    await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
+    await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true,"accepted":true}' });
   });
   await page.goto("/contact");
   await waitForContactFormReady(page);
@@ -185,7 +185,7 @@ test("other contact reasons do not require preview details or show the intake fo
 test("Spanish preview confirmation points to the localized intake page", async ({ page }) => {
   await useNecessaryOnlyConsent(page);
   await page.route("**/api/contact", (route) =>
-    route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' }),
+    route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true,"accepted":true}' }),
   );
   await page.goto("/es/contact");
   await waitForBoot(page);

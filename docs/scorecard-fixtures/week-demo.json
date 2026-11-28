@@ -1,0 +1,23 @@
+{
+  "week_ending": "2026-12-05",
+  "crm": {
+    "contacts_sent": null,
+    "replies": null,
+    "calls_booked": 2,
+    "held": 1,
+    "qualified": 1,
+    "pilots_or_projects_won": 0,
+    "no_sale_reasons": ["timing — exploring only"],
+    "contracted_mrr_usd": 0,
+    "cash_collected_usd": 0,
+    "qualified_organic_leads": 1
+  },
+  "gsc": {
+    "web_clicks": null,
+    "us_nonbrand_impressions": null
+  },
+  "open_tracking_defects": [
+    "Nov 17 / Nov 21 generate_lead match pending Colton GA4/inbox export"
+  ],
+  "client_delivery": []
+}

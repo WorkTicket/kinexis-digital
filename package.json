@@ -46,6 +46,8 @@
     "backup:d1-invoice": "node scripts/d1-backup-invoice-ledger.mjs",
     "check:rum": "node scripts/check-rum.mjs",
     "check:analytics": "node scripts/check-analytics-corrections.mjs",
+    "check:lead-quality": "node scripts/check-lead-quality.mjs",
+    "scorecard:week": "node scripts/weekly-scorecard.mjs",
     "check:meta-capi": "node scripts/check-meta-capi.mjs",
     "check:proxy-host": "node scripts/check-proxy-host.mjs",
     "check:invoice-security": "node scripts/check-invoice-security.mjs && node scripts/check-payment-integrity.mjs && node scripts/check-paypal-order-service.mjs && node scripts/check-invoice-ledger.mjs && node scripts/check-invoice-routes.mjs && node scripts/check-invoice-import.mjs && node scripts/check-payment-reconciliation.mjs",

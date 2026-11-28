@@ -186,6 +186,12 @@ export async function POST(request: Request) {
 
   if (String(form.get("_gotcha") ?? "").trim()) return privateJson({ ok: true });
 
+  // Too-fast submit (bots): neutral success, no mail / CRM / analytics handoff.
+  const startedAt = Number(String(form.get("kx_form_started_at") ?? "").trim());
+  if (Number.isFinite(startedAt) && startedAt > 0 && Date.now() - startedAt < 1200) {
+    return privateJson({ ok: true });
+  }
+
   const name = String(form.get("name") ?? "").trim();
   const email = String(form.get("email") ?? "").trim();
   const phone = String(form.get("phone") ?? "").trim();
@@ -197,6 +203,10 @@ export async function POST(request: Request) {
   }
   if (email && (email.length > 200 || !EMAIL_PATTERN.test(email))) {
     return visitorError("Please add a valid email.", 400);
+  }
+  // Cheap disposable-domain heuristic (not exhaustive). Neutral ok — no handoff.
+  if (email && /\@(mailinator\.com|guerrillamail\.com|tempmail\.|10minutemail\.|yopmail\.com)\b/i.test(email)) {
+    return privateJson({ ok: true });
   }
   if (phone && !phoneLooksValid(phone)) {
     return visitorError("Please add a valid phone number.", 400);
@@ -217,8 +227,9 @@ export async function POST(request: Request) {
   const consent = consentAllowsAttribution(request);
   const conversionValues = form.getAll("kx_conversion");
   const conversion = conversionValues.length === 1 ? conversionValues[0] : null;
-  const isMarketingConversion = conversion === "preview" || conversion === "audit";
-  const attribution = consent.analytics && isMarketingConversion
+  const isUpdateEarly = String(form.get("request") ?? "").trim().length > 0;
+  // Prompt 4: first-touch UTMs on every accepted marketing lead (not only preview/audit).
+  const attribution = consent.analytics && !isUpdateEarly
     ? sanitizeMarketingAttribution(attributionInput)
     : {};
   if (!consent.ads) {
@@ -232,6 +243,16 @@ export async function POST(request: Request) {
       delete attribution.referrer;
     }
   }
+
+  // Optional Turnstile (default OFF). Keys/Cloudflare widget require Colton approval.
+  const turnstileEnabled = String(process.env.TURNSTILE_ENABLED || "").trim() === "1";
+  if (turnstileEnabled) {
+    const { verifyTurnstileToken } = await import("@/lib/turnstile");
+    const token = String(form.get("cf-turnstile-response") ?? "").trim();
+    const ok = await verifyTurnstileToken(token, clientIp(request));
+    if (!ok) return privateJson({ ok: true }); // neutral bot response — no mail/CRM/analytics handoff
+  }
+
   for (const [key, value] of form.entries()) {
     if (
       key === "_gotcha" ||
@@ -239,6 +260,10 @@ export async function POST(request: Request) {
       key === "kx_meta_form" ||
       key === "kx_event_id" ||
       key === "kx_form_path" ||
+      key === "kx_form_started_at" ||
+      key === "kx_transaction_id" ||
+      key === "kx_landing_page" ||
+      key === "cf-turnstile-response" ||
       key.startsWith("kx_attr_") ||
       value instanceof File
     ) continue;
@@ -252,6 +277,14 @@ export async function POST(request: Request) {
   }
   for (const [key, value] of Object.entries(attribution)) {
     lines.push(`Attribution ${key}: ${value}`);
+  }
+  const landingPage = String(form.get("kx_landing_page") ?? "").trim().slice(0, 200);
+  if (landingPage && /^\/(?!\/)[A-Za-z0-9/_~.%\-]{0,199}$/.test(landingPage) && !landingPage.includes("..")) {
+    lines.push(`Landing page: ${landingPage}`);
+  }
+  const dedupeKey = String(form.get("kx_transaction_id") ?? "").trim().slice(0, 100);
+  if (dedupeKey && /^[A-Za-z0-9][A-Za-z0-9._:-]{0,99}$/.test(dedupeKey)) {
+    lines.push(`Dedupe key: ${dedupeKey}`);
   }
   if (collected.files.length) {
     lines.push(`attachments: ${collected.files.map((file) => file.name).join(", ")}`);
@@ -306,7 +339,12 @@ export async function POST(request: Request) {
           phone: phone || undefined,
         });
       }
-      return privateJson({ ok: true });
+      // Browser GA4 generate_lead requires accepted:true (Prompt 4). Honeypot/spam stay { ok: true } only.
+      return privateJson({
+        ok: true,
+        accepted: true,
+        transaction_id: String(form.get("kx_transaction_id") ?? "").trim() || undefined,
+      });
     }
     if (sent === "unconfigured") {
       return visitorError(`We could not send that from the site. Call ${SITE.phone} or email ${SITE.email}.`, 503);
