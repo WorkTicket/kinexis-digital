@@ -1489,7 +1489,8 @@ html.lp-route body{--announce-h:0px}
   }
   .review-rail__step + .review-rail__step{box-shadow:none;border-top:1px solid var(--border)}
   .review-rail__mark{
-    --mark:72px;--num:24px;width:72px;height:72px;margin:0 auto 14px;
+    /* Bottom margin clears the 1.4x icon scale so art stays above the title. */
+    --mark:72px;--num:24px;width:72px;height:72px;margin:0 auto 22px;
   }
   .review-rail__step h3{margin:0 0 .3em;width:100%}
   .review-rail__step p{margin:0 auto;max-width:32ch}

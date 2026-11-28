@@ -9,7 +9,7 @@ First Name *
 Email (or phone)
 Phone (e.g. 307-555-0142)
 Business Name *
-Trade and city * (e.g. Plumbing in Boise)
+Trade & city * (e.g. Plumbing, Boise)
 Photos (optional)
 Get My Free Preview
 1. Free homepage preview

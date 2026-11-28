@@ -140,7 +140,8 @@ test.describe("narrow viewport regressions", () => {
                 scale: image.width / circle.width,
                 centerX: Math.abs((image.left + image.width / 2) - (circle.left + circle.width / 2)),
                 centerY: Math.abs((image.top + image.height / 2) - (circle.top + circle.height / 2)),
-                noTitleOverlap: viewportWidth > 860 || image.right <= title.left,
+                // Desktop columns are centered by design. Mobile is stacked: icon must clear title.
+                noTitleOverlap: viewportWidth > 860 || image.bottom <= title.top + 1,
               };
             }),
           viewport.width,

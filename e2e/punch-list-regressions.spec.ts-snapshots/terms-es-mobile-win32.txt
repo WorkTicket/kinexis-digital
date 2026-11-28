@@ -9,7 +9,7 @@ Nombre *
 Correo (o teléfono)
 Teléfono (ej. 307-555-0142)
 Nombre del negocio *
-Oficio y ciudad * (ej. Plomería en Boise)
+Oficio y ciudad * (ej. Plomería, Boise)
 Fotos (opcional)
 Ver mi vista previa gratis
 1. Vista previa gratis
