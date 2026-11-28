@@ -74,7 +74,7 @@ export const INDUSTRY_SEO_DEPTH: Record<string, IndustrySeoDepth> = {
     examples: examples(
       liveExample(
         "preferred-plumbing",
-        "Live Preferred Plumbing site: Spirit Lake hero with tap-to-call, trust strip early, and separate paths for repairs, drains, and tankless work.",
+        "Live Preferred Plumbing (Spirit Lake): emergency tap-to-call in the hero, specialty paths for radiant/tankless/drains, and honest staffed hours—annotated process proof, not invented conversion rates.",
       ),
       demoExample(
         "undertow-drainage",
@@ -154,7 +154,7 @@ export const INDUSTRY_SEO_DEPTH: Record<string, IndustrySeoDepth> = {
     examples: examples(
       liveExample(
         "a1-landscaping",
-        "Live A1 Property Services site: route and project work stay distinct, with real yard photos instead of stock landscaping.",
+        "Live A1 Property Services (Cedar Falls): recurring maintenance signup vs project quote paths, with real yard photos—annotated process proof, not invented conversion rates.",
       ),
       demoExample(
         "graft-tree-care",

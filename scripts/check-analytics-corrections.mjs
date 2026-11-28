@@ -44,6 +44,10 @@ assert.deepEqual(attribution.sanitizeMarketingAttribution({
 
 const boot = await readFile(path.join(root, "public/assets/js/boot.js"), "utf8");
 assert.match(boot, /track\("generate_lead",\s*leadPayload\)/);
+assert.match(boot, /accepted\s*&&\s*isCountedLead/);
+assert.match(boot, /body\.accepted\s*===\s*true/);
+assert.doesNotMatch(boot, /if \(href\.startsWith\("tel:"\)\) \{[\s\S]*?track\("generate_lead"/);
+assert.match(boot, /track\("phone_tap",\s*\{\s*page_path:\s*location\.pathname,\s*event_role:\s*"diagnostic"\s*\}\)/);
 assert.match(boot, /event_role:\s*"diagnostic"/);
 assert.match(boot, /QUEUEABLE_GA/);
 assert.match(boot, /flushPendingTrack/);

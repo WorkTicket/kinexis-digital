@@ -35,7 +35,11 @@ try {
     }
     return POST(new Request("http://localhost/api/contact", { method: "POST", headers, body: form }));
   };
-  assert.equal((await submit({ topic: "strategy-call", file: new File(["drawing"], "brief.txt", { type: "text/plain" }) })).status, 200);
+  {
+    const res = await submit({ topic: "strategy-call", file: new File(["drawing"], "brief.txt", { type: "text/plain" }) });
+    assert.equal(res.status, 200);
+    assert.deepEqual(await res.json(), { ok: true, accepted: true });
+  }
   assert.deepEqual(delivery.to, ["inbox@example.com", "owner@example.com"]);
   assert.equal(delivery.replyTo.address, "client@example.com");
   assert.match(delivery.subject, /Strategy call/);
@@ -116,7 +120,11 @@ try {
   assert.equal((await POST(new Request("http://localhost/api/contact", { method: "POST", headers: { "Content-Type": "text/plain" }, body: "name=Client" }))).status, 415);
   assert.equal((await POST(new Request("http://localhost/api/contact", { method: "POST", headers: { "Content-Type": "multipart/form-data", "Content-Length": String(23 * 1024 * 1024) }, body: "x" }))).status, 413);
   delivery = undefined;
-  assert.equal((await submit({ _gotcha: "bot" })).status, 200);
+  {
+    const honeypot = await submit({ _gotcha: "bot" });
+    assert.equal(honeypot.status, 200);
+    assert.deepEqual(await honeypot.json(), { ok: true });
+  }
   assert.equal(delivery, undefined);
   mailer.createTransport = () => ({ sendMail: async () => { throw new Error("SMTP unavailable"); } });
   assert.equal((await submit()).status, 502);

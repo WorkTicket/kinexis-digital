@@ -32,7 +32,15 @@ export default function Page() {
           <h2 className="center">Common SEO Questions</h2>
         <Faq items={SEO_FAQS} />
       </Section>
-      <CtaBand h="Want A Site Built To Get Found?" mark="Built To Get Found" sub="Start with a free homepage preview built for search and local calls." btn="Get My Free Preview" href="/contact" />
+      <CtaBand
+        h="Want A Clear Next Step On Search?"
+        mark="Next Step On Search"
+        sub="Request a website audit focused on crawlability, titles, and call paths—or book a short strategy call. No pilot price or ranking promise without a written quote."
+        btn="Request A Free Audit"
+        href="/audit"
+        secondary="Book A Strategy Call"
+        secondaryHref="/strategy-call"
+      />
     </>
   );
 }

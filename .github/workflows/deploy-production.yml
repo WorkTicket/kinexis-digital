@@ -21,9 +21,13 @@ concurrency:
 
 jobs:
   deploy:
-    # Dispatch only from the reviewed release branch. The production GitHub
+    # Dispatch only from a reviewed release branch tip. The production GitHub
     # Environment must also require a human reviewer before secrets are exposed.
-    if: github.ref == 'refs/heads/release/2-performance-html'
+    # KX-AUD-01: admit the Nov 2026 SEO audit release branch alongside the prior
+    # performance release branch. Exact-SHA confirmation still required below.
+    if: >-
+      github.ref == 'refs/heads/release/3-seo-audit-nov27' ||
+      github.ref == 'refs/heads/release/2-performance-html'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     environment: production

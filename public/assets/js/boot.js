@@ -1329,6 +1329,7 @@ document.addEventListener("submit", async (event) => {
           }
         }
       }
+      const accepted = body && body.accepted === true;
       const leadPayload = {
         form_id: form.getAttribute("name") || form.id || metaForm || "lead",
         form_name: metaContentName || metaForm || "lead",
@@ -1337,24 +1338,25 @@ document.addEventListener("submit", async (event) => {
         landing_page: String(data.get("landing_page") || location.pathname),
       };
       const formVariant = form.classList.contains("form--slim") ? "slim" : "full";
-      if (isCountedLead) {
-        // Canonical GA4 key event for every mapped lead form.
+      // GA4 primary only after accepted marketing delivery (not honeypot / generic 200).
+      if (accepted && isCountedLead) {
         track("generate_lead", leadPayload);
       }
-      if (conversion === "preview") {
+      if (accepted && conversion === "preview") {
         track("preview_form_submit", {
           form_variant: formVariant,
           page_path: location.pathname,
           event_role: "diagnostic",
         });
-      } else if (conversion === "audit") {
+      } else if (accepted && conversion === "audit") {
         track("audit_request", {
           form_id: form.getAttribute("name") || form.id || "audit",
           page_path: location.pathname,
           event_role: "diagnostic",
         });
       }
-      if (metaEventId) {
+      // Meta Lead stays on the existing form map + event ID; still requires accepted handoff.
+      if (accepted && metaEventId) {
         const pendingMetaLead = { form: metaForm, path: location.pathname, eventId: metaEventId };
         if (window.__KINEXIS_TRACK_META_LEAD__) {
           window.__KINEXIS_TRACK_META_LEAD__(pendingMetaLead.form, pendingMetaLead.path, pendingMetaLead.eventId);
@@ -1876,14 +1878,9 @@ document.addEventListener("click", (event) => {
   if (!(link instanceof HTMLAnchorElement)) return;
   const href = link.getAttribute("href") || "";
   if (href.startsWith("tel:")) {
-    const leadPayload = {
-      form_id: "phone_tap",
-      form_name: "phone_tap",
-      page_path: location.pathname,
-      link_url: href,
-    };
-    track("generate_lead", leadPayload);
-    track("phone_tap", { link_url: href, page_path: location.pathname, event_role: "diagnostic" });
+    // GA4: diagnostic phone_tap only — never generate_lead (KX-AUD-02).
+    // Meta: keep existing Lead + content_name phone_tap semantics.
+    track("phone_tap", { page_path: location.pathname, event_role: "diagnostic" });
     let phoneEventId = "";
     try { phoneEventId = crypto.randomUUID(); } catch { /* unavailable */ }
     trackMeta("Lead", {

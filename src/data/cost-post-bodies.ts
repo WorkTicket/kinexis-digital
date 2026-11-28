@@ -27,6 +27,11 @@ export type CostTradeSpec = {
   buyerDecisionHtml: string;
   /** FAQs that only make sense for this trade. */
   extraFaqs: { q: string; a: string }[];
+  /**
+   * Optional trade-only budget examples (DIY / managed / ownership).
+   * When set, inserted after the 24-month table without editing shared shells.
+   */
+  budgetExamplesHtml?: string;
 };
 
 /** Shared plan facts — keep short so trade-unique copy dominates similarity. */
@@ -129,6 +134,9 @@ export function buildCostPostBody(spec: CostTradeSpec): CostPostBody {
         h2: "What It Costs Over 24 Months",
         html: TWENTY_FOUR_MONTH,
       },
+      ...(spec.budgetExamplesHtml
+        ? [{ h2: `Budget Examples for ${spec.siteLabel} Site`, html: spec.budgetExamplesHtml }]
+        : []),
       {
         h2: `What You’re Paying For on ${spec.siteLabel} Site`,
         html: `${spec.payingForHtml}<p>${hiddenIndustryRoute ? spec.designAnchor : `<a href="${industryPath}">${spec.designAnchor}</a>`}; <a href="${pagesPath}">pages checklist</a>. <a href="/contact">Free homepage preview</a>—2 business days, no card.</p>`,
@@ -177,6 +185,7 @@ export const COST_TRADE_SPECS: CostTradeSpec[] = [
       { q: "Do I need a separate page for every tankless brand I install?", a: "Usually not. One water-heater page that names the brands you install and shows real jobs is enough. Skip brand pages for lines you do not stock or warrant." },
       { q: "When does Lead System text-back matter for plumbing?", a: "On leak and backup days when you miss calls under a sink. Lead System is $197/mo; optional text-back is $1/mo for a second number plus carrier rates. Carrier approval usually takes 10–15 days and is not guaranteed. Website and Own It can add text-back for $97/mo." }
     ],
+    budgetExamplesHtml: `<p>Use published Kinexis figures and dated plan terms—not forum “averages.” External DIY builders (Wix/Squarespace-class) commonly advertise low monthly website fees plus separate domain and app add-ons; your real calendar cost is evenings writing leak vs heater pages and keeping photos honest. Compare columns on <a href="/blog/wix-vs-squarespace-vs-managed-website-contractors">DIY vs managed</a>.</p><ul><li><strong>Owner-built (DIY):</strong> builder subscription + domain + your time for emergency vs planned pages. Hosting and SSL usually sit in the builder bill; small edits and follow-up tools are on you.</li><li><strong>Managed monthly:</strong> Website $97/mo ($2,328 over 24 months) for hosting, SSL, and two small edits/mo; Lead System $197/mo ($4,728 / 24 mo) when review requests and optional text-back matter on flood weeks. Cancel anytime; site goes offline when the paid period ends unless you buy out files in writing ($1,497) or move to Own It.</li><li><strong>Ownership purchase:</strong> Own It $1,497 once—files yours from launch, 12 months hosting/edits included, then optional Site Care. No 60-day lead guarantee on Own It.</li></ul><p>Prices checked against the live <a href="/pricing">plan catalog</a> (2026-11-27). Preview timing: free homepage in 2 business days, no card.</p>`,
   },
   {
     slug: "hvac",
@@ -257,6 +266,7 @@ export const COST_TRADE_SPECS: CostTradeSpec[] = [
       { q: "Do recurring maintenance and one-off landscaping projects need different forms?", a: "Yes. Route signups need ZIP and frequency. Project consults need scope and photos. One shared form creates leads you cannot schedule cleanly." },
       { q: "Is a design-build gallery worth the photo time on a landscaping site?", a: "If you sell hardscape or planting designs, yes—real yards beat stock. If you only run mow routes, put time into clear service lists and ZIP signup instead." }
     ],
+    budgetExamplesHtml: `<p>Maintenance routes and design-build quotes should not share one budget story. DIY builders advertise low monthly fees; your time still goes into ZIP/frequency signup vs gallery consult pages. Catalog math below is from live <a href="/pricing">/pricing</a> (2026-11-27).</p><ul><li><strong>Owner-built:</strong> builder fee + domain + evenings separating mow signup from patio consults. Hosting/edits/follow-up stay on you.</li><li><strong>Managed monthly:</strong> Website $97/mo ($2,328 / 24 mo) when dispatch catches calls; Lead System $197/mo ($4,728 / 24 mo) when review requests and optional text-back matter between properties. Cancel anytime; files stay with Kinexis while active unless you buy out ($1,497 written) or switch to Own It.</li><li><strong>Ownership:</strong> Own It $1,497 once with 12 months hosting/edits, then optional Site Care. No 60-day lead guarantee on Own It.</li></ul>`,
   },
   {
     slug: "pressure-washing",

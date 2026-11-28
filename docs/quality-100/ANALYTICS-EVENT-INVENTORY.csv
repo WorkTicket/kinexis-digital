@@ -1,14 +1,14 @@
 event,destination,trigger,consent,verification,status
 PageView,Meta Pixel,initial boot and soft navigation,ads,code inspected only; provider not checked,implemented
 page_view,GA4,initial tracker load and each soft route navigation,analytics,code inspected; mocked/no live sink,implemented with automatic page views disabled
-generate_lead,GA4,successful preview form response,analytics,automated local regression; no live sink,canonical primary conversion; owner must confirm GA4 key-event configuration
-preview_form_submit,GA4,successful preview form response,analytics,automated local regression; no live sink,diagnostic funnel event; must remain non-key in GA4
-Lead,Meta Pixel,successful preview or audit form response,ads,code inspected; provider not checked,implemented
-audit_request,GA4,successful audit form response,analytics,code inspected; mocked/no live sink,implemented
+generate_lead,GA4,accepted marketing form or accepted strategy-call booking (API accepted:true); not tel taps,analytics,automated local regression; no live sink,KX-AUD-02 canonical primary; annotate first full post-release window after deploy
+preview_form_submit,GA4,accepted preview form response,analytics,automated local regression; no live sink,diagnostic funnel event; must remain non-key in GA4
+Lead,Meta Pixel,accepted mapped form response or phone_tap click (unchanged Meta semantics),ads,code inspected; provider not checked,implemented; GA4 decision is separate
+audit_request,GA4,accepted audit form response,analytics,code inspected; mocked/no live sink,implemented
 preview_form_view,GA4,preview form intersects viewport at threshold,analytics,code inspected; browser/provider collection not verified,implemented
 preview_form_start,GA4,first focus in preview form,analytics,code inspected; browser/provider collection not verified,implemented
-phone_tap,GA4 and Meta,telephone link click,analytics or ads respectively,code inspected; provider not checked,implemented
-strategy_call_click,GA4,internal strategy-call link click,analytics,code inspected only,implemented
+phone_tap,GA4 diagnostic and Meta Lead,telephone link click,analytics or ads respectively,code inspected; provider not checked,KX-AUD-02 GA4 diagnostic only (no generate_lead); Meta Lead retained
+strategy_call_click,GA4,internal strategy-call link click (CTA intent; not a booking),analytics,code inspected only,implemented diagnostic
 pricing_click,GA4,internal pricing link click,analytics,code inspected only,implemented
 plan_selected,GA4,checkout plan radio change,analytics,registry inspected; no live checkout,implemented
 checkout_started,GA4,PayPal checkout click,analytics,registry inspected; no live checkout,implemented

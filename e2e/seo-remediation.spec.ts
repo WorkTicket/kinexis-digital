@@ -249,7 +249,7 @@ test.describe("KX-SEO-002 Release 1", () => {
       await page.route("**/api/contact", async (request) => {
         requestCount += 1;
         await pendingRequest;
-        await request.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
+        await request.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true,"accepted":true}' });
       });
 
       await page.goto(route);

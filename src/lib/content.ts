@@ -257,7 +257,7 @@ export const POSTS = [
     width: 1200,
     height: 675,
     date: "2026-11-09",
-    modified: "2026-11-13T15:00:00-05:00",
+    modified: "2026-11-27T23:00:00-05:00",
     readTime: "8 min read",
   },
   {
@@ -439,7 +439,7 @@ export const POSTS = [
     width: 1200,
     height: 675,
     date: "2026-11-09",
-    modified: "2026-11-13T15:00:00-05:00",
+    modified: "2026-11-27T23:00:00-05:00",
     readTime: "8 min read",
   },
   {
@@ -849,7 +849,9 @@ export const REVIEWS: {
   },
 ];
 export const COMPARE_ROWS: [string, boolean, boolean][] = [
-  ["Free homepage preview before you pay", false, false], ["Missed-call texts and review requests", false, false],
-  ["Hosting and updates handled", false, true], ["Price locked for 24 months", false, false],
-  ["English and Spanish sites", false, true],
+  ["Free homepage preview before you pay (Kinexis scope)", false, false],
+  ["Missed-call texts and review requests (Lead System / Plus)", false, false],
+  ["Hosting and updates handled while subscribed", false, true],
+  ["Price locked for 24 months from launch", false, false],
+  ["English and Spanish sites (Plus)", false, true],
 ];

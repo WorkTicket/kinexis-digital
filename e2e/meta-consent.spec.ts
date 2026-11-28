@@ -91,7 +91,7 @@ test("fires one Lead only after server success and matches the submitted event I
   await page.route("**/api/contact", async (route: Route) => {
     submissions.push(route.request().postDataBuffer()?.toString() || "");
     await responseGate;
-    await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
+    await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true,"accepted":true}' });
   });
 
   await page.goto("/");
@@ -136,7 +136,7 @@ test("does not send Lead when the server rejects the form", async ({ page }) => 
 
 test("revokes Meta consent and stops later Lead events after ads consent is withdrawn", async ({ page }) => {
   await page.route("**/api/contact", (route) =>
-    route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' }),
+    route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true,"accepted":true}' }),
   );
   await page.goto("/");
   await waitForBoot(page);

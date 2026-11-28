@@ -303,7 +303,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       <Section>
         <div className="section-head">
           <h2 className="center"><HL text={tx("Por qué los negocios eligen Kinexis")} mark={tx("eligen Kinexis")} /></h2>
-          <p className="center muted">{tx("Lo que recibes con nosotros y que freelancers y agencias no suelen empaquetar igual.")}</p>
+          <p className="center muted">{tx("Alcance verificable de los planes Kinexis en /es/pricing: vista previa gratis del inicio antes de pagar, hosting y actualizaciones mientras estás suscrito, texto opcional por llamada perdida, solicitudes de reseña en Lead System y Plus, precio fijo 24 meses y sitios bilingües en Plus.")}</p>
         </div>
         <Compare
           freelancers={tx("Freelancers")}
@@ -312,14 +312,14 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           feature={tx("Función")}
           yesLabel={tx("Sí")}
           rows={[
-            [tx("Vista previa gratis del inicio antes de pagar"), false, false],
-            [tx("Textos por llamada perdida y solicitudes de reseña"), false, false],
-            [tx("Hosting y actualizaciones a cargo nuestro"), false, true],
-            [tx("Precio fijo por 24 meses"), false, false],
-            [tx("Sitios en inglés y español"), false, true],
+            [tx("Vista previa gratis del inicio antes de pagar (alcance Kinexis)"), false, false],
+            [tx("Textos por llamada perdida y solicitudes de reseña (Lead System / Plus)"), false, false],
+            [tx("Hosting y actualizaciones mientras estás suscrito"), false, true],
+            [tx("Precio fijo 24 meses desde el lanzamiento"), false, false],
+            [tx("Sitios en inglés y español (Plus)"), false, true],
           ]}
         />
-        <p className="center muted small">{tx("Ofertas típicas; cada proveedor puede variar.")}</p>
+        <p className="center muted small">{tx("Las columnas de freelancer y agencia son un hueco típico que vemos, no una afirmación de que todos fallen. Pide cada oferta por escrito.")}</p>
       </Section>
       <Section id="plans">
         <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${p("zeroDown", currency)} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Solicitar mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={{ leadLabel: tx("Garantía de 60 días"), refundLabel: tx("Devolución en 30 días"), downLabel: tx(`${p("zeroDown", currency)} de entrada`), previewLabel: tx("Vista previa en 2 días hábiles") }} plans={plans} stickers={spainChrome ? undefined : { website: SPANISH_PLAN_STICKERS.website.offer, "lead-system": SPANISH_PLAN_STICKERS["lead-system"].offer, plus: SPANISH_PLAN_STICKERS.plus.offer }} showStickers={!spainChrome} />

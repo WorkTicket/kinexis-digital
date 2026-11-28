@@ -139,10 +139,10 @@ export default async function Home() {
       <Section>
         <div className="section-head">
           <h2 className="center"><HL text="Why Business Owners Choose Kinexis" mark="Choose Kinexis" /></h2>
-          <p className="center muted">What you get with us that most freelancers and agencies do not package the same way.</p>
+          <p className="center muted">Kinexis plan scope you can verify on /pricing: free homepage preview before you pay, hosting and updates while subscribed, optional missed-call text-back, Google review requests on Lead System and Plus, a 24-month price lock, and bilingual sites on Plus.</p>
         </div>
         <Compare />
-        <p className="center muted small">Typical offerings; individual providers vary.</p>
+        <p className="center muted small">The freelancer and agency columns are a typical gap we see—not a claim that every provider fails those rows. Ask each bid the same questions in writing.</p>
       </Section>
 
       {/* 6. Plans offer, then comparison detail (one flow — no duplicate recommended card) */}

@@ -40,6 +40,8 @@ export type Industry = {
   featureText?: Partial<Record<FeatureKey, string>>;
   faqs: QA[];
   related: [string, string, string, string];
+  /** ISO date (YYYY-MM-DD) for sitemap lastmod when this hub changes substantively. */
+  updatedAt?: string;
 };
 
 export const INDUSTRIES: Industry[] = [
@@ -49,24 +51,25 @@ export const INDUSTRIES: Industry[] = [
     card: "Leak calls, drains and water heaters",
     status: "live",
     primaryKeyword: "plumber website design",
+    updatedAt: "2026-11-27",
     proof: {
       liveSiteSlug: "preferred-plumbing",
       annotations: [
-        { title: "Local hero + phone", text: "Spirit Lake / North Idaho headline with tap-to-call and free-estimate CTA above the fold — not a slogan-only hero." },
+        { title: "Emergency callback path", text: "Preferred Plumbing keeps tap-to-call and a free-estimate CTA above the fold for Spirit Lake / North Idaho, so a puddle caller can reach the shop without hunting." },
+        { title: "Specialty inquiry path", text: "Separate cards for radiant heat, tankless heaters, drains, hydronics, and new construction give planned specialty jobs their own next step—not one generic services dump." },
         { title: "Trust strip early", text: "Licensed & insured, owner-operated, and free estimates sit under the hero so emergency callers see proof before scrolling." },
-        { title: "Job-type paths", text: "Separate cards for repairs, radiant heat, tankless heaters, drains, hydronics, and new construction instead of one generic services dump." },
         { title: "Honest hours in FAQ", text: "Urgent-repair FAQ states staffed hours (Sun–Fri 7am–5pm, Saturday closed) instead of promising 24/7 the shop cannot cover." },
       ],
       quoteId: "hunter-norris",
     },
-    metaTitle: "Plumber Website Design Pricing | $97/mo",
-    metaDescription: "Plumbing website design pricing from $97/mo. Pages for leaks, drains, and water heaters, plus Google review requests and optional missed-call text-back.",
-    h1: "Website Design for Plumbers Built for Emergency Calls",
-    mark: "Emergency Calls",
-    sub: "A plumbing site has to work while someone is standing in a puddle. Emergency repair, a slow drain and a water-heater quote are three different jobs.",
+    metaTitle: "Hire a Plumbing Website Designer | From $97/mo",
+    metaDescription: "Hire a plumbing website designer for leak, drain, and heater pages. Free homepage preview in 2 business days—plans from $97/mo.",
+    h1: "Hire a Plumbing Website Designer Who Builds for Real Calls",
+    mark: "Real Calls",
+    sub: "You are hiring a provider for a plumber website—not buying a theme. Emergency repair, a slow drain, and a water-heater quote need different paths on the same mobile screen.",
     intro: [
-      "Kinexis builds plumber websites for shops across the United States, from one-truck operators to multi-crew companies. Most plumbing searches happen on a phone, often after hours, and the person calling is already comparing the first two shops that picked up. A homepage that leads with a slogan and hides the number is how those jobs go to the next listing.",
-      "We build the site around the work you actually run: leaks and bursts, drains, water heaters, repipes and the remodel fixtures that can wait until tomorrow. You see a homepage preview before you pay.",
+      "Kinexis designs plumber websites for shops across the United States that need a clear hire: someone who will structure leak, drain, and heater pages, keep the phone reachable on mobile, and show a homepage preview before you pay. Most plumbing searches happen on a phone; the homeowner is already comparing the first two shops that pick up.",
+      "See a live example from Preferred Plumbing near the first buying decision below, then compare cost on the plumber website cost guide and plans on /pricing. You review the free homepage preview in 2 business days—no card—before choosing Website, Lead System, Plus, or Own It.",
     ],
     problemsTitle: "Why plumbing sites lose the job",
     problemsMark: "lose the job",
@@ -356,23 +359,24 @@ export const INDUSTRIES: Industry[] = [
     card: "Maintenance routes and design-build work",
     status: "live",
     primaryKeyword: "landscaping website design",
+    updatedAt: "2026-11-27",
     proof: {
       liveSiteSlug: "a1-landscaping",
       annotations: [
-        { title: "Place-first headline", text: "Cedar Falls / Iowa positioning and a free-quote CTA sit in the hero so local searchers know the crew covers their market." },
-        { title: "Maintenance vs projects", text: "Service list separates lawn care and maintenance from retaining walls, paver patios, and driveways — different buyers, different next steps." },
+        { title: "Recurring maintenance path", text: "A1 Property Services separates lawn care and maintenance signup from project work so route customers get ZIP/frequency next steps—not a patio consult." },
+        { title: "Project quote path", text: "Retaining walls, paver patios, and driveways keep their own inquiry path with gallery proof for design-build shoppers." },
         { title: "Before/after proof", text: "Homepage gallery uses slider comparisons of real Cedar Falls jobs instead of stock landscaping photos." },
         { title: "Clear service area", text: "Cedar Falls, Waterloo, and Black Hawk County are named up front so route density stays honest." },
       ],
     },
-    metaTitle: "Landscaping Website Design Pricing | $97/mo",
-    metaDescription: "Landscaping website design from $97/mo. Weekly maintenance and design-build on separate pages, plus Google review requests and optional text-back.",
-    h1: "Website Design for Landscapers: Routes and Projects",
+    metaTitle: "Hire a Landscaping Website Designer | From $97/mo",
+    metaDescription: "Hire a landscaping website designer for maintenance routes and project pages. Free homepage preview in 2 business days—from $97/mo.",
+    h1: "Hire a Landscaping Website Designer for Routes and Projects",
     mark: "Routes and Projects",
-    sub: "Mowing routes and a patio install are different businesses that often share a truck. The site should not pretend they are the same lead.",
+    sub: "You are hiring a provider who will separate mowing-route leads from patio quotes—not ship a single “landscaping services” blob.",
     intro: [
-      "Kinexis builds landscaping websites for crews across the United States, from route businesses to design-build shops. A homeowner who wants a weekly cut is shopping price, reliability and whether you serve their neighborhood. A homeowner who wants a patio is shopping photos and whether you design or only install. One “landscaping services” page fails both.",
-      "We split maintenance from project work, name the service area you can actually crew, and leave the design honest about seasonality. You see the homepage before you choose a plan.",
+      "Kinexis designs landscaping websites for crews across the United States that need a clear hire: maintenance-route signup and design-build quote paths on the same mobile site, with a free homepage preview before you pay. A weekly-cut shopper and a patio shopper are different buyers.",
+      "See A1 Property Services near the first buying decision below, then compare the landscaping website cost guide and /pricing. Preview in 2 business days—no card—before choosing Website, Lead System, Plus, or Own It.",
     ],
     problemsTitle: "Landscaping sites that attract the wrong work",
     problemsMark: "wrong work",

@@ -644,7 +644,7 @@ export const ES_PILLAR_POSTS_MORE: Record<string, EsPost> = {
       },
       {
         "h2": "Reseñas y número en la misma pantalla",
-        "html": "<p>El planificador mira estrellas antes de marcar. Muestra enlace al perfil o estrellas reales cerca del teléfono.</p><p>Lead System y Plus pueden enviar pedido con enlace directo después del trabajo. Website y Own It base: lo haces manual con guión corto.</p><p>No escondas reseñas al final por una mala. Mezcla real es más humana que silencio.</p><p>Cómo pedir en <a href=\"/blog/como-pedir-resenas-en-google\">cómo pedir reseñas en Google</a> y confianza en <a href=\"/blog/build-trust-with-reviews\">reseñas sin perseguir</a>.</p>"
+        "html": "<p>El planificador mira estrellas antes de marcar. Muestra enlace al perfil o estrellas reales cerca del teléfono.</p><p>Lead System y Plus pueden enviar pedido con enlace directo después del trabajo. Website y Own It base: lo haces manual con guión corto.</p><p>No escondas reseñas al final por una mala. Mezcla real es más humana que silencio.</p><p>Cómo pedir en <a href=\"/es/blog/como-pedir-resenas-en-google\">cómo pedir reseñas en Google</a> y la guía <a href=\"/es/blog/pagina-web-para-plomeros\">página web para plomeros</a>.</p>"
       },
       {
         "h2": "Lanzamiento sin sorpresas de plan",

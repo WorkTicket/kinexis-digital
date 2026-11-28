@@ -25,6 +25,8 @@ export type CaseStudy = {
   overviewHeight: number;
   fullPageWidth: number;
   fullPageHeight: number;
+  /** ISO date (YYYY-MM-DD) for sitemap lastmod. */
+  updatedAt?: string;
 };
 
 function live(slug: string) {
@@ -43,18 +45,20 @@ export const CASE_STUDIES: CaseStudy[] = [
     liveSiteSlug: preferred.slug,
     title: preferred.name,
     trade: preferred.trade,
+    updatedAt: "2026-11-27",
     problem:
-      "Preferred Plumbing needed a clear mobile-first site so homeowners in Spirit Lake, Idaho could see services and call without hunting.",
+      "Preferred Plumbing needed a hire-ready plumber website: an emergency callback path for wet-floor callers in Spirit Lake, Idaho, plus specialty inquiry paths for radiant, tankless, and drain work—without burying the phone on mobile.",
     changes: [
-      "Custom homepage and service presentation for a local plumbing company",
-      "Mobile-friendly layout with a clear call path",
-      "Live site hosted at the customer’s domain",
+      "Mobile-first hero with tap-to-call and free-estimate CTA for emergency callbacks",
+      "Separate service presentation for repairs, radiant heat, tankless heaters, drains, and hydronics",
+      "Honest staffed-hours language instead of unsupported 24/7 claims",
+      "Live site hosted at the customer’s domain with dated project screenshots on this case study",
     ],
-    features: ["Custom design", "Mobile layout", "Service presentation", "Live production site"],
+    features: ["Emergency call path", "Specialty inquiry paths", "Mobile layout", "Live production site"],
     outcome:
-      "The live website is public at callpreferredplumbing.com. Performance numbers and client quotes are shared only when the customer approves them in writing.",
+      "The live website is public at callpreferredplumbing.com. Annotated process proof (hero call path, specialty cards, hours honesty) is published here; numeric lead or revenue claims wait for written client approval and a defined measurement window.",
     summary:
-      "A straightforward service-business website built to help local homeowners understand the plumbing services and find a clear way to get in touch.",
+      "A plumber website designed so emergency callers can dial immediately while specialty jobs still get a clear inquiry path—documented with real screenshots, not invented metrics.",
     url: preferred.url,
     heroImage: "/case-studies/preferred-plumbing/screenshots/after-hero-1322w.webp",
     heroWidth: 1322,
@@ -71,18 +75,20 @@ export const CASE_STUDIES: CaseStudy[] = [
     liveSiteSlug: a1.slug,
     title: a1.name,
     trade: a1.trade,
+    updatedAt: "2026-11-27",
     problem:
-      "A1 Property Services needed a professional landscaping site that presents services and project context for Cedar Falls, Iowa.",
+      "A1 Property Services needed a landscaping website that separates recurring maintenance signup from project quote paths for Cedar Falls, Iowa—without mixing mow leads into patio consults.",
     changes: [
-      "Custom website for property and landscaping services",
-      "Gallery-friendly structure for real job photos",
-      "Clear service-area presentation on a live domain",
+      "Recurring maintenance path with place-first hero and clear route geography",
+      "Project quote path for hardscape and design-build with gallery-friendly proof",
+      "Before/after comparisons from real Cedar Falls jobs instead of stock art",
+      "Live domain with dated screenshots on this case study",
     ],
-    features: ["Custom design", "Project gallery structure", "Service pages", "Live production site"],
+    features: ["Maintenance signup path", "Project quote path", "Real job gallery", "Live production site"],
     outcome:
-      "The live website is public at a1pslandscape.com. Lead or revenue figures are omitted here until verified with the client.",
+      "The live website is public at a1pslandscape.com. Annotated process proof (maintenance vs project paths, real yard gallery, honest service area) is published here; numeric lead or revenue claims wait for written client approval and a defined measurement window.",
     summary:
-      "A professional online presence for a local property-services company, with service information and project imagery brought into one cohesive experience.",
+      "A landscaping website that keeps recurring maintenance leads and design-build quotes on separate next steps—documented with real Cedar Falls screenshots.",
     url: a1.url,
     heroImage: "/case-studies/a1-property-services/screenshots/after-hero-1322w.webp",
     heroWidth: 1322,

@@ -176,19 +176,22 @@ export default function BookingCalendar({ copy = BOOKING_EN }: { copy?: BookingC
     setBusy(true);
     try {
       const res = await fetch("/api/contact", { method: "POST", headers: { Accept: "application/json" }, body: data });
-      const body = await res.json().catch(() => ({})) as { error?: string };
+      const body = await res.json().catch(() => ({})) as { error?: string; accepted?: boolean };
       if (res.ok) {
-        window.dispatchEvent(new CustomEvent("kinexis:track", {
-          detail: {
-            name: "generate_lead",
-            params: {
-              form_id: metaForm || "strategy-call",
-              form_name: "strategy_call",
-              page_path: location.pathname,
+        // GA4 generate_lead only when booking handoff is accepted (not a CTA click).
+        if (body.accepted === true) {
+          window.dispatchEvent(new CustomEvent("kinexis:track", {
+            detail: {
+              name: "generate_lead",
+              params: {
+                form_id: metaForm || "strategy-call",
+                form_name: "strategy_call",
+                page_path: location.pathname,
+              },
             },
-          },
-        }));
-        if (metaEventId) {
+          }));
+        }
+        if (body.accepted === true && metaEventId) {
           const pendingMetaLead = { form: metaForm, path: location.pathname, eventId: metaEventId };
           const trackMetaLead = window.__KINEXIS_TRACK_META_LEAD__;
           if (trackMetaLead) trackMetaLead(pendingMetaLead.form, pendingMetaLead.path, pendingMetaLead.eventId);

@@ -306,7 +306,9 @@ export async function POST(request: Request) {
           phone: phone || undefined,
         });
       }
-      return privateJson({ ok: true });
+      // `accepted: true` marks provider handoff. Honeypot returns `{ ok: true }` only.
+      // GA4 generate_lead must wait for this marker; native clients may ignore it.
+      return privateJson({ ok: true, accepted: true });
     }
     if (sent === "unconfigured") {
       return visitorError(`We could not send that from the site. Call ${SITE.phone} or email ${SITE.email}.`, 503);

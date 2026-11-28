@@ -126,7 +126,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
       },
       {
         h2: "Haz el enlace fácil",
-        html: `<p>La gente salta los pedidos que la obligan a buscarte. Usa un enlace directo (o un QR que lo abra). Lead System y Plus envían ese tipo de pedido después del trabajo. También puedes poner un enlace corto en la factura y en la camioneta.</p><p>Ver también <a href="/blog/build-trust-with-reviews">cómo conseguir reseñas sin perseguir a la gente</a>, <a href="/blog/como-pedir-resenas-en-google">cómo pedir reseñas en Google</a> y <a href="/industries/plumbing">diseño web para plomeros</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+        html: `<p>La gente salta los pedidos que la obligan a buscarte. Usa un enlace directo (o un QR que lo abra). Lead System y Plus envían ese tipo de pedido después del trabajo. También puedes poner un enlace corto en la factura y en la camioneta.</p><p>Ver también <a href="/blog/build-trust-with-reviews">cómo conseguir reseñas sin perseguir a la gente</a>, <a href="/es/blog/como-pedir-resenas-en-google">cómo pedir reseñas en Google</a> y <a href="/es/blog/pagina-web-para-plomeros">página web para plomeros</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
       },
     ],
   },
@@ -238,7 +238,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
       },
       {
         h2: "Reseñas y enlace directo",
-        html: `<p>Activa mensajes solo si vas a responder. Consigue el enlace directo de reseña desde el perfil (<strong>Consigue más reseñas</strong>) o con la <a href="/tools/google-review-link-qr">herramienta de enlace y QR</a>. Pide después de trabajos terminados — mira <a href="/blog/how-to-ask-for-google-reviews-contractor">cómo pedir reseñas de Google</a> y <a href="/blog/como-pedir-resenas-en-google">cómo pedir reseñas en Google</a>.</p><p>En Lead System y Plus, Kinexis puede enviar ese pedido después del trabajo. Website y Own It base no incluyen pedidos automáticos.</p>`,
+        html: `<p>Activa mensajes solo si vas a responder. Consigue el enlace directo de reseña desde el perfil (<strong>Consigue más reseñas</strong>) o con la <a href="/tools/google-review-link-qr">herramienta de enlace y QR</a>. Pide después de trabajos terminados — mira <a href="/blog/how-to-ask-for-google-reviews-contractor">cómo pedir reseñas de Google</a> y <a href="/es/blog/como-pedir-resenas-en-google">cómo pedir reseñas en Google</a>.</p><p>En Lead System y Plus, Kinexis puede enviar ese pedido después del trabajo. Website y Own It base no incluyen pedidos automáticos.</p>`,
       },
       {
         h2: "Cuándo el perfil no alcanza",
@@ -371,7 +371,7 @@ export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>
       },
       {
         h2: "Haz el enlace fácil",
-        html: `<p>Usa un enlace directo (o un QR). Lead System y Plus envían ese tipo de pedido después del trabajo.</p><p>Ver también <a href="/blog/build-trust-with-reviews">cómo conseguir reseñas sin perseguir a la gente</a> y <a href="/blog/como-pedir-resenas-en-google">cómo pedir reseñas en Google</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+        html: `<p>Usa un enlace directo (o un QR). Lead System y Plus envían ese tipo de pedido después del trabajo.</p><p>Ver también <a href="/blog/build-trust-with-reviews">cómo conseguir reseñas sin perseguir a la gente</a> y <a href="/es/blog/como-pedir-resenas-en-google">cómo pedir reseñas en Google</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
       },
     ],
   },

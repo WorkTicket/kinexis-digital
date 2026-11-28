@@ -51,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const industries = INDUSTRIES.filter((industry) => industry.status === "live").flatMap((industry) => localized(`/industries/${industry.slug}`, {
     url: `${SITE.url}/industries/${industry.slug}`,
-    lastModified: day(SITE_CONTENT_UPDATED),
+    lastModified: day(industry.updatedAt ?? SITE_CONTENT_UPDATED),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
@@ -91,7 +91,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const caseStudies = CASE_STUDIES.map((study) => ({
     url: `${SITE.url}/case-studies/${study.slug}`,
-    lastModified: day(SITE_CONTENT_UPDATED),
+    lastModified: day(study.updatedAt ?? SITE_CONTENT_UPDATED),
     changeFrequency: "monthly" as const,
     priority: 0.7,
     images: [`${SITE.url}${study.overviewImage}`],
