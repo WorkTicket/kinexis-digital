@@ -27,6 +27,8 @@ export type CostTradeSpec = {
   buyerDecisionHtml: string;
   /** FAQs that only make sense for this trade. */
   extraFaqs: { q: string; a: string }[];
+  /** Optional trade-only budget / comparison HTML (Prompt 3 scoped overrides). */
+  budgetExamplesHtml?: string;
 };
 
 /** Shared plan facts — keep short so trade-unique copy dominates similarity. */
@@ -129,6 +131,9 @@ export function buildCostPostBody(spec: CostTradeSpec): CostPostBody {
         h2: "What It Costs Over 24 Months",
         html: TWENTY_FOUR_MONTH,
       },
+      ...(spec.budgetExamplesHtml
+        ? [{ h2: `Budget Examples for ${spec.siteLabel} Site`, html: spec.budgetExamplesHtml }]
+        : []),
       {
         h2: `What You’re Paying For on ${spec.siteLabel} Site`,
         html: `${spec.payingForHtml}<p>${hiddenIndustryRoute ? spec.designAnchor : `<a href="${industryPath}">${spec.designAnchor}</a>`}; <a href="${pagesPath}">pages checklist</a>. <a href="/contact">Free homepage preview</a>—2 business days, no card.</p>`,
@@ -177,6 +182,7 @@ export const COST_TRADE_SPECS: CostTradeSpec[] = [
       { q: "Do I need a separate page for every tankless brand I install?", a: "Usually not. One water-heater page that names the brands you install and shows real jobs is enough. Skip brand pages for lines you do not stock or warrant." },
       { q: "When does Lead System text-back matter for plumbing?", a: "On leak and backup days when you miss calls under a sink. Lead System is $197/mo; optional text-back is $1/mo for a second number plus carrier rates. Carrier approval usually takes 10–15 days and is not guaranteed. Website and Own It can add text-back for $97/mo." }
     ],
+    budgetExamplesHtml: `<p><strong>Prices as of 2026-11-27</strong> from the live <a href="/pricing">Kinexis catalog</a>. Non-Kinexis DIY/freelancer/agency setup and monthly fees <em>vary</em>—we do not invent market averages.</p><table><thead><tr><th>Path</th><th>Setup</th><th>Monthly / ongoing</th><th>Hosting</th><th>Ownership</th><th>Notes</th></tr></thead><tbody><tr><td>DIY builder</td><td>Varies</td><td>Varies by builder + apps</td><td>Usually in builder bill</td><td>You manage exit</td><td>Your time writing leak vs heater pages</td></tr><tr><td>Freelancer / agency</td><td>Varies</td><td>Varies</td><td>Varies</td><td>Ask in writing</td><td>Scope and edit rates differ widely</td></tr><tr><td>Website (Kinexis)</td><td>$0 down</td><td>$97/mo ($1,164 / yr · $2,328 / 24 mo)</td><td>Included while subscribed</td><td>Buyout $1,497 written or Own It</td><td>2 small edits/mo</td></tr><tr><td>Lead System (Kinexis)</td><td>$0 down</td><td>$197/mo ($2,364 / yr · $4,728 / 24 mo)</td><td>Included while subscribed</td><td>Same buyout rules</td><td>Reviews + optional text-back</td></tr><tr><td>Own It (Kinexis)</td><td>$1,497 once</td><td>Optional Site Care after year 1</td><td>12 months included</td><td>Files yours at launch</td><td>No 60-day lead guarantee</td></tr></tbody></table><p>Neutral tradeoff: monthly plans keep hosting/edits with Kinexis while active; Own It favors file ownership. Cancel monthly anytime; site goes offline when the paid period ends unless you buy out or switch.</p>`,
   },
   {
     slug: "hvac",
@@ -225,6 +231,7 @@ export const COST_TRADE_SPECS: CostTradeSpec[] = [
       { q: "What fields belong on a hail inspection form?", a: "Keep it short for wet-finger mobile use: name, phone, rough address or area, and optional photos if safe. Save long material questionnaires for after you confirm the appointment." },
       { q: "Should roof repair and full replacement share one page?", a: "Prefer separate paths. Repair callers and tear-off shoppers need different proof and timelines. One vague page makes both groups guess what you actually want them to do next." }
     ],
+    budgetExamplesHtml: `<p><strong>Illustrative scenarios only</strong> (not client results). Prices as of 2026-11-27 from <a href="/pricing">/pricing</a>.</p><ol><li><strong>One-crew roofer:</strong> Website $97/mo if the office catches rings; Own It $1,497 if you want files from launch.</li><li><strong>Storm-season crew:</strong> Lead System $197/mo when missed-call text-back and review requests matter after hail weeks (optional text-back $1/mo 2nd number + carrier; approval not guaranteed).</li><li><strong>Replacement-focused shop:</strong> Plus $297/mo if you need English + Spanish; otherwise Lead System or Own It based on cash flow.</li></ol><p>Scope drivers (add calendar time, not a hidden surcharge): storm inspection forms, real roof portfolios, financing copy only when real, honest service-area depth. Industry hub stays hire-focused: <a href="/industries/roofing">roofing website design</a>.</p>`,
   },
   {
     slug: "garage-doors",
@@ -257,6 +264,7 @@ export const COST_TRADE_SPECS: CostTradeSpec[] = [
       { q: "Do recurring maintenance and one-off landscaping projects need different forms?", a: "Yes. Route signups need ZIP and frequency. Project consults need scope and photos. One shared form creates leads you cannot schedule cleanly." },
       { q: "Is a design-build gallery worth the photo time on a landscaping site?", a: "If you sell hardscape or planting designs, yes—real yards beat stock. If you only run mow routes, put time into clear service lists and ZIP signup instead." }
     ],
+    budgetExamplesHtml: `<p><strong>Prices as of 2026-11-27</strong> (Kinexis catalog). DIY/freelancer/agency fees <em>vary</em>—no invented averages. Maintenance routes vs design-build quotes should not share one form.</p><ul><li><strong>Website $97/mo</strong> ($2,328 / 24 mo) when dispatch catches calls.</li><li><strong>Lead System $197/mo</strong> ($4,728 / 24 mo) when reviews and optional text-back matter between properties.</li><li><strong>Own It $1,497</strong> once for file ownership (12 months hosting/edits).</li></ul><p>See <a href="/pricing">/pricing</a> for cancel/buyout terms.</p>`,
   },
   {
     slug: "pressure-washing",

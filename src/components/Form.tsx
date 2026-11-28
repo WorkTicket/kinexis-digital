@@ -1,38 +1,14 @@
 import type { MetaLeadForm } from "@/lib/meta-capi";
+import { QUALIFY_FIELDS_EN, QUALIFY_FIELDS_ES, type QualifyField } from "@/lib/lead-qualify-fields";
 
-export type Field = {
-  label: string;
-  name: string;
-  kind?: "text" | "email" | "tel" | "url" | "textarea" | "file";
-  required?: boolean;
-  auto?: string;
-  multiple?: boolean;
-  accept?: string;
-};
+export type Field = QualifyField;
 
 /**
- * Homepage-preview lead form.
+ * Homepage-preview / contact lead form with pre-qualification selects (Prompt 3).
  * Name required; phone or email required (enforced in boot.js + API).
- * Business + business-type/city give enough context to draft a homepage.
  */
-export const LEAD_FIELDS: Field[] = [
-  { label: "First Name", name: "name", required: true, auto: "given-name" },
-  { label: "Email", name: "email", kind: "email", auto: "email" },
-  { label: "Phone", name: "phone", kind: "tel", auto: "tel" },
-  { label: "Business Name", name: "business", required: true, auto: "organization" },
-  { label: "Trade & city (e.g. Plumbing, Boise)", name: "trade", required: true },
-  { label: "Current website (optional)", name: "website", auto: "url" },
-];
-
-/** Spanish labels for the same homepage-preview lead form. */
-export const LEAD_FIELDS_ES: Field[] = [
-  { label: "Nombre", name: "name", required: true, auto: "given-name" },
-  { label: "Correo", name: "email", kind: "email", auto: "email" },
-  { label: "Teléfono", name: "phone", kind: "tel", auto: "tel" },
-  { label: "Nombre del negocio", name: "business", required: true, auto: "organization" },
-  { label: "Oficio y ciudad (ej. Plomería, Boise)", name: "trade", required: true },
-  { label: "Sitio web actual (opcional)", name: "website", auto: "url" },
-];
+export const LEAD_FIELDS: Field[] = QUALIFY_FIELDS_EN;
+export const LEAD_FIELDS_ES: Field[] = QUALIFY_FIELDS_ES;
 
 export default function Form({
   fields,
@@ -232,16 +208,26 @@ export default function Form({
             multiple={f.multiple}
           />
         </label>
+      ) : f.kind === "select" ? (
+        <label className="field" key={f.name}>
+          <select name={f.name} required={f.required} defaultValue="">
+            <option value="" disabled>
+              {contactInquiry?.locale === "es" ? "Elige…" : "Select…"}
+            </option>
+            {(f.options ?? []).map((opt) => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+          <span>{f.label}</span>
+        </label>
       ) : (
         <label className="field" key={f.name}>
           {f.kind === "textarea"
             ? <textarea name={f.name} rows={4} placeholder=" " required={f.required} />
             : <input type={f.kind ?? "text"} name={f.name} placeholder=" " autoComplete={f.auto} required={f.required} />}
-          <span>{contactInquiry && f.name === "trade"
-            ? (contactInquiry.locale === "es" ? "Oficio y ciudad" : "Trade & city")
-            : contactInquiry?.locale === "es" && f.name === "website"
-              ? "Sitio web (opcional)"
-              : f.label}</span>
+          <span>{contactInquiry?.locale === "es" && f.name === "website"
+            ? "Sitio web (opcional)"
+            : f.label}</span>
         </label>
       ))}
       {contactInquiry ? (

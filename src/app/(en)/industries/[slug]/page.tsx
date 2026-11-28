@@ -14,11 +14,38 @@ import { ContentSchema } from "@/components/JsonLd";
 import CostGuides from "@/components/CostGuides";
 import IndustryGrid from "@/components/IndustryGrid";
 import PlanOffer from "@/components/PlanOffer";
+import PlanPriceStrip from "@/components/PlanPriceStrip";
+import AudienceFit from "@/components/AudienceFit";
 import { ShotFrame } from "@/components/ShotFrame";
 import TrustStrip from "@/components/TrustStrip";
 import { CtaBand, Faq, HL, Icon, PageHero, Section } from "@/components/ui";
 import { INDUSTRY_SEO_DEPTH } from "@/data/industry-seo-depth";
 import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
+
+const AUDIENCE: Record<string, { forLines: string[]; notForLines: string[] }> = {
+  plumbing: {
+    forLines: [
+      "Plumbing shops that take inbound emergency and scheduled calls",
+      "Owners who want a free homepage preview before paying",
+      "Teams comparing Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It $1,497",
+    ],
+    notForLines: [
+      "Anyone who only wants the cheapest brochure with no call path",
+      "Businesses that do not take inbound phone or form leads",
+    ],
+  },
+  landscaping: {
+    forLines: [
+      "Route (maintenance) and/or design-build landscaping crews",
+      "Owners who need separate signup vs project quote paths",
+      "Teams comparing published Kinexis plans on /pricing",
+    ],
+    notForLines: [
+      "Shops that do not want inbound quote or route requests",
+      "Buyers seeking only a one-page brochure with no lead focus",
+    ],
+  },
+};
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -128,11 +155,19 @@ export default async function IndustryPage({ params }: Props) {
         art={<IndustryHeroArt slug={industry.slug} alt={industry.heroAlt} />}
       >
         <p className="btn-row">
-          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-          <Link className="btn btn--ghost" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
+          <Link className="btn btn--primary" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
+          <Link className="btn btn--ghost" href="/contact" prefetch={false}>Get My Free Preview</Link>
         </p>
         <TrustStrip className="industry-hero__trust" />
       </PageHero>
+
+      {AUDIENCE[industry.slug] ? (
+        <Section>
+          <AudienceFit {...AUDIENCE[industry.slug]} />
+          <PlanPriceStrip />
+          {/* TODO(CLIENT-APPROVAL: Preferred Plumbing / A1 — named outcomes; do not render without docs/client-approvals/*.md) */}
+        </Section>
+      ) : null}
 
       <Section tint>
         <aside className="industry-lead" aria-label={`${industry.name} website approach`}>

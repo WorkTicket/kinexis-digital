@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
 import { SEO_FAQS } from "@/lib/content";
 import { CtaBand, Faq, HL, IconCard, MediaSplit, PageHero, Section } from "@/components/ui";
@@ -32,7 +33,22 @@ export default function Page() {
           <h2 className="center">Common SEO Questions</h2>
         <Faq items={SEO_FAQS} />
       </Section>
-      <CtaBand h="Want A Site Built To Get Found?" mark="Built To Get Found" sub="Start with a free homepage preview built for search and local calls." btn="Get My Free Preview" href="/contact" />
+      <CtaBand
+        h="Want A Clear Next Step On Search?"
+        mark="Next Step On Search"
+        sub="Book a short strategy call, or request a website audit. SEO takes time—no honest provider can promise a ranking. Free homepage preview remains available below via contact."
+        btn="Book A Strategy Call"
+        href="/strategy-call"
+        secondary="Review My Website"
+        secondaryHref="/audit"
+      />
+      <Section narrow>
+        <p className="center muted">
+          Prefer the free homepage preview first?{" "}
+          <Link href="/contact" prefetch={false}>Request a free homepage preview</Link>
+          {" "}(2 business days, no card)—not an SEO pilot and not a ranking promise.
+        </p>
+      </Section>
     </>
   );
 }

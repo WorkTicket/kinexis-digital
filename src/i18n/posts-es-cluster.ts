@@ -126,7 +126,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
       },
       {
         h2: "Haz el enlace fácil",
-        html: `<p>La gente salta los pedidos que la obligan a buscarte. Usa un enlace directo (o un QR que lo abra). Lead System y Plus envían ese tipo de pedido después del trabajo. También puedes poner un enlace corto en la factura y en la camioneta.</p><p>Ver también <a href="/blog/build-trust-with-reviews">cómo conseguir reseñas sin perseguir a la gente</a>, <a href="/blog/como-pedir-resenas-en-google">cómo pedir reseñas en Google</a> y <a href="/industries/plumbing">diseño web para plomeros</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+        html: `<p>La gente salta los pedidos que la obligan a buscarte. Usa un enlace directo (o un QR que lo abra). Lead System y Plus envían ese tipo de pedido después del trabajo. También puedes poner un enlace corto en la factura y en la camioneta.</p><p>Ver también <a href="/blog/build-trust-with-reviews">cómo conseguir reseñas sin perseguir a la gente</a>, <a href="/es/blog/como-pedir-resenas-en-google">cómo pedir reseñas en Google</a> y <a href="/es/blog/pagina-web-para-plomeros">página web para plomeros</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
       },
     ],
   },

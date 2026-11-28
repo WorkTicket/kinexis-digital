@@ -2295,6 +2295,13 @@ button.chatbot__icon__cta{
   .page-hero.page-hero--split .btn-row{margin-top:18px}
   .page-hero.industry-hero .art-wrap{max-width:min(100%,560px);margin-inline:auto}
 }
+.plan-price-strip{margin:24px 0 8px;padding:16px;border:1px solid color-mix(in srgb,var(--ink) 12%,transparent);border-radius:12px;background:color-mix(in srgb,var(--bg-tint) 80%,transparent)}
+.plan-price-strip__list{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;list-style:none;margin:0 0 8px;padding:0}
+.plan-price-strip__list a{display:flex;flex-direction:column;gap:4px;text-decoration:none}
+.audience-fit{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:16px}
+@media (max-width:720px){.audience-fit{grid-template-columns:1fr}}
+.audience-fit ul{margin:8px 0 0;padding-left:1.1rem}
+
 @media (max-width:860px){
   /* All page heroes: large uniform square on phones/tablets. */
   .page-hero__art .art-wrap{

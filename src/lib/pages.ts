@@ -64,6 +64,7 @@ export const PAGES = {
     service: "Search engine optimization",
     indexable: true,
     priority: 0.9,
+    updatedAt: "2026-11-27",
     description: "Local SEO for contractors: technical fixes, clear service pages, useful content, and plain reporting that helps the right customers find you.",
     ogImage: "/og/seo-services.webp",
   },

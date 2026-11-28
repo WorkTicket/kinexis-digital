@@ -257,7 +257,7 @@ export const POSTS = [
     width: 1200,
     height: 675,
     date: "2026-11-09",
-    modified: "2026-11-13T15:00:00-05:00",
+    modified: "2026-11-27T23:00:00-05:00",
     readTime: "8 min read",
   },
   {
@@ -335,7 +335,7 @@ export const POSTS = [
     width: 1200,
     height: 675,
     date: "2026-11-09",
-    modified: "2026-11-13T15:00:00-05:00",
+    modified: "2026-11-27T23:30:00-05:00",
     readTime: "8 min read",
   },
   {
@@ -439,7 +439,7 @@ export const POSTS = [
     width: 1200,
     height: 675,
     date: "2026-11-09",
-    modified: "2026-11-13T15:00:00-05:00",
+    modified: "2026-11-27T23:00:00-05:00",
     readTime: "8 min read",
   },
   {

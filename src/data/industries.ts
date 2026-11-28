@@ -40,6 +40,8 @@ export type Industry = {
   featureText?: Partial<Record<FeatureKey, string>>;
   faqs: QA[];
   related: [string, string, string, string];
+  /** ISO date (YYYY-MM-DD) for sitemap lastmod when this hub changes substantively. */
+  updatedAt?: string;
 };
 
 export const INDUSTRIES: Industry[] = [
@@ -49,6 +51,7 @@ export const INDUSTRIES: Industry[] = [
     card: "Leak calls, drains and water heaters",
     status: "live",
     primaryKeyword: "plumber website design",
+    updatedAt: "2026-11-27",
     proof: {
       liveSiteSlug: "preferred-plumbing",
       annotations: [
@@ -59,14 +62,14 @@ export const INDUSTRIES: Industry[] = [
       ],
       quoteId: "hunter-norris",
     },
-    metaTitle: "Plumber Website Design Pricing | $97/mo",
-    metaDescription: "Plumbing website design pricing from $97/mo. Pages for leaks, drains, and water heaters, plus Google review requests and optional missed-call text-back.",
-    h1: "Website Design for Plumbers Built for Emergency Calls",
-    mark: "Emergency Calls",
-    sub: "A plumbing site has to work while someone is standing in a puddle. Emergency repair, a slow drain and a water-heater quote are three different jobs.",
+    metaTitle: "Hire a Plumbing Website Designer | From $97/mo",
+    metaDescription: "Hire a plumbing website designer for leak, drain, and heater pages. Free homepage preview in 2 business days—plans from $97/mo.",
+    h1: "Hire a Plumbing Website Designer Built for Real Calls",
+    mark: "Real Calls",
+    sub: "Emergency leak callers and scheduled heater quotes are different jobs. Your site should make the phone easy on mobile and keep specialty paths clear.",
     intro: [
-      "Kinexis builds plumber websites for shops across the United States, from one-truck operators to multi-crew companies. Most plumbing searches happen on a phone, often after hours, and the person calling is already comparing the first two shops that picked up. A homepage that leads with a slogan and hides the number is how those jobs go to the next listing.",
-      "We build the site around the work you actually run: leaks and bursts, drains, water heaters, repipes and the remodel fixtures that can wait until tomorrow. You see a homepage preview before you pay.",
+      "Most plumbing searches happen on a phone. Preferred Plumbing (Spirit Lake) shows a live pattern: tap-to-call in the hero and separate cards for repairs, drains, and tankless work—describe only what you can see on their public site, not outcomes.",
+      "Plans from the catalog: Website $97/mo, Lead System $197/mo, Plus $297/mo, Own It $1,497. Free homepage preview in 2 business days, no card. Compare full terms on /pricing before you submit.",
     ],
     problemsTitle: "Why plumbing sites lose the job",
     problemsMark: "lose the job",
@@ -356,6 +359,7 @@ export const INDUSTRIES: Industry[] = [
     card: "Maintenance routes and design-build work",
     status: "live",
     primaryKeyword: "landscaping website design",
+    updatedAt: "2026-11-27",
     proof: {
       liveSiteSlug: "a1-landscaping",
       annotations: [
@@ -365,14 +369,14 @@ export const INDUSTRIES: Industry[] = [
         { title: "Clear service area", text: "Cedar Falls, Waterloo, and Black Hawk County are named up front so route density stays honest." },
       ],
     },
-    metaTitle: "Landscaping Website Design Pricing | $97/mo",
-    metaDescription: "Landscaping website design from $97/mo. Weekly maintenance and design-build on separate pages, plus Google review requests and optional text-back.",
-    h1: "Website Design for Landscapers: Routes and Projects",
+    metaTitle: "Hire a Landscaping Website Designer | From $97/mo",
+    metaDescription: "Hire a landscaping website designer for maintenance routes and project pages. Free homepage preview in 2 business days—from $97/mo.",
+    h1: "Hire a Landscaping Website Designer for Routes and Projects",
     mark: "Routes and Projects",
-    sub: "Mowing routes and a patio install are different businesses that often share a truck. The site should not pretend they are the same lead.",
+    sub: "Recurring maintenance leads and design-build quotes need different next steps—even when they share a truck.",
     intro: [
-      "Kinexis builds landscaping websites for crews across the United States, from route businesses to design-build shops. A homeowner who wants a weekly cut is shopping price, reliability and whether you serve their neighborhood. A homeowner who wants a patio is shopping photos and whether you design or only install. One “landscaping services” page fails both.",
-      "We split maintenance from project work, name the service area you can actually crew, and leave the design honest about seasonality. You see the homepage before you choose a plan.",
+      "A1 Property Services (Cedar Falls) is a live example of keeping lawn care signup and hardscape project paths distinct with real yard photos—not stock. We describe what is visible on the public site only.",
+      "Catalog prices: Website $97/mo, Lead System $197/mo, Plus $297/mo, Own It $1,497. Free homepage preview in 2 business days. Full terms on /pricing.",
     ],
     problemsTitle: "Landscaping sites that attract the wrong work",
     problemsMark: "wrong work",
