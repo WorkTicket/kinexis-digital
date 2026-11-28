@@ -303,7 +303,8 @@ export function CtaBand({
   return (
     <section className="cta-band">
       <div className="container center">
-      <h2>{mark ? <HL text={h} mark={mark} /> : h}</h2><p>{sub}</p>
+      {/* phrase marker: navy on white chip — keeps AA contrast even if a prior band overlaps paint. */}
+      <h2>{mark ? <HL text={h} mark={mark} phrase /> : h}</h2><p>{sub}</p>
       <div className="btn-row">
         <Link className="btn btn--primary btn--lg" href={href} prefetch={false}>{btn}</Link>
         <Link className="btn btn--light btn--lg" href={secondaryHref} prefetch={false}>{secondary}</Link>

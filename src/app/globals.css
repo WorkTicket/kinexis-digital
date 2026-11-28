@@ -1228,10 +1228,15 @@ html.lp-route body{--announce-h:0px}
 /* FAQ blocks are taller than the 720px placeholder; size-containment lets
    summaries paint over the following SiteAudit CTA and fails target-size. */
 .section:has(details.faq){content-visibility:visible}
+/* PlanCompare notes are taller than the 720px section placeholder; skipped paint
+   lets white CTA emphasis sample over plan-notes (#f4f7ff) and fails color-contrast. */
+.section:has(.plan-compare){content-visibility:visible;contain-intrinsic-size:none}
 /* Skip layout/paint for below-fold bands (including the first section after a page hero). */
 /* industry-audit stays off content-visibility — placeholder sizing overlaps
    the FAQ footer link and fails Lighthouse target-size on mobile. */
-.price,.cta-band,.footer,.pricing-terms,.guarantee-stack,.mobile-plan-compare,.reviews-block{content-visibility:auto;contain-intrinsic-size:auto 900px}
+/* cta-band stays off content-visibility — skipped paint leaves white .hl-emphasis
+   over the page tint (#f4f7ff) and fails color-contrast (portfolio desktop a11y). */
+.price,.footer,.pricing-terms,.guarantee-stack,.mobile-plan-compare,.reviews-block{content-visibility:auto;contain-intrinsic-size:auto 900px}
 /* Desktop-only comparison table is display:none on small screens; keep it out of the mobile render tree cost when shown. */
 .pricing-comparison-table{content-visibility:auto;contain-intrinsic-size:auto 1200px}
 .section>.container{position:relative;z-index:2}
@@ -2854,8 +2859,11 @@ html.no-audit [data-site-audit]{display:none!important}
 /* ---------- CTA band (cobalt closer — matches homepage section--lead) ---------- */
 .cta-band{
   position:relative;overflow:visible;padding:92px 0;color:#fff;border-top:0;
-  background:linear-gradient(145deg,var(--accent-dark) 0%,var(--accent) 55%,#0a4dff 100%);
+  /* Opaque fallback so contrast never samples page tint if the gradient is delayed. */
+  background-color:var(--accent-dark);
+  background-image:linear-gradient(145deg,var(--accent-dark) 0%,var(--accent) 55%,#0a4dff 100%);
 }
+.cta-band .hl-emphasis{color:#fff}
 .cta-band .container{position:relative;z-index:2}
 .cta-band h2{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:.4em}
 .cta-band p{font-size:1.1rem;color:rgba(255,255,255,.88);opacity:1;margin-bottom:1.4em}
