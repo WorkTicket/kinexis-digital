@@ -123,7 +123,7 @@ h1{font-family:"poppinsDisplay","poppinsDisplay Fallback",Arial,sans-serif;font-
 .page-hero__art{min-width:0}.art-wrap{position:relative}.page-hero__art .art-wrap{aspect-ratio:1/1;width:100%;max-width:100%}
 .campaign-page-art{display:block;width:100%}.hero-art,.campaign-page-art__img{display:block;width:100%;height:auto;object-fit:contain}
 @media(max-width:720px){.hero__inner{grid-template-columns:1fr;gap:clamp(12px,1.8svh,16px)}.hero.hero--fit{min-height:0;padding:28px 0 36px}.hero__media{padding:8px;box-shadow:5px 5px 0 #031b4e}}
-@media(max-width:860px){.page-hero__grid{grid-template-columns:1fr}.page-hero__art .art-wrap{max-width:260px;margin-inline:auto}}
+@media(max-width:860px){.page-hero__grid{grid-template-columns:1fr}.page-hero__art .art-wrap{position:relative;width:min(100%,480px);max-width:min(100%,480px);aspect-ratio:1/1;margin-inline:auto}}
 @media(max-width:1320px){.nav:not(.is-open){display:none}}
 /* Unlayered: keep reason-sheet icon box size; sheet overflow visible so soft edges are not shaved. */
 .reason-sheet{overflow:visible}

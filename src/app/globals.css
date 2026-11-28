@@ -2296,9 +2296,11 @@ button.chatbot__icon__cta{
   .page-hero.industry-hero .art-wrap{max-width:min(100%,560px);margin-inline:auto}
 }
 @media (max-width:860px){
-  .page-hero__art .art-wrap{max-width:260px;margin-inline:auto}
-  /* Industry mobile cutouts need room — do not inherit the 260px kit-art slot. */
-  .page-hero.industry-hero .page-hero__art .art-wrap{max-width:min(100%,400px)}
+  /* All page heroes: large uniform square on phones/tablets. */
+  .page-hero__art .art-wrap{
+    position:relative;
+    width:min(100%,480px);max-width:min(100%,480px);aspect-ratio:1/1;margin-inline:auto;
+  }
 }
 .page-hero.industry-hero .art-wrap{
   width:100%;aspect-ratio:auto;background:transparent;border:0;border-radius:0;
@@ -2496,26 +2498,30 @@ button.chatbot__icon__cta{
   .page-hero--split .page-hero__copy{text-align:center}
   .page-hero--split .lead{margin-inline:auto}
   .page-hero--split .btn-row{justify-content:center}
-  /* Keep circular hero art inside the section and off the screen edges */
+  /* Keep hero art inside the section and off the screen edges */
   .page-hero--split{padding-bottom:64px}
   .page-hero__art{
     display:flex;justify-content:center;justify-self:center;
-    width:100%;padding-inline:12px;overflow:visible;
+    width:100%;padding-inline:0;overflow:visible;
   }
   .page-hero__art .art-wrap{
-    width:100%;max-width:260px;margin-inline:auto;overflow:visible;
+    position:relative;
+    width:min(100%,480px);max-width:min(100%,480px);aspect-ratio:1/1;
+    margin-inline:auto;overflow:visible;
+  }
+  .page-hero__art .art-wrap picture,
+  .page-hero__art .art-wrap > span{
+    position:absolute;inset:0;display:block;width:100%;height:100%;
   }
   .page-hero__art .hero-art{
-    width:100%;height:auto;max-width:100%;object-fit:contain;object-position:center;
+    position:absolute;inset:0;width:100%;height:100%;
+    max-width:100%;max-height:100%;
+    object-fit:contain;object-position:center;
   }
-  /* Industry pages: copy + CTAs first, cutout hero under them. */
+  /* Industry pages: copy + CTAs first, cutout hero under them (no frame). */
   .page-hero.industry-hero .page-hero__art{order:0;padding-inline:0;margin-top:8px}
   .page-hero.industry-hero .page-hero__art .art-wrap{
-    max-width:min(100%,400px);aspect-ratio:auto;overflow:visible;
     border:0;border-radius:0;box-shadow:none;background:transparent;
-  }
-  .page-hero.industry-hero .hero-art.industry-hero__img{
-    width:100%;height:auto;object-fit:contain;background:transparent;
   }
   .media-split--reverse .media-split__art{order:0}
   .media-split__copy,.media-split__copy h2,.media-split__copy p,.media-split__copy .muted{text-align:center}
@@ -4940,7 +4946,7 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 .pay-page .pay-hero{padding:48px 0;background:var(--bg-tint)}
 .pay-page .pay-hero h1{font-size:clamp(2.4rem,4.5vw,4rem);line-height:1.12;max-width:12ch}
 .pay-page .pay-hero .lead{font-size:1.1rem;max-width:48ch}
-.pay-page .pay-hero .hero-art{max-height:330px;object-fit:contain}
+.pay-page .pay-hero .hero-art{object-fit:contain}
 .pay-page .pay-hero-links{font-size:.9rem;line-height:1.8;max-width:48ch;margin:20px 0 0}
 .pay-page .pay-hero-links__invoice{display:block;width:fit-content;margin:8px 0 0}
 .pay-page .pay-pick{padding-block:40px 72px}
@@ -4998,7 +5004,6 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 @media(max-width:860px){
   .pay-page .pay-hero h1{max-width:16ch;margin-inline:auto}
   .pay-page .pay-hero-links{margin-inline:auto}
-  .pay-page .pay-hero .hero-art{max-height:230px}
   .pay-page .pay-layout,.pay-page .pay-below{grid-template-columns:1fr;gap:24px}
   .pay-page .pay-summary{margin-right:6px}
 }
@@ -5432,10 +5437,11 @@ p,li,blockquote{ text-wrap:pretty }
   .cta-band{padding:48px 0}
   .page-hero{padding:36px 0 32px}
   .page-hero--split{padding-bottom:48px}
-  .page-hero__art .art-wrap{max-width:260px}
+  .page-hero__art .art-wrap{
+    width:min(100%,480px);max-width:min(100%,480px);aspect-ratio:1/1;
+  }
   .page-hero.industry-hero .page-hero__art .art-wrap{
-    max-width:min(100%,360px);aspect-ratio:auto;border:0;border-radius:0;
-    box-shadow:none;background:transparent;
+    border:0;border-radius:0;box-shadow:none;background:transparent;
   }
 
   .hero.hero--fit{padding:24px 0 28px}
